@@ -17,7 +17,28 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body >
+  <body>
+    <!-- ナビゲーションバー -->
+    <nav>
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to 'マイページ', mypage_path %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path,  data: { turbo_method: :delete } %></li>
+        <% else %>
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <!-- フラッシュメッセージの表示 -->
+    <% flash.each do |key, message| %>
+      <div class="flash <%= key %>">
+        <%= message %>
+      </div>
+    <% end %>
+
+    <!-- コンテンツの表示 -->
     <%= yield %>
   </body>
 </html>

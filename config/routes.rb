@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get "mypages/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -11,11 +12,11 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Root route
-  root 'tasks#index'
+  root "tasks#index"
 
   # Resources for tasks
   resources :tasks
 
   # Route for mypage (マイページ)
-  resource :mypage, only: [:show], controller: 'mypages'
+  resource :mypage, only: [ :show ], controller: "mypages"
 end

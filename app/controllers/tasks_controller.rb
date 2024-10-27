@@ -3,5 +3,4 @@ class TasksController < ApplicationController
       # コード例: タスクの一覧を表示
       @tasks = Task.all
     end
-  end
-  
+end
