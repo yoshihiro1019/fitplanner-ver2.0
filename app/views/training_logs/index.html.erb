@@ -1,6 +1,7 @@
 <h1>トレーニング記録一覧</h1>
 <% if @training_logs.present? %>
 <% @training_logs.each do |log| %>
+    <%= link_to '新しい記録を追加', new_training_log_path %>
   <div>
     <p><strong>種類:</strong> <%= log.training_type %></p>
     <p><strong>重量:</strong> <%= log.weight %> kg</p>
