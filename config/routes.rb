@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   # Resources for tasks
   resources :tasks
+  resources :training_logs, only: [:new, :create, :index]
 
   # Route for mypage (マイページ)
   resource :mypage, only: [ :show ], controller: "mypages"

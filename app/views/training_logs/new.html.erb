@@ -1,0 +1,27 @@
+<h1>トレーニング記録を追加</h1>
+
+<%= form_with(model: @training_log, local: true) do |form| %>
+  <div>
+    <%= form.label :training_type, 'トレーニングの種類' %>
+    <%= form.text_field :training_type %>
+  </div>
+
+  <div>
+    <%= form.label :weight, '重量 (kg)' %>
+    <%= form.number_field :weight %>
+  </div>
+
+  <div>
+    <%= form.label :reps, '回数' %>
+    <%= form.number_field :reps %>
+  </div>
+
+  <div>
+    <%= form.label :sets, 'セット数' %>
+    <%= form.number_field :sets %>
+  </div>
+
+  <div>
+    <%= form.submit '保存' %>
+  </div>
+<% end %>
