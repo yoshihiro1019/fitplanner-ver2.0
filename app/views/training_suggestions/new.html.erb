@@ -1,0 +1,12 @@
+<h1>鍛えたい部位を選んでください</h1>
+
+<%= form_with url: training_suggestions_path, method: :post do |f| %>
+  <div>
+    <%= f.label :body_part_id, '部位を選択' %>
+    <%= f.collection_select :body_part_id, @body_parts, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.submit '提案を生成' %>
+  </div>
+<% end %>

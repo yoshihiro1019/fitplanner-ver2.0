@@ -7,3 +7,4 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+BodyPart.create([{ name: '胸' }, { name: '背中' }, { name: '脚' }, { name: '肩' }, { name: '腕' }])

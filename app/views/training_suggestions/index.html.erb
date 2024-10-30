@@ -1,0 +1,9 @@
+<h1>トレーニング提案</h1>
+
+<% if @suggestion %>
+  <p><%= @suggestion %></p>
+<% else %>
+  <p>鍛えたい部位を選んで提案を受け取りましょう。</p>
+<% end %>
+
+<%= link_to '部位を選び直す', new_training_suggestion_path %>

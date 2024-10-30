@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   get 'training_logs', to: 'training_logs#index', as: :training_logs
   get 'gym_search', to: 'gyms#index', as: :gym_search
-  get 'training_suggestions', to: 'trainings#index', as: :training_suggestions
+  get 'training_suggestions', to: 'training_suggestions#new', as: :training_suggestions
   get 'bgm', to: 'bgm#index', as: :bgm
   # Root route
   root "tasks#index"
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # Resources for tasks
   resources :tasks
   resources :training_logs, only: [:new, :create, :index]
-
+  resources :training_suggestions, only: [:new, :create, :index]
   # Route for mypage (マイページ)
   resource :mypage, only: [ :show ], controller: "mypages"
 end
