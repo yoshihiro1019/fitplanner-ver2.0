@@ -1,9 +1,11 @@
-<h1>トレーニング提案</h1>
+<form action="<%= training_suggestions_path %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for="body_part">部位を選択</label>
+  <%= select_tag :body_part_id, options_from_collection_for_select(@body_parts, :id, :name) %>
+  <button type="submit">提案を生成</button>
+</form>
 
-<% if @suggestion %>
-  <p><%= @suggestion %></p>
-<% else %>
-  <p>鍛えたい部位を選んで提案を受け取りましょう。</p>
+<% if flash[:suggestion] %>
+  <p><strong>提案:</strong> <%= flash[:suggestion] %></p>
 <% end %>
 
-<%= link_to '部位を選び直す', new_training_suggestion_path %>

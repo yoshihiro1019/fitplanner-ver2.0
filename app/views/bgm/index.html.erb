@@ -1,2 +1,10 @@
-<h1>Bgm#index</h1>
-<p>Find me in app/views/bgm/index.html.erb</p>
+<!-- app/views/bgm/index.html.erb -->
+
+<h1>筋トレ用BGM</h1>
+
+<% if @playlist %>
+  <h2><%= @playlist["name"] %></h2>
+  <iframe src="https://open.spotify.com/embed/playlist/<%= @playlist["id"] %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<% else %>
+  <p>おすすめのBGMを取得できませんでした。</p>
+<% end %>
