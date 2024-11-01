@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?, :current_user
 
   # ログインが必要な場合に使用
- 
+
 
   # ログイン後のリダイレクト先を設定
- 
+
 
   # ログアウト後のリダイレクト先を設定
   def after_sign_out_path_for(resource_or_scope)

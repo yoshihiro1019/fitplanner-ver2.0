@@ -8,9 +8,10 @@
     <p><strong>回数:</strong> <%= log.reps %> 回</p>
     <p><strong>セット数:</strong> <%= log.sets %> セット</p>
   </div>
+  <%= link_to '編集', edit_training_log_path(log) %> |
+  <%= link_to '削除', log, method: :delete, data: { confirm: '本当に削除しますか？' } %>
 <% end %>
 <% else %>
   <p>トレーニング記録がありません。新しい記録を追加しましょう！</p>
   <%= link_to '新しい記録を追加', new_training_log_path %>
-<%= link_to '新しい記録を追加', new_training_log_path %>
-<% end %>
+  <% end %>
