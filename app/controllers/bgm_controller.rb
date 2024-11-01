@@ -1,7 +1,7 @@
 # app/controllers/bgm_controller.rb
 
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 class BgmController < ApplicationController
   def index
@@ -22,7 +22,7 @@ class BgmController < ApplicationController
     request = Net::HTTP::Post.new(url)
     request.basic_auth(Rails.application.credentials.spotify[:client_id], Rails.application.credentials.spotify[:client_secret])
     request.set_form_data({
-      'grant_type' => 'client_credentials'
+      "grant_type" => "client_credentials"
     })
 
     response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
