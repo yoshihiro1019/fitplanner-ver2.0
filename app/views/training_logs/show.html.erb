@@ -1,0 +1,10 @@
+<!-- app/views/training_logs/show.html.erb -->
+<h1>トレーニング記録の詳細</h1>
+<p><strong>種類:</strong> <%= @training_log.training_type %></p>
+<p><strong>重量:</strong> <%= @training_log.weight %> kg</p>
+<p><strong>回数:</strong> <%= @training_log.reps %> 回</p>
+<p><strong>セット数:</strong> <%= @training_log.sets %> セット</p>
+
+<%= link_to '編集', edit_training_log_path(@training_log) %> |
+<%= link_to '削除', @training_log, method: :delete, data: { confirm: '本当に削除しますか？' } %> |
+<%= link_to '一覧に戻る', training_logs_path %>
