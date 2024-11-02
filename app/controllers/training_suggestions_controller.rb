@@ -1,6 +1,6 @@
 class TrainingSuggestionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_body_parts, only: [:new, :create]
+  before_action :set_body_parts, only: [:new]
 
   def new
     # `@body_parts`は`set_body_parts`で取得済み
