@@ -1,14 +1,20 @@
 <h1>トレーニング記録一覧</h1>
 <% if @training_logs.present? %>
-<% @training_logs.each do |log| %>
-    <%= link_to '新しい記録を追加', new_training_log_path %>
+<% @training_logs.each do |training_log| %>
   <div>
-    <p><strong>種類:</strong> <%= log.training_type %></p>
-    <p><strong>重量:</strong> <%= log.weight %> kg</p>
-    <p><strong>回数:</strong> <%= log.reps %> 回</p>
-    <p><strong>セット数:</strong> <%= log.sets %> セット</p>
+    <p>種類: <%= training_log.training_type %></p>
+    <p>重量: <%= training_log.weight %> kg</p>
+    <p>回数: <%= training_log.reps %> 回</p>
+    <p>セット数: <%= training_log.sets %> セット</p>
+
+    <!-- 編集リンク -->
+    <%= link_to '編集', edit_training_log_path(training_log) %> |
+
+    <!-- 削除リンク -->
+    <%= link_to '削除', training_log, method: :delete, data: { confirm: '本当に削除しますか？' } %>
   </div>
 <% end %>
+
 <% else %>
   <p>トレーニング記録がありません。新しい記録を追加しましょう！</p>
   <%= link_to '新しい記録を追加', new_training_log_path %>
