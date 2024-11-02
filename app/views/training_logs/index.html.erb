@@ -11,12 +11,13 @@
     <%= link_to '編集', edit_training_log_path(training_log) %> |
 
     <!-- 削除リンク -->
-    <%= link_to '削除', training_log, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <%= link_to '削除', training_log, data: { turbo_method: :delete } %>
+    <%= link_to '新しい記録を追加', new_training_log_path %>
   </div>
 <% end %>
 
 <% else %>
   <p>トレーニング記録がありません。新しい記録を追加しましょう！</p>
   <%= link_to '新しい記録を追加', new_training_log_path %>
-<%= link_to '新しい記録を追加', new_training_log_path %>
+
 <% end %>
