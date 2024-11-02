@@ -31,6 +31,6 @@ class TrainingSuggestionsController < ApplicationController
   private
 
   def set_body_parts
-    @body_parts = BodyPart.all  # 部位の選択肢を取得
+    @body_parts = BodyPart.select(:id, :name).distinct  # 部位の選択肢を取得
   end
 end
