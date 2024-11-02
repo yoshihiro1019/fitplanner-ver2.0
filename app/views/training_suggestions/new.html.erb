@@ -1,7 +1,7 @@
-<%= form_with url: training_suggestions_path, method: :post, local: true do |f| %>
+<%= form_with url: training_suggestions_path, method: :post do |form| %>
   <div>
-    <%= f.label :body_part_id, '部位を選択' %>
-    <%= f.collection_select :body_part_id, @body_parts, :id, :name %>
+    <%= form.label :body_part_id, '部位を選択' %>
+    <%= form.select :body_part_id, options_from_collection_for_select(@body_parts, :id, :name, params[:body_part_id]) %>
   </div>
-  <%= f.submit '提案を生成' %>
+  <%= form.submit '提案を生成' %>
 <% end %>

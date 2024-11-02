@@ -1,8 +1,9 @@
 class TrainingSuggestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_body_parts, only: [:new, :create]
+
   def new
-    @body_parts = BodyPart.all  # 部位の選択肢を取得
+    # `@body_parts`は`set_body_parts`で取得済み
   end
 
   def create
@@ -19,15 +20,12 @@ class TrainingSuggestionsController < ApplicationController
   
     suggestion = suggestions[part_name]
   
-    # `flash`でメッセージを一時的に保存し、`index`アクションにリダイレクト
     flash[:suggestion] = suggestion
-    redirect_to training_suggestions_path
+    redirect_to training_suggestions_path(body_part_id: selected_part) # 選択した部位をパラメータとして保持
   end
-  
-  
 
   def index
-    # renderで遷移するため、ここには@suggestionを渡さない
+    # `@suggestion`は`flash`で表示されるため、ここでは特に変数を渡す必要はありません
   end
 
   private
