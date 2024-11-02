@@ -1,7 +1,13 @@
-<%= form_with url: training_suggestions_path, method: :post do |form| %>
+<%= form_with url: training_suggestions_path, method: :post do %>
   <div>
-    <%= form.label :body_part_id, '部位を選択' %>
-    <%= form.select :body_part_id, options_from_collection_for_select(@body_parts, :id, :name, params[:body_part_id]) %>
+    <label for="body_part_id">部位を選択</label>
+    <select name="body_part_id" id="body_part_id">
+      <% @body_parts.uniq.each do |part| %>  <!-- uniqで重複を排除 -->
+        <option value="<%= part.id %>" <%= 'selected' if part.id == params[:body_part_id].to_i %>>
+          <%= part.name %>
+        </option>
+      <% end %>
+    </select>
   </div>
-  <%= form.submit '提案を生成' %>
+  <button type="submit">提案を生成</button>
 <% end %>
