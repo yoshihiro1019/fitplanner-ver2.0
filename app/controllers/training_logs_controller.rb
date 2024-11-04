@@ -49,6 +49,6 @@ class TrainingLogsController < ApplicationController
   private
 
   def training_log_params
-    params.require(:training_log).permit(:training_type, :weight, :reps, :sets)
+    params.require(:training_log).permit(:training_type, :weight, :reps, :sets, :day_of_week)
   end
 end

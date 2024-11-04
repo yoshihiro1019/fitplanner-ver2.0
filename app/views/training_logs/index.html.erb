@@ -1,3 +1,4 @@
+<% japanese_days = { "Monday" => "月曜日", "Tuesday" => "火曜日", "Wednesday" => "水曜日", "Thursday" => "木曜日", "Friday" => "金曜日", "Saturday" => "土曜日", "Sunday" => "日曜日" } %>
 <h1>トレーニング記録一覧</h1>
 <% if @training_logs.present? %>
 <% @training_logs.each do |training_log| %>
@@ -6,6 +7,7 @@
     <p>重量: <%= training_log.weight %> kg</p>
     <p>回数: <%= training_log.reps %> 回</p>
     <p>セット数: <%= training_log.sets %> セット</p>
+    <p>曜日: <%= japanese_days[training_log.day_of_week] %></p>
 
     <!-- 編集リンク -->
     <%= link_to '編集', edit_training_log_path(training_log) %> |
