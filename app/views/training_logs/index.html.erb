@@ -1,25 +1,21 @@
-<% japanese_days = { "Monday" => "月曜日", "Tuesday" => "火曜日", "Wednesday" => "水曜日", "Thursday" => "木曜日", "Friday" => "金曜日", "Saturday" => "土曜日", "Sunday" => "日曜日" } %>
 <h1>トレーニング記録一覧</h1>
-<% if @training_logs.present? %>
-<% @training_logs.each do |training_log| %>
-  <div>
-    <p>種類: <%= training_log.training_type %></p>
-    <p>重量: <%= training_log.weight %> kg</p>
-    <p>回数: <%= training_log.reps %> 回</p>
-    <p>セット数: <%= training_log.sets %> セット</p>
-    <p>曜日: <%= japanese_days[training_log.day_of_week] %></p>
 
-    <!-- 編集リンク -->
-    <%= link_to '編集', edit_training_log_path(training_log) %> |
+<%= link_to '新しい記録を追加', new_training_log_path, class: 'btn btn-primary' %> <!-- 新規作成ボタンを追加 -->
 
-    <!-- 削除リンク -->
-    <%= link_to '削除', training_log, data: { turbo_method: :delete } %>
-    <%= link_to '新しい記録を追加', new_training_log_path %>
-  </div>
-<% end %>
+<% japanese_days = { "Monday" => "月曜日", "Tuesday" => "火曜日", "Wednesday" => "水曜日", "Thursday" => "木曜日", "Friday" => "金曜日", "Saturday" => "土曜日", "Sunday" => "日曜日" } %>
 
-<% else %>
-  <p>トレーニング記録がありません。新しい記録を追加しましょう！</p>
-  <%= link_to '新しい記録を追加', new_training_log_path %>
+<% @grouped_training_logs.each do |day, training_logs| %>
+  <h2><%= japanese_days[day] || day %></h2> <!-- 曜日ごとの見出し -->
 
+  <% training_logs.each do |training_log| %>
+    <div>
+      <p>種類: <%= training_log.training_type %></p>
+      <p>重量: <%= training_log.weight %> kg</p>
+      <p>回数: <%= training_log.reps %> 回</p>
+      <p>セット数: <%= training_log.sets %> セット</p>
+      <!-- 編集・削除リンク -->
+      <%= link_to '編集', edit_training_log_path(training_log) %> |
+      <%= link_to '削除', training_log, data: { turbo_method: :delete } %>
+    </div>
+  <% end %>
 <% end %>

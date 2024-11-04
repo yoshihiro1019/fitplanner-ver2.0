@@ -4,12 +4,13 @@ class TrainingLogsController < ApplicationController
   def index
     # ログインしていないユーザーに対する処理
     if user_signed_in?
-      @training_logs = current_user.training_logs
+      # `TrainingLog`を曜日でグループ化して取得
+      @grouped_training_logs = current_user.training_logs.group_by(&:day_of_week)
     else
-      @training_logs = []  # ログインしていない場合は空の配列を返す
+      @grouped_training_logs = {}  # ログインしていない場合は空のハッシュを返す
     end
   end
-
+  
   def edit
     @training_log = TrainingLog.find(params[:id])
   end
