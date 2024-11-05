@@ -1,0 +1,20 @@
+<!-- app/views/questions/index.html.erb -->
+<h1>トレーニング提案</h1>
+<p>以下の質問に答えてください：</p>
+<%= form_with url: questions_path, method: :post do %>
+  <div>
+    <label>年齢：</label>
+    <%= text_field_tag :age %>
+  </div>
+  <div>
+    <label>トレーニング経験：</label>
+    <%= select_tag :experience, options_for_select(['初心者', '中級者', '上級者']) %>
+  </div>
+  <div>
+    <label>重点を置きたい部位：</label>
+    <%= select_tag :focus_area, options_for_select(['上半身', '下半身', '体幹']) %>
+  </div>
+  <div>
+    <%= submit_tag '提案を受け取る' %>
+  </div>
+<% end %>

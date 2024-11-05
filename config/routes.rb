@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   resources :training_suggestions, only: [:new, :create, :index]
   # Route for mypage (マイページ)
   resource :mypage, only: [ :show ], controller: "mypages"
+  resources :questions, only: [:index]
 end
