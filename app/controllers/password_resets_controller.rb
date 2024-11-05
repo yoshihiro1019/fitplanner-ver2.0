@@ -2,6 +2,20 @@ class PasswordResetsController < ApplicationController
   def new
   end
 
+  def edit_direct
+    @user = current_user
+  end
+
+  def update_direct
+    @user = current_user
+    if @user.update(password_params)
+      flash[:notice] = "パスワードが更新されました"
+      redirect_to root_path
+    else
+      render :edit_direct
+    end
+  end
+
   def create
     @user = User.find_by(email: params[:email])
     if @user
@@ -20,5 +34,12 @@ class PasswordResetsController < ApplicationController
       flash[:alert] = "メールアドレスが見つかりません。"
       render :new
     end
+  end
+
+  private
+
+  # Strong Parametersの設定
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 end
