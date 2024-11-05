@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "password_resets/new"
+  get "password_resets/create"
   get "bgm/index"
   get "trainings/index"
   get "gyms/index"
@@ -20,12 +22,12 @@ Rails.application.routes.draw do
   get 'bgm', to: 'bgm#index', as: :bgm
   # Root route
   root "tasks#index"
-
+  resources :questions
   # Resources for tasks
   resources :tasks
   resources :training_logs, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :training_suggestions, only: [:new, :create, :index]
   # Route for mypage (マイページ)
   resource :mypage, only: [ :show ], controller: "mypages"
-  resources :questions, only: [:index]
+  resource :password_reset, only: [:new, :create]
 end
