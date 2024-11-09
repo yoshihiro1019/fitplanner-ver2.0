@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   get "password_resets/new"
   get "password_resets/create"
@@ -7,8 +6,12 @@ Rails.application.routes.draw do
   get "gyms/index"
   get "training_logs/index"
 
-  # Devise routes
-  devise_for :users, controllers: { passwords: 'password_resets' }
+  # Devise routes with OmniAuth callbacks
+  devise_for :users, controllers: { 
+    passwords: 'password_resets',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: "users/registrations" # 追加部分
+  }
 
   # Custom route for mypage
   get "mypages/show"
@@ -41,8 +44,8 @@ Rails.application.routes.draw do
   # Password reset routes
   resource :password_reset, only: [:new, :create]
   devise_scope :user do
-  # Add route for direct password edit
-  get 'password_resets/edit_direct', to: 'password_resets#edit_direct', as: :edit_direct_password
-  put 'password_resets/update_direct', to: 'password_resets#update_direct', as: :update_direct_password
+    # Add route for direct password edit
+    get 'password_resets/edit_direct', to: 'password_resets#edit_direct', as: :edit_direct_password
+    put 'password_resets/update_direct', to: 'password_resets#update_direct', as: :update_direct_password
   end
 end
