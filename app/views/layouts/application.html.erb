@@ -30,7 +30,7 @@
           <li>ログインしていません</li> 
           <li><%= link_to 'ログイン', new_user_session_path %></li>
           <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-          <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, method: :post, form: { authenticity_token: true } %>
+          <%= link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, method: :post, form: { authenticity_token: true } %>
         <% end %>
       </ul>
     </nav>
