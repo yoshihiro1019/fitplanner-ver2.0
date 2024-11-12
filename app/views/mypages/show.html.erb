@@ -1,11 +1,25 @@
-<h1>Mypages#show</h1>
-<p>以下の機能にアクセスしてください:</p>
+<div class="bg-gray-100 p-6 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold text-gray-800 mb-4">Mypages#show</h1>
+  <p class="text-gray-600 mb-4">以下の機能にアクセスしてください：</p>
 
-<ul>
-  <li><%= link_to '質問形式トレーニング提案', questions_path %></li>
-  <li><%= link_to '筋トレ記録', training_logs_path %></li>
-  <li><%= link_to 'ジム検索', gym_search_path %></li>
-  <li><%= link_to '部位別トレーニング検索', training_suggestions_path %></li>
-  <li><%= link_to 'BGM', bgm_path %></li>
-  <li><%= link_to 'パスワードを変更する', edit_direct_password_path %></li>
-</ul>
+  <ul class="space-y-4">
+    <li>
+      <%= link_to '質問形式トレーニング提案', questions_path, class: "block w-full text-center py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+    </li>
+    <li>
+      <%= link_to '筋トレ記録', training_logs_path, class: "block w-full text-center py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400" %>
+    </li>
+    <li>
+      <%= link_to 'ジム検索', gym_search_path, class: "block w-full text-center py-2 px-4 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+    </li>
+    <li>
+      <%= link_to '部位別トレーニング検索', training_suggestions_path, class: "block w-full text-center py-2 px-4 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-400" %>
+    </li>
+    <li>
+      <%= link_to 'BGM', bgm_path, class: "block w-full text-center py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400" %>
+    </li>
+    <li>
+      <%= link_to 'パスワードを変更する', edit_direct_password_path, class: "block w-full text-center py-2 px-4 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400" %>
+    </li>
+  </ul>
+</div>
