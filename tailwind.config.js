@@ -6,7 +6,12 @@ module.exports = {
     './app/javascript/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {colors: {
+      'red-200': '#FECACA', // 明るい赤
+      'red-400': '#FCA5A5', // 少し濃い赤
+      'red-600': '#DC2626', // 中程度の赤
+      'red-800': '#9B1C1C', // 濃い赤
+    },},
   },
   plugins: [],
 };

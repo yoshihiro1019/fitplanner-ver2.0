@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
@@ -16,7 +16,7 @@
       <div class="container mx-auto px-4 flex justify-between items-center">
         <!-- ロゴ -->
         <div class="text-xl font-bold">
-          <%= link_to "Myapp", root_path, class: "hover:text-gray-400" %>
+          <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
         </div>
 
         <!-- ナビゲーションリンク -->
