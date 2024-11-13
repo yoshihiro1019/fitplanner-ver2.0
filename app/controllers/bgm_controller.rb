@@ -1,17 +1,13 @@
-# app/controllers/bgm_controller.rb
-
-require 'net/http'
-require 'json'
-
 class BgmController < ApplicationController
   def index
     # アクセストークンを取得
     token = fetch_spotify_token
     if token
-      # "ワークアウト"プレイリストをランダムに取得
-      @playlist = fetch_workout_playlist(token)
+      # "ワークアウト"プレイリストを複数取得
+      @playlists = fetch_workout_playlists(token)
     else
       flash[:alert] = "Spotify APIへの接続に失敗しました。"
+      @playlists = []
     end
   end
 
@@ -36,7 +32,7 @@ class BgmController < ApplicationController
     end
   end
 
-  def fetch_workout_playlist(token)
+  def fetch_workout_playlists(token)
     url = URI("https://api.spotify.com/v1/browse/categories/workout/playlists?country=JP&limit=10")
     request = Net::HTTP::Get.new(url)
     request["Authorization"] = "Bearer #{token}"
@@ -46,10 +42,9 @@ class BgmController < ApplicationController
     end
 
     if response.is_a?(Net::HTTPSuccess)
-      playlists = JSON.parse(response.body)["playlists"]["items"]
-      playlists.sample # ランダムに1つ選ぶ
+      JSON.parse(response.body)["playlists"]["items"]
     else
-      nil
+      []
     end
   end
 end
