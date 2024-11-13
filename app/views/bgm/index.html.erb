@@ -1,10 +1,33 @@
-<!-- app/views/bgm/index.html.erb -->
+<div class="flex flex-col items-center space-y-6 mt-12 px-4">
+  <!-- メインタイトル -->
+  <h1 class="text-4xl font-extrabold text-gray-900 tracking-wide">
+    筋トレ用BGM
+  </h1>
 
-<h1>筋トレ用BGM</h1>
+  <% if @playlist %>
+    <!-- プレイリストタイトル -->
+    <h2 class="text-2xl font-semibold text-gray-700">
+      <%= @playlist["name"] %>
+    </h2>
 
-<% if @playlist %>
-  <h2><%= @playlist["name"] %></h2>
-  <iframe src="https://open.spotify.com/embed/playlist/<%= @playlist["id"] %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-<% else %>
-  <p>おすすめのBGMを取得できませんでした。</p>
-<% end %>
+    <!-- プレイリストカード -->
+    <div class="bg-gray-100 p-6 rounded-xl shadow-xl max-w-sm w-full">
+      <iframe
+        src="https://open.spotify.com/embed/playlist/<%= @playlist['id'] %>"
+        width="100%"
+        height="380"
+        frameborder="0"
+        allowtransparency="true"
+        allow="encrypted-media"
+        class="rounded-lg"
+      >
+      </iframe>
+    </div>
+  <% else %>
+    <!-- エラー時の表示 -->
+    <p class="text-lg text-red-500 font-medium">
+      おすすめのBGMを取得できませんでした。
+    </p>
+  <% end %>
+</div>
+
