@@ -18,14 +18,14 @@ class TrainingSuggestionsController < ApplicationController
       '腕' => 'ダンベルカールで腕を強化しましょう！'
     }
   
-    suggestion = suggestions[part_name]
+    @suggestion = suggestions[part_name]
   
-    flash[:suggestion] = suggestion
-    redirect_to training_suggestions_path(body_part_id: selected_part) # 選択した部位をパラメータとして保持
+    # リダイレクトして `@suggestion`をパラメータで渡す
+    redirect_to training_suggestions_path(body_part_id: selected_part, suggestion: @suggestion)
   end
 
   def index
-    # `@suggestion`は`flash`で表示されるため、ここでは特に変数を渡す必要はありません
+    # 部位選択画面で`@suggestion`がない場合は何も表示しない
   end
 
   private

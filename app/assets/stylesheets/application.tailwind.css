@@ -5,3 +5,20 @@
 .input-field {
     @apply w-full px-4 py-2 border border-gray-500 rounded-md text-red-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
   }
+
+  #suggestion-box {
+    animation: fade-in 0.5s ease-out;
+    z-index: 50; /* 他の要素の上に表示 */
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
