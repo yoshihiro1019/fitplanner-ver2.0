@@ -25,6 +25,8 @@ gem 'devise'
 # gem "kredis"
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-google-oauth2', '~> 1.0'
+gem 'omniauth-rails_csrf_protection'
+
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   get "training_logs/index"
 
   # Devise routes with OmniAuth callbacks
-  devise_for :users, controllers: { 
-    passwords: 'password_resets',
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    registrations: "users/registrations" # 追加部分
-  }
+  devise_for :users, controllers: {
+  omniauth_callbacks: 'users/omniauth_callbacks',
+  registrations: 'users/registrations',
+  passwords: 'password_resets'
+}
 
   # Custom route for mypage
   get "mypages/show"

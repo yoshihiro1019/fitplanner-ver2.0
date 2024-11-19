@@ -54,8 +54,13 @@
                 <%= link_to 'サインアップ', new_user_registration_path, class: 'hover:text-gray-400' %>
               </li>
               <li>
-                <%= link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, method: :post, form: { authenticity_token: true }, class: 'hover:text-gray-400' %>
-              </li>
+  <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path,
+      method: :post,
+      form: { data: { turbo: false } },
+      class: 'hover:text-gray-400 bg-transparent border-0 p-0' %>
+</li>
+
+
             <% end %>
           </ul>
         </div>
