@@ -5,13 +5,18 @@ Rails.application.routes.draw do
   get "trainings/index"
   get "gyms/index"
   get "training_logs/index"
+  
+  # 重複していたルーティングを削除
+  # get 'training_suggestions', to: 'training_suggestions#index', as: 'training_suggestions'
+  # get 'training_suggestions/new', to: 'training_suggestions#new', as: 'new_training_suggestion'
+  # post 'training_suggestions', to: 'training_suggestions#create'
 
   # Devise routes with OmniAuth callbacks
   devise_for :users, controllers: {
-  omniauth_callbacks: 'users/omniauth_callbacks',
-  registrations: 'users/registrations',
-  passwords: 'password_resets'
-}
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations',
+    passwords: 'password_resets'
+  }
 
   # Custom route for mypage
   get "mypages/show"
@@ -26,7 +31,8 @@ Rails.application.routes.draw do
   # Custom routes with named paths
   get 'training_logs', to: 'training_logs#index', as: :training_logs
   get 'gym_search', to: 'gyms#index', as: :gym_search
-  get 'training_suggestions', to: 'training_suggestions#new', as: :training_suggestions
+  # 重複していたルーティングを削除
+  # get 'training_suggestions', to: 'training_suggestions#new', as: :training_suggestions
   get 'bgm', to: 'bgm#index', as: :bgm
 
   # Root route

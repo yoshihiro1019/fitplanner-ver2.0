@@ -1,11 +1,18 @@
-<form action="<%= training_suggestions_path %>" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="body_part">部位を選択</label>
-  <%= select_tag :body_part_id, options_from_collection_for_select(@body_parts, :id, :name) %>
-  <button type="submit">提案を生成</button>
-</form>
-
-<% if flash[:suggestion] %>
-  <p><strong>提案:</strong> <%= flash[:suggestion] %></p>
-<% end %>
-
+<div class="container mx-auto px-4 py-6">
+  <% if @suggestions.present? %>
+    <h1 class="text-2xl font-bold mb-4"><%= @part_name %>のトレーニング提案</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <% @suggestions.each do |exercise| %>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h2 class="text-xl font-semibold mb-2"><%= exercise[:name] %></h2>
+          <p class="text-gray-700"><%= exercise[:description] %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-6">
+      <%= link_to '部位選択に戻る', new_training_suggestion_path, class: "text-blue-500 hover:underline" %>
+    </div>
+  <% else %>
+    <%= render 'new' %>
+  <% end %>
+</div>
