@@ -25,6 +25,7 @@ class TrainingSuggestionsController < ApplicationController
       selected_part = params[:body_part_id].to_i
       @suggestions = @all_suggestions[selected_part]
       @part_name = BodyPart.find(selected_part).name
+      render :index
     else
       flash[:alert] = "部位を選択してください。"
       redirect_to new_training_suggestion_path
@@ -83,20 +84,6 @@ class TrainingSuggestionsController < ApplicationController
       ],
       4 => [
         { 
-          name: 'バーベルカール', 
-          description: 'バーベルを両手で握り、肘を固定して腕を曲げながらバーベルを持ち上げます。ゆっくりと元に戻します。' 
-        },
-        { 
-          name: 'ダンベルカール', 
-          description: 'ダンベルを両手に持ち、肘を固定して片腕ずつ持ち上げます。腕の動きをコントロールしながら戻します。' 
-        },
-        { 
-          name: 'プリーチャーカール', 
-          description: 'プリーチャーベンチに腕を乗せ、ダンベルを持ち上げます。上腕二頭筋を意識してゆっくり戻します。' 
-        }
-      ],
-      5 => [
-        { 
           name: 'ショルダープレス', 
           description: 'ダンベルを肩の高さに構え、腕を伸ばして真上に持ち上げます。肩の筋肉を意識してゆっくり下ろします。' 
         },
@@ -108,8 +95,23 @@ class TrainingSuggestionsController < ApplicationController
           name: 'フロントレイズ', 
           description: 'ダンベルを両手に持ち、腕を前方に伸ばして肩の高さまで持ち上げます。ゆっくり下ろします。' 
         }
+      ],
+      5 => [
+        { 
+          name: 'バーベルカール', 
+          description: 'バーベルを両手で握り、肘を固定して腕を曲げながらバーベルを持ち上げます。ゆっくりと元に戻します。' 
+        },
+        { 
+          name: 'ダンベルカール', 
+          description: 'ダンベルを両手に持ち、肘を固定して片腕ずつ持ち上げます。腕の動きをコントロールしながら戻します。' 
+        },
+        { 
+          name: 'プリーチャーカール', 
+          description: 'プリーチャーベンチに腕を乗せ、ダンベルを持ち上げます。上腕二頭筋を意識してゆっくり戻します。' 
+        }
       ]
     }
   end
+  
   
 end
