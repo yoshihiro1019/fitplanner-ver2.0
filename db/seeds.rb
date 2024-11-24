@@ -9,4 +9,10 @@
 #   end
 BodyPart.delete_all
 
-BodyPart.create([{ name: '胸' }, { name: '背中' }, { name: '脚' }, { name: '肩' }, { name: '腕' }])
+BodyPart.create([
+  { name: '胸', code: 'chest' },
+  { name: '背中', code: 'back' },
+  { name: '脚', code: 'legs' },
+  { name: '肩', code: 'shoulders' },
+  { name: '腕', code: 'arms' }
+])

@@ -1,16 +1,11 @@
-<div class="flex flex-col items-center space-y-6 mt-8 max-w-md mx-auto">
-  <!-- 提案を生成フォーム -->
-  <%= form_with url: training_suggestions_path, method: :post, local: true, class: "w-full bg-white p-6 rounded-lg shadow-lg" do %>
-    <div class="mb-4">
-      <label for="body_part_id" class="block text-lg font-semibold text-gray-700">部位を選択してください</label>
-      <select name="body_part_id" id="body_part_id" class="block w-full mt-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2">
-        <% @body_parts.each do |part| %>
-          <option value="<%= part.id %>"><%= part.name %></option>
-        <% end %>
-      </select>
-    </div>
-    <button type="submit" class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg shadow hover:bg-blue-600 transition-all">
-      提案生成
-    </button>
-  <% end %>
-</div>
+<!-- app/views/training_suggestions/new.html.erb -->
+
+<%= form_with url: training_suggestions_path, method: :post, data: { turbo: false }, local: true do |form| %>
+  <div class="field">
+    <%= form.label :body_part_code, "部位を選択してください" %>
+    <%= form.select :body_part_code, options_for_select(@body_parts.map { |bp| [bp.name, bp.code] }) %>
+  </div>
+  <div class="actions">
+    <%= form.submit "提案生成", class: "btn btn-primary" %>
+  </div>
+<% end %>

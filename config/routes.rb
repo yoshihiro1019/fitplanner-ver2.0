@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  get "password_resets/new"
-  get "password_resets/create"
-  get "bgm/index"
-  get "trainings/index"
-  get "gyms/index"
-  get "training_logs/index"
-  
-  # 重複していたルーティングを削除
-  # get 'training_suggestions', to: 'training_suggestions#index', as: 'training_suggestions'
-  # get 'training_suggestions/new', to: 'training_suggestions#new', as: 'new_training_suggestion'
-  # post 'training_suggestions', to: 'training_suggestions#create'
+  # 不要な手動ルートの削除（コメントアウトされたものをそのまま残す）
+  # get "password_resets/new"
+  # get "password_resets/create"
+  # get "bgm/index"
+  # get "trainings/index"
+  # get "gyms/index"
+  # get "training_logs/index"
 
   # Devise routes with OmniAuth callbacks
   devise_for :users, controllers: {
@@ -29,10 +25,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Custom routes with named paths
-  get 'training_logs', to: 'training_logs#index', as: :training_logs
   get 'gym_search', to: 'gyms#index', as: :gym_search
-  # 重複していたルーティングを削除
-  # get 'training_suggestions', to: 'training_suggestions#new', as: :training_suggestions
   get 'bgm', to: 'bgm#index', as: :bgm
 
   # Root route
@@ -42,7 +35,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :tasks
   resources :training_logs, only: [:new, :create, :index, :edit, :update, :destroy]
-  resources :training_suggestions, only: [:new, :create, :index]
+  resources :training_suggestions, only: [:new, :create]
 
   # Route for mypage
   resource :mypage, only: [:show], controller: "mypages"
