@@ -26,7 +26,7 @@
             <li>
               <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
             </li>
-            
+          
 
             <% if user_signed_in? %>
               <!-- プルダウンメニュー -->
@@ -44,6 +44,7 @@
                   <li>
                     <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'block px-4 py-2 hover:bg-gray-100' %>
                   </li>
+                  <li><%= link_to '利用規約', '/terms', class: 'block px-4 py-2 hover:bg-gray-100' %></li>
                 </ul>
               </li>
             <% else %>
@@ -58,6 +59,9 @@
       method: :post,
       form: { data: { turbo: false } },
       class: 'hover:text-gray-400 bg-transparent border-0 p-0' %>
+</li>
+<li>
+<%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
 </li>
 
 
