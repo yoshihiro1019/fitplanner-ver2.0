@@ -20,10 +20,10 @@ Rails.application.routes.draw do
   get 'gym_search', to: 'gyms#index', as: :gym_search
   get 'bgm', to: 'bgm#index', as: :bgm
   get '/terms', to: 'pages#terms'
-
+  get '/callback', to: 'callbacks#callback'
   # Root route
   root "tasks#index"
-
+  get '/playlists', to: 'playlists#index'
   # Resource routes
   resources :questions
   resources :tasks

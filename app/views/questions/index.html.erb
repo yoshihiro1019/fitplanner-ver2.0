@@ -1,8 +1,10 @@
+<!-- app/views/questions/index.html.erb -->
+
 <div class="flex flex-col items-center space-y-6 mt-12">
   <h1 class="text-3xl font-bold text-gray-800">トレーニング提案</h1>
   <p class="text-lg text-gray-600">以下の質問に答えてください：</p>
 
-  <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md" do %>
+  <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
     <!-- 年齢 -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">年齢：</label>
@@ -27,7 +29,7 @@
     </div>
   <% end %>
 
-  <!-- 回答の表示 (flash[:suggestion] を表示) -->
+  <!-- 回答表示 -->
   <% if flash[:suggestion].present? %>
     <div class="mt-6 p-4 bg-green-100 border border-green-300 rounded">
       <h2 class="text-xl font-bold text-gray-800">トレーニング提案</h2>
@@ -35,7 +37,7 @@
     </div>
   <% end %>
 
-  <!-- エラーメッセージ (flash[:error] を表示) -->
+  <!-- エラーメッセージ表示 -->
   <% if flash[:error].present? %>
     <div class="mt-6 p-4 bg-red-100 border border-red-300 rounded">
       <h2 class="text-xl font-bold text-gray-800">エラー</h2>
@@ -44,7 +46,6 @@
   <% end %>
 
   <div id="flash_messages">
-  <%= render 'shared/flash_messages' %>
-</div>
-
+    <%= render 'shared/flash_messages' %>
+  </div>
 </div>

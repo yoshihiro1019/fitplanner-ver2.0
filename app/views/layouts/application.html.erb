@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title><%= content_for(:title) || "Myapp" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -26,7 +26,6 @@
             <li>
               <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
             </li>
-          
 
             <% if user_signed_in? %>
               <!-- プルダウンメニュー -->
@@ -55,41 +54,60 @@
                 <%= link_to 'サインアップ', new_user_registration_path, class: 'hover:text-gray-400' %>
               </li>
               <li>
-  <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path,
-      method: :post,
-      form: { data: { turbo: false } },
-      class: 'hover:text-gray-400 bg-transparent border-0 p-0' %>
-</li>
-<li>
-<%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
-</li>
-
-
+                <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path,
+                    method: :post,
+                    form: { data: { turbo: false } },
+                    class: 'hover:text-gray-400 bg-transparent border-0 p-0' %>
+              </li>
+              <li>
+                <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
+              </li>
             <% end %>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- フラッシュメッセージの表示 -->
-<% flash.each do |key, message| %>
-  <% if controller_name == 'training_suggestions' && action_name == 'index' %>
-    <!-- 部位検索画面専用のフラッシュメッセージ（下部表示） -->
-    <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
-      <%= message %>
+    <!-- ローディングインジケータ（最初は非表示） -->
+    <div id="loading-indicator"
+         class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50"
+         style="display: none;">
+      <div class="loader"></div>
     </div>
-  <% else %>
-    <!-- 他画面用のフラッシュメッセージ（デフォルト: 上部表示） -->
-    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
-      <%= message %>
-    </div>
-  <% end %>
-<% end %>
 
+    <!-- スピナー用CSS -->
+    <style>
+      .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1.5s linear infinite;
+      }
+
+      @keyframes spin {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+
+    <!-- フラッシュメッセージの表示 -->
+    <% flash.each do |key, message| %>
+      <% if controller_name == 'training_suggestions' && action_name == 'index' %>
+        <!-- 部位検索画面専用のフラッシュメッセージ（下部表示） -->
+        <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
+          <%= message %>
+        </div>
+      <% else %>
+        <!-- 他画面用のフラッシュメッセージ（デフォルト: 上部表示） -->
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
 
     <!-- コンテンツ -->
     <%= yield %>
   </body>
 </html>
-
-

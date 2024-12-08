@@ -24,6 +24,7 @@
 
     <div class="mt-4">
       <%= link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path,  data: { turbo_method: "post" }, class: "w-full block text-center py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400", form: { authenticity_token: true } %>
+      <%= link_to "Spotify でログイン", user_spotify_omniauth_authorize_path, class: "btn btn-success" %>
     </div>
   <% end %>
 
