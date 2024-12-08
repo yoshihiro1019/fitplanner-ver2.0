@@ -40,7 +40,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 # Gemfile
-gem 'ruby-openai', '~> 4.0.0'
+gem 'ruby-openai', '~> 7.3.1'
 
 gem "dotenv-rails"
 
