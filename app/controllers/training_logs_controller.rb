@@ -41,7 +41,7 @@ class TrainingLogsController < ApplicationController
   def create
     @training_log = current_user.training_logs.build(training_log_params)
     if @training_log.save
-      redirect_to training_logs_path, notice: 'トレーニング記録を保存しました！'
+      redirect_to training_logs_path(@training_log), notice: 'トレーニング記録を保存しました！'
     else
       render :new, alert: '入力に誤りがあります。'
     end
