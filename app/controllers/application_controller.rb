@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     root_path  # サインイン後のリダイレクト先
   end
- 
 
   # ログアウト後のリダイレクト先を設定
   def after_sign_out_path_for(resource_or_scope)

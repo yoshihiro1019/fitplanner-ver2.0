@@ -1,16 +1,16 @@
 class CallbacksController < ApplicationController
-    require 'rest-client'
-    require 'json'
-  
+    require "rest-client"
+    require "json"
+
     def callback
       code = params[:code]
-  
+
       # クライアントIDとシークレットを取得
       client_id = Rails.application.credentials.spotify[:client_id]
       client_secret = Rails.application.credentials.spotify[:client_secret]
-  
+
       # アクセストークンを取得
-      token_response = RestClient.post('https://accounts.spotify.com/api/token', {
+      token_response = RestClient.post("https://accounts.spotify.com/api/token", {
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: 'http://localhost:3000/callback', # リダイレクトURI

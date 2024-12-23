@@ -25,7 +25,7 @@ class BgmController < ApplicationController
       Rails.application.credentials.spotify[:client_secret]
     )
     request.set_form_data({
-      'grant_type' => 'client_credentials'
+      "grant_type" => "client_credentials"
     })
 
     response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
