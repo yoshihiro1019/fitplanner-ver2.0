@@ -2,7 +2,7 @@
 
 <div class="container mx-auto px-4 py-6">
   <% if @suggestions.present? %>
-    <h1 class="text-2xl font-bold mb-4"><%= @body_part.name %>のトレーニング提案</h1>
+    <h1 class="text-2xl font-bold mb-4"><%= @body_part.name %>のトレーニング</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
       <% @suggestions.each do |exercise| %>
         <div class="bg-white rounded-lg shadow-md p-6">
