@@ -8,6 +8,14 @@
         <div class="bg-white rounded-lg shadow-md p-6">
           <h2 class="text-xl font-semibold mb-2"><%= exercise[:name] %></h2>
           <p class="text-gray-700"><%= exercise[:description] %></p>
+          <iframe 
+        width="560" 
+        height="315" 
+        src="<%= exercise[:youtube_url] %>" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
         </div>
       <% end %>
     </div>

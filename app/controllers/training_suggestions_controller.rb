@@ -34,7 +34,8 @@ class TrainingSuggestionsController < ApplicationController
   def set_suggestions
     @all_suggestions = {
       'chest' => [
-        { name: 'ダンベルフライ', description: 'ベンチに仰向けになり、両手にダンベルを持ちます。胸の筋肉を伸ばしながらダンベルを広げ、ゆっくりと元の位置に戻します。' },
+        { name: 'ダンベルフライ', description: 'ベンチに仰向けになり、両手にダンベルを持ちます。胸の筋肉を伸ばしながらダンベルを広げ、ゆっくりと元の位置に戻します。' ,youtube_url: 'https://www.youtube.com/embed/Fn9Pay1VZbw' 
+        },
         { name: 'ベンチプレス', description: 'ベンチに仰向けになり、バーベルを持ち上げて胸の上で押し上げます。胸の筋肉を強化する基本的なエクササイズです。' },
         # 他の胸のエクササイズを追加
       ],
