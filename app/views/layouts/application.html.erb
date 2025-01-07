@@ -11,60 +11,62 @@
     <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="w-full h-screen bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-center">
+  <% if request.path == '/terms' %>
+    <!-- 利用規約ページ (/terms) は背景なし -->
+    <body>
+  <% else %>
+    <!-- 他のページは背景あり -->
+    <body class="w-full h-screen bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-center">
+  <% end %>
+
     <!-- ナビゲーションバー -->
     <nav class="bg-gray-800 text-white">
-      <div class="container mx-auto px-4 flex justify-between items-center">
-        <!-- ロゴ -->
+      <div class="container mx-auto px-4 flex items-center justify-between">
+        <!-- 左側: ロゴ -->
         <div class="text-xl font-bold">
           <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
         </div>
 
-        <!-- ナビゲーションリンク -->
-        <div class="relative">
-          <ul class="flex space-x-4 items-center">
-            <li>
-              <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
-            </li>
+        <!-- 右側: 横並びのメニュー -->
+        <!-- ml-autoで左から右寄せし、space-x-4で各リンクを間隔あけて並べる -->
+        <ul class="flex items-center ml-auto space-x-4">
+          <li>
+            <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
+          </li>
 
-            <% if user_signed_in? %>
-              <!-- プルダウンメニュー -->
-              <li class="relative group">
-                <button class="flex items-center space-x-1 hover:text-gray-400 focus:outline-none">
-                  <span>マイアカウント</span>
-                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg group-hover:block">
-                  <li class="border-b">
-                    <%= link_to 'マイページ', mypage_path, class: 'block px-4 py-2 hover:bg-gray-100' %>
-                  </li>
-                  <li>
-                    <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'block px-4 py-2 hover:bg-gray-100' %>
-                  </li>
-                  <li><%= link_to '利用規約', '/terms', class: 'block px-4 py-2 hover:bg-gray-100' %></li>
-                </ul>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to 'ログイン', new_user_session_path, class: 'hover:text-gray-400' %>
-              </li>
-              <li>
-                <%= link_to 'サインアップ', new_user_registration_path, class: 'hover:text-gray-400' %>
-              </li>
-              <li>
-                <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path,
-                    method: :post,
-                    form: { data: { turbo: false } },
-                    class: 'hover:text-gray-400 bg-transparent border-0 p-0' %>
-              </li>
-              <li>
-                <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'マイページ', mypage_path, class: 'hover:text-gray-400' %>
+            </li>
+            <li>
+              <%= link_to 'ログアウト', destroy_user_session_path,
+                  data: { turbo_method: :delete },
+                  class: 'hover:text-gray-400'
+              %>
+            </li>
+            <li>
+              <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to 'ログイン', new_user_session_path, class: 'hover:text-gray-400' %>
+            </li>
+            <li>
+              <%= link_to 'サインアップ', new_user_registration_path, class: 'hover:text-gray-400' %>
+            </li>
+            <li>
+              <%= button_to "Googleでログイン",
+                  user_google_oauth2_omniauth_authorize_path,
+                  method: :post,
+                  form: { data: { turbo: false } },
+                  class: 'hover:text-gray-400 bg-transparent border-0 p-0'
+              %>
+            </li>
+            <li>
+              <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </nav>
 
@@ -109,5 +111,6 @@
 
     <!-- コンテンツ -->
     <%= yield %>
+
   </body>
 </html>
