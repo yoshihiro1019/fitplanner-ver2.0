@@ -1,0 +1,10 @@
+<!-- app/views/training_proposals/history.html.erb -->
+<h1>提案履歴</h1>
+
+<% @training_proposals.each do |proposal| %>
+  <div>
+    <p>作成日時: <%= proposal.created_at %></p>
+    <p>内容: <%= proposal.content %></p>
+    <!-- ほか age, experience, focus_area などあれば表示 -->
+  </div>
+<% end %>

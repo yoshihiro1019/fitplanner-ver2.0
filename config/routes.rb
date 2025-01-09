@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "training_proposals/index"
+  get "training_proposals/new"
+  get "training_proposals/create"
   # Devise routes with OmniAuth callbacks
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -21,15 +24,24 @@ Rails.application.routes.draw do
   get 'bgm', to: 'bgm#index', as: :bgm
   get '/terms', to: 'pages#terms'
   get '/callback', to: 'callbacks#callback'
+
   # Root route
   root "tasks#index"
   get '/playlists', to: 'playlists#index'
+
   # Resource routes
   resources :questions
   resources :tasks
   resources :training_logs, only: [:new, :create, :index, :edit, :update, :destroy]
-  resources :training_suggestions, only: [:new, :create]
 
+  # ↓ここを変更
+  resources :training_suggestions, only: [:index, :new, :create]
+  # ↑ 'index' を追加する
+  resources :training_proposals, only: [:index, :new, :create] do
+    collection do
+      get :history  # GET /training_proposals/history → training_proposals#history
+    end
+  end
   # Password reset routes
   resource :password_reset, only: [:new, :create]
   devise_scope :user do
