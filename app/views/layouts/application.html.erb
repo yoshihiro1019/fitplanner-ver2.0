@@ -30,7 +30,7 @@
         <!-- 右側: 横並びのメニュー -->
         <!-- ml-autoで左から右寄せし、space-x-4で各リンクを間隔あけて並べる -->
         <ul class="flex items-center ml-auto space-x-4">
-          <li>
+        <li class="text-base sm:text-sm hover:text-gray-400">
             <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
           </li>
 
@@ -38,17 +38,17 @@
             <li>
               <%= link_to '機能一覧', mypage_path, class: 'hover:text-gray-400' %>
             </li>
-            <li>
+            <!--<li>
               <%= link_to 'ログアウト', destroy_user_session_path,
                   data: { turbo_method: :delete },
                   class: 'hover:text-gray-400'
               %>
-            </li>
+            </li>-->
             <li>
               <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
             </li>
           <% else %>
-            <li>
+            <!--<li>
               <%= link_to 'ログイン', new_user_session_path, class: 'hover:text-gray-400' %>
             </li>
             <li>
@@ -61,7 +61,7 @@
                   form: { data: { turbo: false } },
                   class: 'hover:text-gray-400 bg-transparent border-0 p-0'
               %>
-            </li>
+            </li>-->
             <li>
               <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
             </li>
