@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="icon" href="/favicon-16x16.ico" type="image/x-icon">
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "FitAIplanner" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -30,7 +30,7 @@
         <!-- 右側: 横並びのメニュー -->
         <!-- ml-autoで左から右寄せし、space-x-4で各リンクを間隔あけて並べる -->
         <ul class="flex items-center ml-auto space-x-4">
-        <li class="text-base sm:text-sm hover:text-gray-400">
+        <li class>
             <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
           </li>
 
