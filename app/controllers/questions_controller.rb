@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
   def index
-    # 初期状態のフォームを表示
-    @training_suggestions = TrainingSuggestion.order(created_at: :desc)
+    # 履歴として表示するデータは「自分のレコードだけ」に限定
+    @training_suggestions = current_user.training_suggestions.order(created_at: :desc)
   end
+  
 
   def create
     age = params[:age]
@@ -16,7 +17,7 @@ class QuestionsController < ApplicationController
       if suggestion_text.present?
         # 提案をデータベースに保存
         training_suggestion = TrainingSuggestion.new(
-          user: current_user,           # ユーザーと紐付ける場合
+          user: current_user,           
           age: age,
           experience: experience,
           focus_area: focus_area,

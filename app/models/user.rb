@@ -21,7 +21,8 @@ class User < ApplicationRecord
   end
 
   has_many :training_logs, dependent: :destroy
-
+  has_many :training_suggestions, dependent: :destroy 
+  
   # Spotifyの認証情報を更新するメソッド
   def update_spotify_credentials(token_info)
     self.access_token = token_info['access_token']
