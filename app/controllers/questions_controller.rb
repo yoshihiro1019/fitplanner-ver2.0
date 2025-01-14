@@ -9,10 +9,12 @@ class QuestionsController < ApplicationController
     age = params[:age]
     experience = params[:experience]
     focus_area = params[:focus_area]
+    training_location = params[:training_location]
+    home_equipment = params[:home_equipment]
     
     # 入力項目が正しいか確認
     if age.present? && experience.present? && focus_area.present?
-      suggestion_text = fetch_openai_response(age, experience, focus_area)
+      suggestion_text = fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
       
       if suggestion_text.present?
         # 提案をデータベースに保存
@@ -20,6 +22,8 @@ class QuestionsController < ApplicationController
           user: current_user,           
           age: age,
           experience: experience,
+          training_location: training_location,
+          home_equipment: home_equipment,
           focus_area: focus_area,
           content: suggestion_text
         )
@@ -44,13 +48,14 @@ class QuestionsController < ApplicationController
 
   private
 
-  def fetch_openai_response(age, experience, focus_area)
+  def fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
     client = OpenAI::Client.new
-
     prompt = <<~PROMPT
       ユーザーの年齢: #{age}
       トレーニング経験: #{experience}
       重点を置きたい部位: #{focus_area}
+      トレーニング場所: #{training_location}  
+      家にダンベルやチューブ: #{home_equipment}  
     PROMPT
 
     response = client.chat(

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_09_124550) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_14_133938) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_09_124550) do
     t.integer "age"
     t.string "experience"
     t.string "focus_area"
+    t.string "training_location"
+    t.string "home_equipment"
     t.index ["user_id"], name: "index_training_suggestions_on_user_id"
   end
 
