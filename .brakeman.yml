@@ -1,0 +1,12 @@
+# .brakeman.yml
+
+# Brakemanが警告を検出したときの終了コード（CIを失敗にするか）の制御
+fail_on_error: true
+
+# 信頼度（confidence）の最小値。2にすると High (0) および Medium (1) の警告を拾う
+min_confidence: 2
+
+# 無視したい警告一覧
+ignore:
+  - "sql_injection"
+  - "cross_site_scripting"

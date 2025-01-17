@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    flash.clear
+    
     # 履歴として表示するデータは「自分のレコードだけ」に限定
     @training_suggestions = current_user.training_suggestions.order(created_at: :desc)
   end
