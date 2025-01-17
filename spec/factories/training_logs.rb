@@ -8,4 +8,3 @@ FactoryBot.define do
       day_of_week { "Monday" }
     end
   end
-  

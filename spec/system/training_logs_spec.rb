@@ -11,6 +11,4 @@ RSpec.describe "TrainingLogs", type: :system do
     # fill_in 'Password', with: user.password
     # click_button 'Log in'
   end
-
-  
 end

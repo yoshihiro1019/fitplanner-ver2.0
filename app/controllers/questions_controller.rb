@@ -1,10 +1,9 @@
 class QuestionsController < ApplicationController
   def index
-    
     # 履歴として表示するデータは「自分のレコードだけ」に限定
     @training_suggestions = current_user.training_suggestions.order(created_at: :desc)
   end
-  
+
 
   def create
     age = params[:age]
@@ -12,15 +11,15 @@ class QuestionsController < ApplicationController
     focus_area = params[:focus_area]
     training_location = params[:training_location]
     home_equipment = params[:home_equipment]
-    
+
     # 入力項目が正しいか確認
     if age.present? && experience.present? && focus_area.present?
       suggestion_text = fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
-      
+
       if suggestion_text.present?
         # 提案をデータベースに保存
         training_suggestion = TrainingSuggestion.new(
-          user: current_user,           
+          user: current_user,
           age: age,
           experience: experience,
           training_location: training_location,
@@ -28,7 +27,7 @@ class QuestionsController < ApplicationController
           focus_area: focus_area,
           content: suggestion_text
         )
-        
+
         if training_suggestion.save
           flash[:suggestion] = "提案を保存しました: #{training_suggestion.content}"
         else
@@ -55,14 +54,14 @@ class QuestionsController < ApplicationController
       ユーザーの年齢: #{age}
       トレーニング経験: #{experience}
       重点を置きたい部位: #{focus_area}
-      トレーニング場所: #{training_location}  
-      家にダンベルやチューブ: #{home_equipment}  
+      トレーニング場所: #{training_location}#{'  '}
+      家にダンベルやチューブ: #{home_equipment}#{'  '}
     PROMPT
 
     response = client.chat(
       parameters: {
         model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: prompt }]
+        messages: [ { role: "user", content: prompt } ]
       }
     )
 

@@ -35,4 +35,4 @@ class CallbacksController < ApplicationController
       error_info = JSON.parse(e.response)
       render json: error_info, status: e.response.code
     end
-  end
+end

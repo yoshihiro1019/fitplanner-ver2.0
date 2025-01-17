@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'バリデーション' do
     subject { build(:user) }
-    
+
     it '有効なファクトリを持つこと' do
       expect(subject).to be_valid
     end
@@ -28,6 +28,5 @@ RSpec.describe User, type: :model do
         expect(subject.errors[:email]).to include("has already been taken")
       end
     end
-
   end
 end

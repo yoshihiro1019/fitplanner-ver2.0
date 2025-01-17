@@ -1,5 +1,4 @@
 class TrainingProposalsController < ApplicationController
-  
   def index
   end
 

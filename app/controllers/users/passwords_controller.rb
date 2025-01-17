@@ -3,7 +3,7 @@ class Users::PasswordsController < Devise::PasswordsController
     def edit_direct
       @user = current_user
     end
-  
+
     # トークンなしでパスワードを直接更新
     def update_direct
       @user = current_user
@@ -14,10 +14,10 @@ class Users::PasswordsController < Devise::PasswordsController
         render :edit_direct
       end
     end
-  
+
     private
-  
+
     def password_params
       params.require(:user).permit(:password, :password_confirmation)
     end
-  end
+end
