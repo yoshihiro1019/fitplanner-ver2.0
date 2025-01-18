@@ -1,11 +1,12 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  email: one@example.com
+  name: "User One"
+  password_digest: <適切なハッシュ>
+  created_at: <%= Time.now %>
+  # など必要なカラムを定義
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+two:
+  email: two@example.com
+  name: "User Two"
+  password_digest: <適切なハッシュ>
+  created_at: <%= Time.now %>
