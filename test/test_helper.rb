@@ -14,8 +14,13 @@ puts "WebMock loaded: #{defined?(WebMock)}"  # => "WebMock loaded: constant"
 WebMock.disable_net_connect!(allow_localhost: true)
 
 # デバッグログ: WebMockの設定が適用されたことを確認
-puts "WebMock network connections disabled: #{WebMock.net_connect_disabled?}"  # => true
+puts "WebMock network connections allowed: #{WebMock.net_connect_allowed?}"
 
+stub_request(:post, "https://accounts.spotify.com/api/token").to_return(
+  status: 200,
+  body: { access_token: "mock_token" }.to_json,
+  headers: { 'Content-Type' => 'application/json' }
+)
 # --- (3) stub_request の設定 ---
 begin
   stub_request(:post, "https://accounts.spotify.com/api/token").to_return(
