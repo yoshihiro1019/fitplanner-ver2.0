@@ -66,7 +66,7 @@ group :development do
 end
 
 group :test do
-  gem "webmock"
+  gem "webmock", require: false
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
