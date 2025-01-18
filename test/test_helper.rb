@@ -35,10 +35,10 @@ module ActiveSupport
   class TestCase
     # --- (2) 並列テスト設定 ---
     parallelize(workers: :number_of_processors)
-    
+
     # --- (3) fixtures を読み込む場合 ---
     fixtures :all
-    
+
     # ここに共通で使うヘルパーメソッドを定義してもよい
   end
 end
