@@ -7,7 +7,7 @@ class PasswordResetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get create" do
-    post password_reset_path, params: { ... }
+    post password_reset_path
     assert_response :success
   end
 end
