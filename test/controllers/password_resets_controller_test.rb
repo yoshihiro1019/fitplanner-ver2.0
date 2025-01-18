@@ -2,12 +2,12 @@ require "test_helper"
 
 class PasswordResetsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get password_resets_new_url
+    get new_password_reset_path
     assert_response :success
   end
 
   test "should get create" do
-    get password_resets_create_url
+    post password_reset_path, params: { ... }
     assert_response :success
   end
 end
