@@ -76,7 +76,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    bigdecimal (3.1.8)
+    bigdecimal (3.1.9)
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -169,7 +169,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.1105)
     mini_mime (1.1.5)
-    minitest (5.25.1)
+    minitest (5.25.4)
     msgpack (1.7.3)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
@@ -290,7 +290,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.3.9)
+    rexml (3.4.0)
     rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
@@ -371,6 +371,8 @@ GEM
     unicode-display_width (2.6.0)
     uri (0.13.1)
     useragent (0.16.10)
+    vcr (6.3.1)
+      base64
     version_gem (1.1.4)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -427,6 +429,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  vcr
   web-console
   webmock
 
