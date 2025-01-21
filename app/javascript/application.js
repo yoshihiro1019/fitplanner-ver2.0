@@ -1,8 +1,9 @@
-import "@hotwired/turbo-rails"
-import "./controllers"
+import "@hotwired/turbo-rails";
+import "./controllers";
 
 // turbo:loadイベントでイベントリスナを再登録
 document.addEventListener("turbo:load", function() {
+  // フォームのスピナー制御
   const form = document.getElementById("question-form");
   const loadingIndicator = document.getElementById("loading-indicator");
 
@@ -17,5 +18,14 @@ document.addEventListener("turbo:load", function() {
       loadingIndicator.style.display = "none";
     });
   }
-});
 
+  // ハンバーガーメニューのトグル機能
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  if (menuToggle && menu) {
+    menuToggle.addEventListener("click", function() {
+      menu.classList.toggle("hidden");
+    });
+  }
+});

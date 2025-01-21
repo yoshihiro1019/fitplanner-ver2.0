@@ -19,56 +19,41 @@
     <body class="w-full h-screen bg-fixed bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-center">
   <% end %>
 
-    <!-- ナビゲーションバー -->
     <nav class="bg-gray-800 text-white">
-      <div class="container mx-auto px-4 flex items-center justify-between">
-        <!-- 左側: ロゴ -->
-        <div class="text-xl font-bold">
-          <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
-        </div>
+  <div class="container mx-auto px-4 flex items-center justify-between">
+    <!-- 左側: ロゴ -->
+    <div class="text-xl font-bold">
+      <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
+    </div>
 
-        <!-- 右側: 横並びのメニュー -->
-        <!-- ml-autoで左から右寄せし、space-x-4で各リンクを間隔あけて並べる -->
-        <ul class="flex items-center ml-auto space-x-4">
-        <li class>
-            <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400' %>
-          </li>
+    <!-- ハンバーガーボタン -->
+    <button id="menu-toggle" class="text-white focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
 
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to '機能一覧', mypage_path, class: 'hover:text-gray-400' %>
-            </li>
-            <!--<li>
-              <%= link_to 'ログアウト', destroy_user_session_path,
-                  data: { turbo_method: :delete },
-                  class: 'hover:text-gray-400'
-              %>
-            </li>-->
-            <li>
-              <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
-            </li>
-          <% else %>
-            <!--<li>
-              <%= link_to 'ログイン', new_user_session_path, class: 'hover:text-gray-400' %>
-            </li>
-            <li>
-              <%= link_to 'サインアップ', new_user_registration_path, class: 'hover:text-gray-400' %>
-            </li>
-            <li>
-              <%= button_to "Googleでログイン",
-                  user_google_oauth2_omniauth_authorize_path,
-                  method: :post,
-                  form: { data: { turbo: false } },
-                  class: 'hover:text-gray-400 bg-transparent border-0 p-0'
-              %>
-            </li>-->
-            <li>
-              <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400' %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+    <!-- メニューリスト -->
+    <ul id="menu" class="hidden flex flex-col items-end space-y-4 absolute top-16 right-0 bg-gray-800 text-white p-4 z-50">
+      <li>
+        <%= link_to 'ホーム', root_path, class: 'hover:text-gray-400 block py-2' %>
+      </li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to '機能一覧', mypage_path, class: 'hover:text-gray-400 block py-2' %>
+        </li>
+        <li>
+          <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400 block py-2' %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to '利用規約', terms_path, class: 'hover:text-gray-400 block py-2' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
 
     <!-- ローディングインジケータ（最初は非表示） -->
     <div id="loading-indicator"
