@@ -11,7 +11,9 @@ class BgmControllerTest < ActionDispatch::IntegrationTest
     VCR.use_cassette("spotify_token") do
       get bgm_path
       assert_response :success
+
+      # 必要であれば追加のアサーションを記述
+      # 例: レスポンスに必要なデータが含まれているか
     end
   end
 end
-
