@@ -47,9 +47,15 @@
           <li>
             <%= link_to '利用規約', terms_path, class: 'hover:text-gray-800 block py-2' %>
           </li>
+          <li>
+            <%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'hover:text-gray-800 block py-2' %>
+          </li>
         <% else %>
           <li>
             <%= link_to '利用規約', terms_path, class: 'hover:text-gray-800 block py-2' %>
+          </li>
+          <li>
+           <%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'hover:text-gray-800 block py-2' %>
           </li>
         <% end %>
       </ul>

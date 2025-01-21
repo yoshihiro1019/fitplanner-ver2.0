@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # PWA-related routes
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
+  get 'privacy_policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   # Custom routes
   get "gym_search", to: "gyms#index", as: :gym_search
   get "bgm", to: "bgm#index", as: :bgm
