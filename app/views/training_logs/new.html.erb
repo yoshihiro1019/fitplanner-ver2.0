@@ -1,40 +1,56 @@
-<div class="container mx-auto p-6">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">トレーニング記録を追加</h1>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>トレーニング記録一覧</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full h-screen bg-fixed bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-center">
 
-  <%= form_with(model: @training_log, local: true, class: "space-y-6") do |form| %>
-    <!-- トレーニングの種類 -->
-    <div>
-      <%= form.label :training_type, 'トレーニングの種類', class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.text_field :training_type, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+  <div class="min-h-screen flex items-center justify-center ">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+      <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">トレーニング記録を追加</h1>
 
-    <!-- 重量 -->
-    <div>
-      <%= form.label :weight, '重量 (kg)', class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.number_field :weight, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+        <%= form_with(model: @training_log, local: true, class: "space-y-6") do |form| %>
+          <!-- トレーニングの種類 -->
+          <div>
+            <%= form.label :training_type, 'トレーニングの種類', class: "block text-sm font-medium text-gray-700 mb-2 " %>
+            <%= form.text_field :training_type, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+          </div>
 
-    <!-- 回数 -->
-    <div>
-      <%= form.label :reps, '回数', class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.number_field :reps, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+          <!-- 重量 -->
+          <div>
+            <%= form.label :weight, '重量 (kg)', class: "block text-sm font-medium text-gray-700 mb-2 " %>
+            <%= form.number_field :weight, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+          </div>
 
-    <!-- セット数 -->
-    <div>
-      <%= form.label :sets, 'セット数', class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.number_field :sets, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+          <!-- 回数 -->
+          <div>
+            <%= form.label :reps, '回数', class: "block text-sm font-medium text-gray-700 mb-2 " %>
+            <%= form.number_field :reps, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+          </div>
 
-    <!-- 曜日 -->
-    <div>
-      <%= form.label :day_of_week, "曜日", class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.select :day_of_week, [["日曜日", "Sunday"], ["月曜日", "Monday"], ["火曜日", "Tuesday"], ["水曜日", "Wednesday"], ["木曜日", "Thursday"], ["金曜日", "Friday"], ["土曜日", "Saturday"]], {}, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+          <!-- セット数 -->
+          <div>
+            <%= form.label :sets, 'セット数', class: "block text-sm font-medium text-gray-700 mb-2 " %>
+            <%= form.number_field :sets, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+          </div>
 
-    <!-- 送信ボタン -->
-    <div>
-      <%= form.submit '保存', class: "w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+          <!-- 曜日 -->
+          <div>
+            <%= form.label :day_of_week, "曜日", class: "block text-sm font-medium text-gray-700 mb-2 " %>
+            <%= form.select :day_of_week, [["日曜日", "Sunday"], ["月曜日", "Monday"], ["火曜日", "Tuesday"], ["水曜日", "Wednesday"], ["木曜日", "Thursday"], ["金曜日", "Friday"], ["土曜日", "Saturday"]], {}, class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+          </div>
+
+          <!-- 送信ボタン -->
+          <div>
+            <%= form.submit '保存', class: "w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+
+</body>
+</html>

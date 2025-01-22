@@ -1,34 +1,40 @@
-<div class="container mx-auto p-6">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">トレーニング記録一覧</h1>
+<div class="min-h-screen flex flex-col items-center justify-start pt-10 ">
+<div class="bg-white p-8 rounded shadow-md w-full max-w-md">
 
-  <!-- 新規作成ボタン -->
-  <div class="mb-6">
-    <%= link_to '新しい記録を追加', new_training_log_path, class: 'inline-block bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400' %>
-  </div>
+    <div class="container mx-auto">
+      <!-- タイトル -->
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">トレーニング記録一覧</h1>
 
-  <% japanese_days = { "Monday" => "月曜日", "Tuesday" => "火曜日", "Wednesday" => "水曜日", "Thursday" => "木曜日", "Friday" => "金曜日", "Saturday" => "土曜日", "Sunday" => "日曜日" } %>
-  <% day_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %> <!-- 表示する曜日の順序 -->
+      <!-- 新規作成ボタン -->
+      <div class="mb-6 text-center">
+        <%= link_to '新しい記録を追加', new_training_log_path, class: 'inline-block bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+      </div>
 
-  <% day_order.each do |day| %>
-    <% training_logs = @grouped_training_logs[day] %>
-    <% if training_logs.present? %>
-      <!-- 曜日ごとの見出し -->
-      <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4 border-b border-gray-300 pb-2"><%= japanese_days[day] %></h2>
+      <% japanese_days = { "Monday" => "月曜日", "Tuesday" => "火曜日", "Wednesday" => "水曜日", "Thursday" => "木曜日", "Friday" => "金曜日", "Saturday" => "土曜日", "Sunday" => "日曜日" } %>
+      <% day_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %> <!-- 表示する曜日の順序 -->
 
-      <% training_logs.each do |training_log| %>
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-          <p class="text-gray-700"><strong>種類:</strong> <%= training_log.training_type %></p>
-          <p class="text-gray-700"><strong>重量:</strong> <%= training_log.weight %> kg</p>
-          <p class="text-gray-700"><strong>回数:</strong> <%= training_log.reps %> 回</p>
-          <p class="text-gray-700"><strong>セット数:</strong> <%= training_log.sets %> セット</p>
-          <!-- 編集・削除リンク -->
-          <div class="mt-4 flex space-x-4">
-            <%= link_to '編集', edit_training_log_path(training_log), class: 'text-blue-500 hover:underline' %>
-            <%= link_to '削除', training_log, data: { turbo_method: :delete }, class: 'text-red-500 hover:underline' %>
-          </div>
-        </div>
+      <% day_order.each do |day| %>
+        <% training_logs = @grouped_training_logs[day] %>
+        <% if training_logs.present? %>
+          <!-- 曜日ごとの見出し -->
+          <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4 border-b border-gray-300 pb-2"><%= japanese_days[day] %></h2>
+
+          <% training_logs.each do |training_log| %>
+            <!-- トレーニングログカード -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md mb-4">
+              <p class="text-gray-700"><strong>種類:</strong> <%= training_log.training_type %></p>
+              <p class="text-gray-700"><strong>重量:</strong> <%= training_log.weight %> kg</p>
+              <p class="text-gray-700"><strong>回数:</strong> <%= training_log.reps %> 回</p>
+              <p class="text-gray-700"><strong>セット数:</strong> <%= training_log.sets %> セット</p>
+              <!-- 編集・削除リンク -->
+              <div class="mt-4 flex space-x-4">
+                <%= link_to '編集', edit_training_log_path(training_log), class: 'text-blue-500 hover:underline' %>
+                <%= link_to '削除', training_log, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: 'text-red-500 hover:underline' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 </div>
-

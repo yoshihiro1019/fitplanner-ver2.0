@@ -1,8 +1,11 @@
 <div class="flex flex-col items-center space-y-6 mt-12">
-  <h1 class="text-3xl font-bold text-gray-800">トレーニング提案</h1>
-  <p class="text-lg text-gray-600">以下の質問に答えてください：</p>
-
-  <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
+   <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
+  
+    <div class="text-center">
+    <h1 class="text-3xl font-bold ">トレーニング提案</h1>
+    <p class="text-lg ">以下の質問に答えてください：</p>
+     </div>
+  
     <!-- 年齢 -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">年齢：</label>
