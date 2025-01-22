@@ -11,11 +11,9 @@
     <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <% if request.path == '/terms' %>
-    <!-- 利用規約ページ (/terms) は背景なし -->
+  <% if request.path == '/terms' || request.path == '/privacy_policy' %>
     <body>
   <% else %>
-    <!-- 他のページは背景あり -->
     <body class="w-full h-screen bg-fixed bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-center">
   <% end %>
 
