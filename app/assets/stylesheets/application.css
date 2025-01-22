@@ -831,3 +831,9 @@ video {
     transform: scale(1);
   }
 }
+
+@layer base {
+  body {
+    @apply font-emoji;
+  }
+}

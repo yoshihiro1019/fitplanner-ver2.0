@@ -1,24 +1,68 @@
 <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-  <h1 class="text-2xl font-bold text-gray-800 mb-4">マイページ</h1>
+  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">マイページ</h1>
 
-  <ul class="space-y-4">
-    <li>
-      <%= link_to '質問形式トレーニング提案(AI)', questions_path, class: "block w-full text-center py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
-    </li>
-    <li>
-      <%= link_to '筋トレ記録', training_logs_path, class: "block w-full text-center py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400" %>
-    </li>
-    <li>
-      <%= link_to 'ジム検索', gym_search_path, class: "block w-full text-center py-2 px-4 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
-    </li>
-    <li>
-      <%= link_to '部位別トレーニング検索', new_training_suggestion_path, class: "block w-full text-center py-2 px-4 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-400" %>
-    </li>
-    <li>
-      <%= link_to 'BGM', bgm_path, class: "block w-full text-center py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400" %>
-    </li>
-    <li>
-      <%= link_to 'パスワードを変更する', edit_direct_password_path, class: "block w-full text-center py-2 px-4 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400" %>
-    </li>
-  </ul>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- 質問形式トレーニング提案 -->
+    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+      <%= link_to questions_path, class: "block p-6 text-center" do %>
+        <div class="text-4xl mb-4">
+          <i class="fas fa-robot  "></i>
+        </div>
+        <h2 class="text-lg font-semibold">質問形式トレーニング提案(AI)</h2>
+      <% end %>
+    </div>
+
+    <!-- 筋トレ記録 -->
+    <div class="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+      <%= link_to training_logs_path, class: "block p-6 text-center" do %>
+        <div class="text-4xl mb-4">
+        <i class="fas fa-dumbbell"></i>
+        </div>
+        <h2 class="text-lg font-semibold">筋トレ記録</h2>
+      <% end %>
+    </div>
+
+    <!-- ジム検索 -->
+    <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+      <%= link_to gym_search_path, class: "block p-6 text-center" do %>
+        <div class="text-4xl mb-4">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h2 class="text-lg font-semibold">ジム検索</h2>
+      <% end %>
+    </div>
+
+    <!-- 部位別トレーニング検索 -->
+    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+      <%= link_to new_training_suggestion_path, class: "block p-6 text-center" do %>
+        <div class="text-4xl mb-4">
+          <i class="fas fa-running"></i>
+        </div>
+        <h2 class="text-lg font-semibold">部位別トレーニング検索</h2>
+      <% end %>
+    </div>
+
+    <!-- BGM -->
+    <div class="bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+      <%= link_to bgm_path, class: "block p-6 text-center" do %>
+        <div class="text-4xl mb-4">
+          <i class="fas fa-music"></i>
+        </div>
+        <h2 class="text-lg font-semibold">BGM</h2>
+      <% end %>
+    </div>
+
+
+
+    <!-- パスワードを変更する -->
+    <div class="bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+      <%= link_to edit_direct_password_path, class: "block p-6 text-center" do %>
+        <div class="text-4xl mb-4">
+          <i class="fas fa-key"></i>
+        </div>
+        <h2 class="text-lg font-semibold">パスワードを変更する</h2>
+      <% end %>
+    </div>
+  </div>
 </div>
+

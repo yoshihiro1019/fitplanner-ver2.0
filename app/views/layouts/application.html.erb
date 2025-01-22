@@ -7,8 +7,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- CSSとJavaScriptの読み込み -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
+
+    <!-- Font Awesome のスクリプト -->
+    <script src="https://kit.fontawesome.com/318fce991d.js" crossorigin="anonymous"></script>
   </head>
 
   <% if request.path == '/terms' || request.path == '/privacy_policy' %>
