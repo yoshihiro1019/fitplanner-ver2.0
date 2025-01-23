@@ -13,6 +13,17 @@
 
     <!-- Font Awesome のスクリプト -->
     <script src="https://kit.fontawesome.com/318fce991d.js" crossorigin="anonymous"></script>
+
+    <!-- OGPメタタグ -->
+<meta property="og:title" content="FitAIplanner - あなたのトレーニングを最適化" />
+<meta property="og:description" content="AIが最適なトレーニングプランを提案します！" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<%= request.original_url %>" />
+<!--<meta property="og:image" content="<%# image_url('ogp-image.jpg') %>" />-->
+<meta property="og:site_name" content="FitAIplanner" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@YourTwitterHandle" />
+
   </head>
 
   <% if request.path == '/terms' || request.path == '/privacy_policy' %>
@@ -64,6 +75,16 @@
         <span>プライバシーポリシー</span>
       <% end %>
     </li>
+    <li>
+    <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="hover:text-gray-800 block py-2 flex items-center space-x-2">
+  <i class="fab fa-twitter text-blue-500"></i>
+  <span>Xでシェア</span>
+</a>
+</li>
+    
   <% else %>
     <li>
       <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
