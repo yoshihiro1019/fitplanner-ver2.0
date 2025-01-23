@@ -1,37 +1,49 @@
-<div class="container mx-auto max-w-lg p-6 bg-white rounded-lg shadow-lg mt-10">
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
   <h2 class="text-2xl font-bold text-gray-800 mb-6">サインアップ</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+  <%= form_with(model: resource, url: registration_path(resource_name), local: true, class: "space-y-4") do |f| %>
+    
     <!-- エラーメッセージ -->
     <%= render "devise/shared/error_messages", resource: resource %>
+    
+    <div class="p-2 text-gray-700 rounded-lg mt-6">
+      <!-- Email -->
+      <div class="space-y-1">
+        <%= f.label :email, "Eメール", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email, class: "input-field", autofocus: true, autocomplete: "email" %>
+      </div>
 
-    <!-- Email -->
-    <div>
-      <%= f.label :Eメール, class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+      <!-- パスワード -->
+      <div class="space-y-1 mt-4">
+        <%= f.label :password, "パスワード", class: "block text-sm font-medium text-gray-700" %>
+        <% if @minimum_password_length %>
+          <em class="text-sm text-gray-500">(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+        <%= f.password_field :password, class: "input-field", autocomplete: "new-password" %>
+      </div>
 
-    <!-- Password -->
-    <div>
-      <%= f.label :パスワード, class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <% if @minimum_password_length %>
-        <em class="text-sm text-gray-500">(<%= @minimum_password_length %> 文字以上)</em>
+      <!-- パスワード（確認） -->
+      <div class="space-y-1 mt-4">
+        <%= f.label :password_confirmation, "パスワード（確認）", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :password_confirmation, class: "input-field", autocomplete: "new-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center space-x-2 mt-4">
+          <%= f.check_box :remember_me, class: "h-4 w-4 text-blue-600 border-gray-500 rounded focus:ring-2 focus:ring-blue-500" %>
+          <%= f.label :remember_me, "ログイン状態を維持する", class: "text-sm text-gray-700" %>
+        </div>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 mt-2" %>
-    </div>
 
-    <!-- Password Confirmation -->
-    <div>
-      <%= f.label :パスワード（確認）, class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
-    </div>
+      <!-- サインアップボタン -->
+      <div>
+        <%= f.submit "サインアップ", class: "w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-5" %>
+      </div>
 
-    <!-- Submit Button -->
-    <div>
-      <%= f.submit "サインアップ", class: "w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+      <!-- ソーシャルログイン -->
+      <div class="mt-4">
+        <%= link_to "Googleでサインアップ", user_google_oauth2_omniauth_authorize_path, data: { turbo_method: "post" }, class: "w-full block text-center py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400", form: { authenticity_token: true } %>
+        <!--<%= link_to "Spotify でサインアップ", user_spotify_omniauth_authorize_path, class: "btn btn-success" %>-->
+      </div>
     </div>
   <% end %>
-
-  
 </div>
-
