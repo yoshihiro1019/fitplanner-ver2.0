@@ -3,7 +3,12 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit_direct
-    @user = current_user
+    @user = User.find_by(reset_password_token: params[:token])
+  
+    if @user.nil?
+      flash[:alert] = "無効なトークンです。"
+      redirect_to root_path
+    end
   end
 
   def update_direct
