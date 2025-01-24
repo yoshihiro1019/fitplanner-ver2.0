@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
-  get '/how_to_use', to: 'static_pages#how_to_use', as: 'how_to_use'
+  get "/how_to_use", to: "static_pages#how_to_use", as: "how_to_use"
 
   # PWA-related routes
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
