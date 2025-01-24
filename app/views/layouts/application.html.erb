@@ -13,7 +13,25 @@
 
     <!-- Font Awesome のスクリプト -->
     <script src="https://kit.fontawesome.com/318fce991d.js" crossorigin="anonymous"></script>
-
+    <style>
+    .last\:border-none {
+      display: flex;
+      justify-content: center; /* 水平方向に中央寄せ */
+      align-items: center; /* 垂直方向に中央寄せ */
+      text-align: center;
+    }
+  
+    .last\:border-none a {
+      display: flex;
+      justify-content: center; /* リンク内の要素を中央寄せ */
+      align-items: center; /* リンク内の要素を垂直方向中央寄せ */
+    }
+  
+    .fab.fa-x-twitter {
+      margin: 0; /* 余白を調整 */
+    }
+  </style>
+  
     <!-- OGPメタタグ -->
 <meta property="og:title" content="FitAIplanner - あなたのトレーニングを最適化" />
 <meta property="og:description" content="AIが最適なトレーニングプランを提案します！" />
@@ -64,6 +82,12 @@
           <% end %>
         </li>
         <li class="border-b border-gray-300 pb-2">
+          <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-question-circle"></i>
+            <span>使い方説明</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
           <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
             <i class="fas fa-file-contract"></i>
             <span>利用規約</span>
@@ -75,13 +99,14 @@
             <span>プライバシーポリシー</span>
           <% end %>
         </li>
+        <li class>© 2025 - FitAIplanner</li>
         <li class="last:border-none">
           <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
              target="_blank"
              rel="noopener noreferrer"
-             class="hover:text-gray-800 block py-2 flex items-center space-x-2">
+             class="hover:text-gray-800 block py-2 flex items-center space-x-2 ">
             <i class="fab fa-x-twitter fa-3x"></i>
-            <span>Xでシェア</span>
+            <span></span>
           </a>
         </li>
       <% else %>
