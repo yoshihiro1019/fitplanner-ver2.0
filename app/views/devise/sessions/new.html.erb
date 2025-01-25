@@ -3,7 +3,7 @@
   <%= form_with(model: resource, url: session_path(resource_name), local: true, class: "space-y-4") do |f| %>
     <div class="p-2  text-gray-700 rounded-lg mt-6">
     <div class="space-y-1">
-      <%= f.label :eメール , class: "block text-sm font-medium text-gray-700" %>
+      <%= f.label :メールアドレス , class: "block text-sm font-medium text-gray-700" %>
       <%= f.email_field :email, class: "input-field", autofocus: true, autocomplete: "email" %>
     </div>
 
