@@ -49,4 +49,8 @@ Rails.application.routes.draw do
     get "password_resets/edit_direct", to: "password_resets#edit_direct", as: :edit_direct_password
     put "password_resets/update_direct", to: "password_resets#update_direct", as: :update_direct_password
   end
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

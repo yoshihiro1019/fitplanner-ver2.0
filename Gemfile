@@ -46,6 +46,7 @@ gem "dotenv-rails"
 
 gem "rspec-rails", "~> 6.0.0"
 gem "factory_bot_rails"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -61,6 +62,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'
+  gem 'letter_opener_web'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
