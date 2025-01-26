@@ -24,7 +24,7 @@ gem "devise"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 gem "omniauth", "~> 2.0"
-gem "omniauth-google-oauth2", "~> 1.0"
+gem "omniauth-google-oauth2", "~> 1.2"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-spotify"
 
