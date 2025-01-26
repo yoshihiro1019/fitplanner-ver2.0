@@ -1,7 +1,8 @@
 require_relative "boot"
+require "rails/all"
+# Dotenvの読み込みはrails/allの後に行う
 require "dotenv-rails"
 Dotenv.load
-require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -16,8 +17,9 @@ module Myapp
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w[assets tasks])
-
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.eager_load_paths += %W(#{config.root}/lib)
+    Rails.application.config.action_mailer.preview_paths = []
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -27,3 +29,4 @@ module Myapp
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+

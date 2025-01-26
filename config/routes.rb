@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
   end
   # Password reset routes
-  resource :password_reset, only: [ :new, :create ]
+  resource :password_reset, only: [ :new, :create, :edit, :update]
   devise_scope :user do
     get "password_resets/edit_direct", to: "password_resets#edit_direct", as: :edit_direct_password
     put "password_resets/update_direct", to: "password_resets#update_direct", as: :update_direct_password

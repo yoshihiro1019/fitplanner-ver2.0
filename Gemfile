@@ -44,7 +44,7 @@ gem "ruby-openai", "~> 4.0.0"
 
 gem "dotenv-rails"
 
-gem "rspec-rails", "~> 6.0.0"
+gem "rspec-rails", "~> 7.0"
 gem "factory_bot_rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
