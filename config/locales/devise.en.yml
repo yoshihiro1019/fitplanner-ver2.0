@@ -48,6 +48,7 @@ en:
       update_needs_confirmation: "アカウント情報は更新されましたが、新しいメールアドレスの確認が必要です。確認メールをご確認ください。"
       updated: "アカウント情報が正常に更新されました。"
       updated_but_not_signed_in: "アカウント情報が更新されましたが、パスワードが変更されたため再度ログインしてください。"
+     
 
     sessions:
       signed_in: "ログインしました。"

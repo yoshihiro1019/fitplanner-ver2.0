@@ -50,6 +50,8 @@ class PasswordResetsController < ApplicationController
     end
   end
 
+ 
+
   private
 
   def password_params
