@@ -82,6 +82,34 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  #===========================
+# ここからActionMailer
+#===========================
+config.action_mailer.raise_delivery_errors = true
+
+# メール内のURL生成で使うホスト名やプロトコル
+config.action_mailer.default_url_options = { 
+  host: "example.com",
+  protocol: "https"
+}
+
+# 実際の配送方法
+config.action_mailer.delivery_method = :smtp
+
+# SMTPの詳細設定（例：SendGridを使う場合）
+config.action_mailer.smtp_settings = {
+  address: ENV.fetch("SMTP_ADDRESS", "smtp.sendgrid.net"),
+  port: 587,
+  domain: "example.com",
+  user_name: ENV["SMTP_USERNAME"],
+  password: ENV["SMTP_PASSWORD"],
+  authentication: :plain,
+  enable_starttls_auto: true
+}
+
+#===========================
+# ここまでActionMailer
+#===========================
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
