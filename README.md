@@ -4,7 +4,7 @@
 **筋トレアプリ**  
 - トレーニング内容を**自動で提案**  
 - **ジム探し機能**を搭載（一般的なトレーニングアプリにはない）  
-- **トレーニング記録機能**や**鍛えたい部位ごとのおすすめトレーニング**を提供  
+- **トレーニング記録機能**や**AIが鍛えたい部位ごとのおすすめトレーニング**を提供(企画当初は、AIを活用したアプリの開発事例がほとんどなく、実現可能性が不透明だったため、実装予定として検討していた）  
 
 ---
 
@@ -93,7 +93,7 @@
 | **CI/CD** | GitHub Actions |
 | **Web API** | OpenAI API / Google Maps API / Spotify API |
 
-## ■ 画面遷移図（MVPリリース時）
+## ■ 画面遷移図（MVPリリース時：AI機能未実装版）
 https://www.figma.com/design/vqTq1B2O0XlxwSRiCJvNeP/Untitled?node-id=0-1&p=f
 ![image](https://github.com/user-attachments/assets/56813032-2a49-4552-a5f2-b39bca91ce8a)
 
