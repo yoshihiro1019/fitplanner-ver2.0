@@ -1,16 +1,65 @@
+# Ruby ベースイメージ
 FROM ruby:3.2.3
+
+# 環境設定
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
-RUN apt-get update -qq \
-&& apt-get install -y ca-certificates curl gnupg \
-&& mkdir -p /etc/apt/keyrings \
-&& curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
-&& NODE_MAJOR=20 \
-&& echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
-&& wget --quiet -O - /tmp/pubkey.gpg https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs yarn vim
+
+# 必要なパッケージのインストール
+RUN apt-get update -qq && \
+    apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    build-essential \
+    libpq-dev \
+    vim \
+    wget \
+    unzip \
+    jq && \
+    rm -rf /var/lib/apt/lists/*
+
+# --- Node.js & Yarn のインストール ---
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g corepack && \
+    corepack enable && \
+    rm -rf /usr/bin/yarn /usr/bin/yarnpkg /usr/local/bin/yarnpkg /usr/local/bin/yarn && \
+    npm install -g yarn --force && \
+    yarn -v
+
+# --- Google Chrome のインストール ---
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/google-chrome-keyring.gpg arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && \
+    apt-get install -y google-chrome-stable && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
+
+# --- Chromedriver のインストール ---
+RUN GOOGLE_CHROME_VERSION=$(google-chrome --version | awk '{print $3}') && \
+    LATEST_DRIVER=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | \
+                    jq -r ".versions[] | select(.version | startswith(\"${GOOGLE_CHROME_VERSION}\")) | .downloads.chromedriver[] | select(.platform==\"linux64\").url" | head -n 1) && \
+    wget -O /tmp/chromedriver.zip "$LATEST_DRIVER" && \
+    unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
+    mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
+    rm -rf /usr/local/bin/chromedriver-linux64 && \
+    rm /tmp/chromedriver.zip && \
+    chmod +x /usr/local/bin/chromedriver
+
+# --- 環境変数を設定 ---
+ENV PATH="/usr/local/bin:${PATH}" \
+    CHROME_BIN="/usr/bin/google-chrome" \
+    CHROMEDRIVER_PATH="/usr/local/bin/chromedriver"
+
+# --- Google Chrome & Chromedriver のバージョン確認 ---
+RUN google-chrome --version && chromedriver --version
+
+# 作業ディレクトリ作成
 RUN mkdir /myapp
 WORKDIR /myapp
+
+# Bundler をインストール
 RUN gem install bundler
+
+# アプリケーションのコードをコピー
 COPY . /myapp
