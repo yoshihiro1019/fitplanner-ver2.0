@@ -13,35 +13,44 @@
 
     <!-- Font Awesome のスクリプト -->
     <script src="https://kit.fontawesome.com/318fce991d.js" crossorigin="anonymous"></script>
-    <style>
-    .last\:border-none {
-      display: flex;
-      justify-content: center; /* 水平方向に中央寄せ */
-      align-items: center; /* 垂直方向に中央寄せ */
-      text-align: center;
-    }
-  
-    .last\:border-none a {
-      display: flex;
-      justify-content: center; /* リンク内の要素を中央寄せ */
-      align-items: center; /* リンク内の要素を垂直方向中央寄せ */
-    }
-  
-    .fab.fa-x-twitter {
-      margin: 0; /* 余白を調整 */
-    }
-  </style>
-  
-    <!-- OGPメタタグ -->
-<meta property="og:title" content="FitAIplanner - あなたのトレーニングを最適化" />
-<meta property="og:description" content="AIが最適なトレーニングプランを提案します！" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="<%= request.original_url %>" />
-<!--<meta property="og:image" content="<%# image_url('ogp-image.jpg') %>" />-->
-<meta property="og:site_name" content="FitAIplanner" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@YourTwitterHandle" />
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6PHEW490EN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6PHEW490EN');
+    </script>
+
+    <style>
+      .last\:border-none {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+    
+      .last\:border-none a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .fab.fa-x-twitter {
+        margin: 0;
+      }
+    </style>
+
+    <!-- OGPメタタグ -->
+    <meta property="og:title" content="FitAIplanner - あなたのトレーニングを最適化" />
+    <meta property="og:description" content="AIが最適なトレーニングプランを提案します！" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:site_name" content="FitAIplanner" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@YourTwitterHandle" />
   </head>
 
   <% if request.path == '/terms' || request.path == '/privacy_policy' %>
@@ -82,59 +91,20 @@
           <% end %>
         </li>
         <li class="border-b border-gray-300 pb-2">
-          <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-question-circle"></i>
-            <span>使い方説明</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
           <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
             <i class="fas fa-file-contract"></i>
             <span>利用規約</span>
           <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-user-shield"></i>
-            <span>プライバシーポリシー</span>
-          <% end %>
-        </li>
-        <li class>© 2025 - FitAIplanner</li>
-        <li class="last:border-none">
-          <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="hover:text-gray-800 block py-2 flex items-center space-x-2 ">
-            <i class="fab fa-x-twitter fa-3x"></i>
-            <span></span>
-          </a>
         </li>
       <% else %>
         <li class="border-b border-gray-300 pb-2">
-          <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-file-contract"></i>
-            <span>利用規約</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
           <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
             <i class="fas fa-user-shield"></i>
             <span>プライバシーポリシー</span>
           <% end %>
         </li>
-        <li class="last:border-none">
-          <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="hover:text-gray-800 block py-2 flex items-center space-x-2 ">
-            <i class="fab fa-x-twitter fa-3x"></i>
-            <span></span>
-          </a>
-        </li>
       <% end %>
     </ul>
-    
-
     </nav>
 
     <!-- ローディングインジケータ（最初は非表示） -->
@@ -163,17 +133,9 @@
 
     <!-- フラッシュメッセージの表示 -->
     <% flash.each do |key, message| %>
-      <% if controller_name == 'training_suggestions' && action_name == 'index' %>
-        <!-- 部位検索画面専用のフラッシュメッセージ（下部表示） -->
-        <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
-          <%= message %>
-        </div>
-      <% else %>
-        <!-- 他画面用のフラッシュメッセージ（デフォルト: 上部表示） -->
-        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
-          <%= message %>
-        </div>
-      <% end %>
+      <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
+        <%= message %>
+      </div>
     <% end %>
 
     <!-- コンテンツ -->
