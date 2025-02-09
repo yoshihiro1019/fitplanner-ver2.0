@@ -96,11 +96,23 @@
             <span>利用規約</span>
           <% end %>
         </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-user-shield"></i>
+            <span>プライバシーポリシー</span>
+          <% end %>
+        </li>
       <% else %>
         <li class="border-b border-gray-300 pb-2">
           <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
             <i class="fas fa-user-shield"></i>
             <span>プライバシーポリシー</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-file-contract"></i>
+            <span>利用規約</span>
           <% end %>
         </li>
       <% end %>

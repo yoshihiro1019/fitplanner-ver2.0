@@ -24,7 +24,7 @@ export default class extends Controller {
     const tokyo = { lat: 35.682839, lng: 139.759455 };
     this.map = new google.maps.Map(this.mapTarget, {
       center: tokyo,
-      zoom: 15,
+      zoom: 13,
     });
 
     if (navigator.geolocation) {
@@ -35,7 +35,16 @@ export default class extends Controller {
             lng: position.coords.longitude,
           };
           this.map.setCenter(pos);
-          this.findGyms(pos); // 現在地周辺のジムを検索
+
+          // ✅ **現在地マーカーのデザイン（大きめの青アイコン）**
+          new google.maps.marker.AdvancedMarkerElement({
+            position: pos,
+            map: this.map,
+            title: "現在地",
+            content: `<div style="background-color: blue; color: white; padding: 10px; border-radius: 50%; font-size: 16px;">📍</div>`,
+          });
+
+          this.findGyms(pos);
         },
         () => {
           alert("位置情報を取得できませんでした。");
@@ -46,42 +55,33 @@ export default class extends Controller {
     }
   }
 
-  // 検索ボタンが押されたときの処理
-  searchLocation() {
-    const location = this.searchInputTarget.value;
-    const geocoder = new google.maps.Geocoder();
-
-    geocoder.geocode({ address: location }, (results, status) => {
-      if (status === "OK") {
-        const pos = results[0].geometry.location;
-        this.map.setCenter(pos);
-        this.findGyms(pos); // 入力された場所周辺のジムを検索
-      } else {
-        alert("場所が見つかりませんでした。");
-      }
-    });
-  }
-
-  // ジムを検索してマーカーを表示
   findGyms(location) {
+    console.log("ジム検索開始:", location);
+
     const service = new google.maps.places.PlacesService(this.map);
     const request = {
       location: location,
-      radius: '2000', // 半径2km以内
-      type: ['gym'],  // ジムの検索
+      radius: 5000,
+      type: ["gym"],
     };
 
     service.nearbySearch(request, (results, status) => {
+      console.log("Nearby search status:", status);
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         results.forEach((place) => {
-          new google.maps.Marker({
+          console.log("見つかったジム:", place.name);
+
+          // ✅ **ジムのマーカーのデザイン（緑のカスタムマーカーを適用）**
+          new google.maps.marker.AdvancedMarkerElement({
             position: place.geometry.location,
             map: this.map,
             title: place.name,
+            content: `<div style="background-color: green; color: white; padding: 8px; border-radius: 50%; font-size: 18px; display: flex; align-items: center; justify-content: center;">🏋️‍♂️</div>`,
           });
         });
       } else {
-        alert('ジムの検索に失敗しました。');
+        console.error("ジムの検索に失敗しました:", status);
+        alert("ジムの検索に失敗しました。");
       }
     });
   }
