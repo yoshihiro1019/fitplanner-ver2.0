@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "bgm", to: "bgm#index", as: :bgm
   get "/terms", to: "pages#terms"
   get "/callback", to: "callbacks#callback"
+  
 
   # Root route
   root "tasks#index"
