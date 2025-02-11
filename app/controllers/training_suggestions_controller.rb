@@ -11,15 +11,17 @@ class TrainingSuggestionsController < ApplicationController
     @suggestions = @all_suggestions[body_part_code]
     @body_part = BodyPart.find_by(code: body_part_code)
 
-    # デバッグログ
-    Rails.logger.debug "Body Part Code: #{body_part_code}"
-    Rails.logger.debug "Body Part: #{@body_part.inspect}"
-    Rails.logger.debug "Suggestions: #{@suggestions.inspect}"
-
-    if @suggestions.present?
-      render json: { suggestions: @suggestions }, status: :ok
-    else
-      render json: { error: "選択された部位の提案が見つかりません。" }, status: :not_found
+    respond_to do |format|
+      if @suggestions.present?
+        format.html { render :show } # HTMLリクエストならビューを表示
+        format.json { render json: { suggestions: @suggestions, status: :ok } } # JSONリクエストならJSONを返す
+      else
+        format.html do
+          flash[:alert] = "選択された部位の提案が見つかりません。"
+          redirect_to new_training_suggestion_path
+        end
+        format.json { render json: { error: "選択された部位の提案が見つかりません。" }, status: :not_found }
+      end
     end
   end
 
