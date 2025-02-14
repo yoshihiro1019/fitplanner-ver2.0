@@ -87,7 +87,7 @@
 | **フロントエンド** | Rails 7.2.1.2 / TailwindCSS / JavaScript |
 | **バックエンド** | Rails 7.2.1.2 (Ruby 3.2.3) |
 | **インフラ** | Render |
-| **DB** | MySQL |
+| **DB** |  PostgreSQL |
 | **開発環境** | Docker |
 | **認証** | Devise / Google認証 |
 | **CI/CD** | GitHub Actions |
