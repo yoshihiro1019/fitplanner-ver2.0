@@ -11,11 +11,11 @@ class QuestionsController < ApplicationController
     focus_area = params[:focus_area]
     training_location = params[:training_location]
     home_equipment = params[:home_equipment]
-
+  
     # 入力項目が正しいか確認
     if age.present? && experience.present? && focus_area.present?
       suggestion_text = fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
-
+  
       if suggestion_text.present?
         # 提案をデータベースに保存
         training_suggestion = TrainingSuggestion.new(
@@ -27,21 +27,21 @@ class QuestionsController < ApplicationController
           focus_area: focus_area,
           content: suggestion_text
         )
-
+  
         if training_suggestion.save
-          flash[:suggestion] = "提案を保存しました: #{training_suggestion.content}"
+          flash.now[:suggestion] = "提案を保存しました: #{training_suggestion.content}"
         else
-          flash[:error] = "提案の保存に失敗しました。"
+          flash.now[:error] = "提案の保存に失敗しました。"
         end
       else
-        flash[:suggestion] = "提案が生成されませんでした。再度お試しください。"
+        flash.now[:suggestion] = "提案が生成されませんでした。再度お試しください。"
       end
     else
-      flash[:error] = "全ての項目を入力してください。"
+      flash.now[:error] = "全ての項目を入力してください。"
     end
-
+  
     respond_to do |format|
-      format.html { redirect_to questions_path }
+      format.html { render :index } # redirect_to を render に変更
       format.turbo_stream { render turbo_stream: turbo_stream.replace("flash_messages", partial: "shared/flash_messages") }
     end
   end
