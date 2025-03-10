@@ -104,4 +104,5 @@ https://www.figma.com/design/vqTq1B2O0XlxwSRiCJvNeP/Untitled?node-id=0-1&p=f
 
 https://app.diagrams.net/#Hyoshihiro1019%2FyoshihiroGraduationwork%2F%25E7%258A%25B6%25E6%2585%258B%25E9%2581%25B7%25E7%25A7%25BB%25E5%259B%25B3%2F%E5%90%8D%E7%A7%B0%E6%9C%AA%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB.drawio#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D
 
-![スクリーンショット 2025-02-15 151542](https://github.com/user-attachments/assets/b68a86c5-e388-4481-adc2-b652c709dbb5)
+![スクリーンショット 2025-03-10 142911](https://github.com/user-attachments/assets/d982ba87-3193-4ac1-a9f5-e1e5f7c81568)
+
