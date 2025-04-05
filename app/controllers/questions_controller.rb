@@ -50,21 +50,27 @@ class QuestionsController < ApplicationController
 
   def fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
     client = OpenAI::Client.new
-    prompt = <<~PROMPT
-      ユーザーの年齢: #{age}
-      トレーニング経験: #{experience}
-      重点を置きたい部位: #{focus_area}
-      トレーニング場所: #{training_location}#{'  '}
-      家にダンベルやチューブ: #{home_equipment}#{'  '}
-    PROMPT
+  
+  prompt = I18n.t(
+  "prompts.training_suggestion.template",
+  age: age,
+  experience: experience,
+  focus_area: focus_area,
+  training_location: training_location,
+  home_equipment: home_equipment
+)
 
-    response = client.chat(
-      parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [ { role: "user", content: prompt } ]
-      }
-    )
-
-    response.dig("choices", 0, "message", "content")
+  
+response = client.chat(
+  parameters: {
+    model: "gpt-3.5-turbo",
+    messages: [
+      { role: "system", content: "あなたはプロの日本語フィットネストレーナーです。常に日本語で提案をしてください。" },
+      { role: "user", content: prompt }
+    ]
+  }
+)
+response.dig("choices", 0, "message", "content")
   end
+  
 end

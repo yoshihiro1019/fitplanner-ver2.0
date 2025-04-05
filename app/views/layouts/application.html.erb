@@ -20,7 +20,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-6PHEW490EN');
     </script>
 
@@ -31,13 +30,11 @@
         align-items: center;
         text-align: center;
       }
-    
       .last\:border-none a {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-    
       .fab.fa-x-twitter {
         margin: 0;
       }
@@ -53,106 +50,151 @@
     <meta name="twitter:site" content="@YourTwitterHandle" />
   </head>
 
+  <!-- 利用規約やプライバシーポリシーのページは背景画像なし -->
   <% if request.path == '/terms' || request.path == '/privacy_policy' %>
     <body>
   <% else %>
+    <!-- それ以外のページは背景画像を適用 -->
     <body class="w-full h-screen bg-fixed bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-[center_top_10%]">
   <% end %>
 
-    <!-- ナビゲーションバー -->
-    <nav class="bg-gray-800 text-white relative">
+    <!-- トップナビゲーションバー -->
+    <nav class="bg-gray-800 text-white relative z-50">
       <div class="flex items-center justify-between px-4">
         <!-- 左側: ロゴ -->
         <div class="text-xl font-bold">
           <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
         </div>
 
-        <!-- ハンバーガーボタン -->
+        <!-- ハンバーガーボタン（モバイル用） -->
         <button id="menu-toggle" class="absolute top-1 right-4 text-white focus:outline-none z-50">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
         </button>
       </div>
 
-      <!-- メニューリスト -->
+      <!-- メニューリスト（ドロップダウン） -->
       <ul id="menu" class="hidden flex flex-col space-y-4 absolute top-7 right-0 bg-gray-100 bg-opacity-80 text-black w-48 p-3 shadow-md z-40">
-      <li class="border-b border-gray-300 pb-2">
-        <%= link_to root_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-          <i class="fas fa-home"></i>
-          <span>ホーム</span>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to root_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-home"></i>
+            <span>ホーム</span>
+          <% end %>
+        </li>
+
+        <% if user_signed_in? %>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to mypage_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-list"></i>
+              <span>機能一覧</span>
+            <% end %>
+          </li>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-question-circle"></i>
+              <span>使い方説明</span>
+            <% end %>
+          </li>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-file-contract"></i>
+              <span>利用規約</span>
+            <% end %>
+          </li>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-user-shield"></i>
+              <span>プライバシーポリシー</span>
+            <% end %>
+          </li>
+          <li class="last:border-none">
+            <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="hover:text-gray-800 block py-2 flex items-center space-x-2">
+              <i class="fab fa-x-twitter fa-3x"></i>
+              <span></span>
+            </a>
+          </li>
+          <li class>© 2025 - FitAIplanner</li>
+        <% else %>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-question-circle"></i>
+              <span>使い方説明</span>
+            <% end %>
+          </li>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-user-shield"></i>
+              <span>プライバシーポリシー</span>
+            <% end %>
+          </li>
+          <li class="border-b border-gray-300 pb-2">
+            <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+              <i class="fas fa-file-contract"></i>
+              <span>利用規約</span>
+            <% end %>
+          </li>
+          <li class="last:border-none">
+            <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="hover:text-gray-800 block py-2 flex items-center space-x-2">
+              <i class="fab fa-x-twitter fa-3x"></i>
+              <span></span>
+            </a>
+          </li>
+          <li class>© 2025 - FitAIplanner</li>
         <% end %>
-      </li>
-      <% if user_signed_in? %>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to mypage_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-list"></i>
-            <span>機能一覧</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-question-circle"></i>
-            <span>使い方説明</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-file-contract"></i>
-            <span>利用規約</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-user-shield"></i>
-            <span>プライバシーポリシー</span>
-          <% end %>
-        </li>
-        <li class="last:border-none">
-          <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="hover:text-gray-800 block py-2 flex items-center space-x-2 ">
-            <i class="fab fa-x-twitter fa-3x"></i>
-            <span></span>
-          </a>
-        </li>
-        
-        <li class>© 2025 - FitAIplanner</li>
-        
-      <% else %>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-question-circle"></i>
-            <span>使い方説明</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-user-shield"></i>
-            <span>プライバシーポリシー</span>
-          <% end %>
-        </li>
-        <li class="border-b border-gray-300 pb-2">
-          <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
-            <i class="fas fa-file-contract"></i>
-            <span>利用規約</span>
-          <% end %>
-        </li>
-        <li class="last:border-none">
-          <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="hover:text-gray-800 block py-2 flex items-center space-x-2 ">
-            <i class="fab fa-x-twitter fa-3x"></i>
-            <span></span>
-          </a>
-        </li>
-        <li class>© 2025 - FitAIplanner</li>
-        
-      <% end %>
-    </ul>
+      </ul>
     </nav>
+
+    <!-- サイドバー（ログイン時 & static_pages#index 以外のページで表示） -->
+    <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
+      <div class="fixed top-0 left-0 h-screen w-64 text-white shadow-md z-40">
+        <div class="grid grid-cols-1 gap-2 p-4">
+          <!-- 1: トレーニングプラン作成(AI) -->
+          <%= link_to questions_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
+            <i class="fas fa-robot text-4xl mb-2"></i>
+            <span class="text-base font-semibold">トレーニングプラン作成(AI)</span>
+          <% end %>
+
+          <!-- 2: トレーニング記録 -->
+          <%= link_to training_logs_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
+            <i class="fas fa-dumbbell text-4xl mb-2"></i>
+            <span class="text-base font-semibold">トレーニング記録</span>
+          <% end %>
+
+          <!-- 3: ジム検索 -->
+          <%= link_to gym_search_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
+            <i class="fas fa-map-marker-alt text-4xl mb-2"></i>
+            <span class="text-base font-semibold">ジム検索</span>
+          <% end %>
+
+          <!-- 4: 部位別トレーニング検索 -->
+          <%= link_to new_training_suggestion_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
+            <i class="fas fa-running text-4xl mb-2"></i>
+            <span class="text-base font-semibold">部位別トレーニング検索</span>
+          <% end %>
+
+          <!-- 5: BGM -->
+          <%= link_to bgm_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
+            <i class="fas fa-music text-4xl mb-2"></i>
+            <span class="text-base font-semibold">BGM</span>
+          <% end %>
+
+          <!-- 6: パスワード変更 -->
+          <%= link_to edit_direct_password_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
+            <i class="fas fa-key text-4xl mb-2"></i>
+            <span class="text-base font-semibold">パスワード変更</span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
     <!-- ローディングインジケータ（最初は非表示） -->
     <div id="loading-indicator"
@@ -171,27 +213,25 @@
         height: 60px;
         animation: spin 1.5s linear infinite;
       }
-
       @keyframes spin {
         0%   { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
     </style>
 
-    <!-- フラッシュメッセージの表示 -->
+    <!-- フラッシュメッセージ（/questions パス以外で表示） -->
     <% unless request.path == '/questions' %>
-  <% flash.each do |key, message| %>
-    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
-      <%= message %>
+      <% flash.each do |key, message| %>
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!-- メインコンテンツ -->
+    <!-- サイドバーありの場合のみ左に 64 (16rem) の余白をとる -->
+    <div class="<%= user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') ? 'ml-64' : '' %> p-6">
+      <%= yield %>
     </div>
-  <% end %>
-<% end %>
-
-
-    
-
-    <!-- コンテンツ -->
-    <%= yield %>
-
   </body>
 </html>

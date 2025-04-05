@@ -1,0 +1,12 @@
+ja:
+  prompts:
+    training_suggestion:
+      template: |
+        ユーザーの年齢: %{age}
+        トレーニング経験: %{experience}
+        重点を置きたい部位: %{focus_area}
+        トレーニング場所: %{training_location}
+        家にダンベルやチューブ: %{home_equipment}
+
+        上記の情報をもとに、日本語で、親しみやすく、具体的なトレーニングメニューを提案してください。
+        例：回数、セット数、注意点なども含めて説明してください。
