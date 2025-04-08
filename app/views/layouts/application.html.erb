@@ -82,6 +82,81 @@
         </svg>
       </button>
     </div>
+    <!-- メニューリスト（ドロップダウン） -->
+    <ul id="menu" class="hidden flex flex-col space-y-4 absolute top-7 right-0 bg-gray-100 bg-opacity-80 text-black w-48 p-3 shadow-md z-40">
+      <li class="border-b border-gray-300 pb-2">
+        <%= link_to root_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+          <i class="fas fa-home"></i>
+          <span>ホーム</span>
+        <% end %>
+      </li>
+
+      <% if user_signed_in? %>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to mypage_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-list"></i>
+            <span>機能一覧</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-question-circle"></i>
+            <span>使い方説明</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-file-contract"></i>
+            <span>利用規約</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-user-shield"></i>
+            <span>プライバシーポリシー</span>
+          <% end %>
+        </li>
+        <li class="last:border-none">
+          <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="hover:text-gray-800 block py-2 flex items-center space-x-2">
+            <i class="fab fa-x-twitter fa-3x"></i>
+            <span></span>
+          </a>
+        </li>
+        <li class>© 2025 - FitAIplanner</li>
+      <% else %>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to how_to_use_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-question-circle"></i>
+            <span>使い方説明</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to privacy_policy_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-user-shield"></i>
+            <span>プライバシーポリシー</span>
+          <% end %>
+        </li>
+        <li class="border-b border-gray-300 pb-2">
+          <%= link_to terms_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
+            <i class="fas fa-file-contract"></i>
+            <span>利用規約</span>
+          <% end %>
+        </li>
+        <li class="last:border-none">
+          <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape('このアプリを試してみました！') %>&url=<%= CGI.escape(request.original_url) %>&hashtags=FitAIplanner,トレーニング"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="hover:text-gray-800 block py-2 flex items-center space-x-2">
+            <i class="fab fa-x-twitter fa-3x"></i>
+            <span></span>
+          </a>
+        </li>
+        <li class>© 2025 - FitAIplanner</li>
+      <% end %>
+    </ul>
   </nav>
 
   <!-- サイドバー -->
