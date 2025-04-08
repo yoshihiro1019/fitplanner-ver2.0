@@ -158,46 +158,47 @@
 
     <!-- サイドバー（ログイン時 & static_pages#index 以外のページで表示） -->
     <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
-      <div class="fixed top-0 left-0 h-screen w-64 text-white shadow-md z-40">
-        <div class="grid grid-cols-1 gap-2 p-4">
-          <!-- 1: トレーニングプラン作成(AI) -->
-          <%= link_to questions_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
-            <i class="fas fa-robot text-4xl mb-2"></i>
-            <span class="text-base font-semibold">トレーニングプラン作成(AI)</span>
-          <% end %>
+  <div class="fixed top-4 left-4 h-[calc(100vh-2rem)] w-64 bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
+    <div class="grid grid-cols-1 gap-2 p-4">
+      <!-- 1: トレーニングプラン作成(AI) -->
+      <%= link_to questions_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
+        <i class="fas fa-robot text-4xl mb-2"></i>
+        <span class="text-base font-semibold">トレーニングプラン作成(AI)</span>
+      <% end %>
 
-          <!-- 2: トレーニング記録 -->
-          <%= link_to training_logs_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
-            <i class="fas fa-dumbbell text-4xl mb-2"></i>
-            <span class="text-base font-semibold">トレーニング記録</span>
-          <% end %>
+      <!-- 2: トレーニング記録 -->
+      <%= link_to training_logs_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
+        <i class="fas fa-dumbbell text-4xl mb-2"></i>
+        <span class="text-base font-semibold">トレーニング記録</span>
+      <% end %>
 
-          <!-- 3: ジム検索 -->
-          <%= link_to gym_search_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
-            <i class="fas fa-map-marker-alt text-4xl mb-2"></i>
-            <span class="text-base font-semibold">ジム検索</span>
-          <% end %>
+      <!-- 3: ジム検索 -->
+      <%= link_to gym_search_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
+        <i class="fas fa-map-marker-alt text-4xl mb-2"></i>
+        <span class="text-base font-semibold">ジム検索</span>
+      <% end %>
 
-          <!-- 4: 部位別トレーニング検索 -->
-          <%= link_to new_training_suggestion_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
-            <i class="fas fa-running text-4xl mb-2"></i>
-            <span class="text-base font-semibold">部位別トレーニング検索</span>
-          <% end %>
+      <!-- 4: 部位別トレーニング検索 -->
+      <%= link_to new_training_suggestion_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
+        <i class="fas fa-running text-4xl mb-2"></i>
+        <span class="text-base font-semibold">部位別トレーニング検索</span>
+      <% end %>
 
-          <!-- 5: BGM -->
-          <%= link_to bgm_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
-            <i class="fas fa-music text-4xl mb-2"></i>
-            <span class="text-base font-semibold">BGM</span>
-          <% end %>
+      <!-- 5: BGM -->
+      <%= link_to bgm_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
+        <i class="fas fa-music text-4xl mb-2"></i>
+        <span class="text-base font-semibold">BGM</span>
+      <% end %>
 
-          <!-- 6: パスワード変更 -->
-          <%= link_to edit_direct_password_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-white hover:bg-opacity-10 transition" do %>
-            <i class="fas fa-key text-4xl mb-2"></i>
-            <span class="text-base font-semibold">パスワード変更</span>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+      <!-- 6: パスワード変更 -->
+      <%= link_to edit_direct_password_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
+        <i class="fas fa-key text-4xl mb-2"></i>
+        <span class="text-base font-semibold">パスワード変更</span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 
     <!-- ローディングインジケータ（最初は非表示） -->
     <div id="loading-indicator"
