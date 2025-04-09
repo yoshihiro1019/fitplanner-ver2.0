@@ -166,19 +166,19 @@
         <!-- 各機能へのリンク -->
         <%= link_to questions_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
           <i class="fas fa-robot text-4xl mb-2"></i>
-          <span class="text-base font-semibold">AI</span>
+          <span class="text-base font-semibold">トレーニングプラン作成(AI)</span>
         <% end %>
         <%= link_to training_logs_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
           <i class="fas fa-dumbbell text-4xl mb-2"></i>
-          <span class="text-base font-semibold">記録</span>
+          <span class="text-base font-semibold">トレーニング記録</span>
         <% end %>
         <%= link_to gym_search_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
           <i class="fas fa-map-marker-alt text-4xl mb-2"></i>
-          <span class="text-base font-semibold">ジム</span>
+          <span class="text-base font-semibold">ジム検索</span>
         <% end %>
         <%= link_to new_training_suggestion_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
           <i class="fas fa-running text-4xl mb-2"></i>
-          <span class="text-base font-semibold">部位別</span>
+          <span class="text-base font-semibold">部位別トレーニング検索</span>
         <% end %>
         <%= link_to bgm_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
           <i class="fas fa-music text-4xl mb-2"></i>
@@ -216,8 +216,11 @@
     </div>
   <% end %>
 
-  <div class="<%= user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') ? 'ml-64' : '' %> p-6">
+  <!-- メインコンテンツ -->
+  <div class="p-4 sm:p-6 max-w-full mx-0 md:<%= user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') ? 'ml-64' : '' %> md:max-w-none md:mx-0">
     <%= yield %>
   </div>
+  
+
 </body>
 </html>
