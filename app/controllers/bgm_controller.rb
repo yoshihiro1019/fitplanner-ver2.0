@@ -1,4 +1,5 @@
 class BgmController < ApplicationController
+  before_action :authenticate_user!
   def index
     # アクセストークンを取得
     token = fetch_spotify_token

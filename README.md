@@ -95,7 +95,7 @@
 | **CI/CD** | GitHub Actions |
 | **Web API** | OpenAI API / Google Maps API / Spotify API |
 
-## ■ 画面遷移図（AI機能未実装版）
+## ■ 画面遷移図（MVP版）
 https://www.figma.com/design/vqTq1B2O0XlxwSRiCJvNeP/Untitled?node-id=0-1&p=f
 ![image](https://github.com/user-attachments/assets/56813032-2a49-4552-a5f2-b39bca91ce8a)
 
