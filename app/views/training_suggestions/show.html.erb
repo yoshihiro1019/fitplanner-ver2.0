@@ -1,19 +1,20 @@
-<div class="container mx-auto px-4 py-6">
+<div class="container mx-auto px-4 py-6 max-w-screen-md">
   <% if @suggestions.present? %>
     <h1 class="text-2xl font-bold mb-4"><%= @body_part.name %>のトレーニング</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+    <div class="space-y-6">
       <% @suggestions.each do |exercise| %>
         <div class="bg-white rounded-lg shadow-md p-6">
           <h2 class="text-xl font-semibold mb-2"><%= exercise[:name] %></h2>
-          <p class="text-gray-700"><%= exercise[:description] %></p>
-          <iframe 
-        width="560" 
-        height="315" 
-        src="<%= exercise[:youtube_url] %>" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+          <p class="text-gray-700 mb-4"><%= exercise[:description] %></p>
+          <div class="w-full max-w-full overflow-hidden">
+            <iframe
+              class="w-full aspect-video rounded"
+              src="<%= exercise[:youtube_url] %>"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       <% end %>
     </div>
