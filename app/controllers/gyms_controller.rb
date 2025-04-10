@@ -1,7 +1,7 @@
 class GymsController < ApplicationController
   require 'net/http'
   require 'json'
-
+  before_action :authenticate_user!
   def index
     if params[:latitude].present? && params[:longitude].present?
       latitude = params[:latitude].to_f
