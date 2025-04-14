@@ -159,12 +159,7 @@
     </ul>
   </nav>
 
-  <div class="bg-yellow-100 p-4">
-  <p>Controller: <%= params[:controller] %></p>
-  <p>Action: <%= params[:action] %></p>
-  <p>user_signed_in?: <%= user_signed_in? %></p>
-</div>
-
+  
   <!-- サイドバー -->
   <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
     <div class="sidebar-desktop fixed top-4 left-4 h-[calc(100vh-2rem)] w-64 bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
