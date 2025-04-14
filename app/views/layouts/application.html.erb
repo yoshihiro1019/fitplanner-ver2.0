@@ -8,7 +8,7 @@
     <%= csp_meta_tag %>
 
     <!-- CSSとJavaScriptの読み込み -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
 
     <!-- Font Awesome のスクリプト -->
@@ -159,7 +159,8 @@
     </ul>
   </nav>
 
-  
+ 
+
   <!-- サイドバー -->
   <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
     <div class="sidebar-desktop fixed top-4 left-4 h-[calc(100vh-2rem)] w-64 bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
