@@ -8,7 +8,7 @@
     <%= csp_meta_tag %>
 
     <!-- CSSとJavaScriptの読み込み -->
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://cdn.tailwindcss.com"></script>
     <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
 
     <!-- Font Awesome のスクリプト -->
@@ -159,6 +159,12 @@
     </ul>
   </nav>
 
+  <div class="bg-yellow-100 p-4">
+  <p>Controller: <%= params[:controller] %></p>
+  <p>Action: <%= params[:action] %></p>
+  <p>user_signed_in?: <%= user_signed_in? %></p>
+</div>
+
   <!-- サイドバー -->
   <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
     <div class="sidebar-desktop fixed top-4 left-4 h-[calc(100vh-2rem)] w-64 bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
@@ -227,9 +233,11 @@
 <% end %>
 
   <!-- メインコンテンツ -->
-  <div class="p-4 sm:p-6 max-w-full mx-0 md:<%= user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') ? 'ml-64' : '' %> md:max-w-none md:mx-0">
-    <%= yield %>
-  </div>
+  <div class="p-4 sm:p-6 max-w-full mx-0 md:max-w-none md:mx-0">
+  <%= yield %>
+</div>
+
+
   
 
 </body>
