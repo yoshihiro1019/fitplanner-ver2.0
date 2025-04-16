@@ -38,6 +38,8 @@
       .fab.fa-x-twitter {
         margin: 0;
       }
+
+      /* メディアクエリ: 1000px以下はモバイル用サイドバー表示 */
       @media (max-width: 1000px) {
         .sidebar-mobile {
           position: fixed;
@@ -54,6 +56,8 @@
           display: none;
         }
       }
+
+      /* メディアクエリ: 1000px以上はPC用サイドバー表示 */
       @media (min-width: 1000px) {
         .sidebar-mobile {
           display: none;
@@ -67,6 +71,8 @@
   <% else %>
     <body class="w-full h-screen bg-fixed bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-[center_top_10%]">
   <% end %>
+
+  
 
   <div class="hidden hover:bg-red-500 hover:text-white bg-gray-800 text-white"></div>
 
@@ -159,8 +165,6 @@
     </ul>
   </nav>
 
- 
-
   <!-- サイドバー -->
   <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
     <div class="sidebar-desktop fixed top-4 left-4 h-[calc(100vh-2rem)] w-64 bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
@@ -187,9 +191,9 @@
           <span class="text-base font-semibold">BGM</span>
         <% end %>
         <%= link_to edit_direct_password_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
-        <i class="fas fa-key text-4xl mb-2"></i>
-        <span class="text-base font-semibold">パスワード変更</span>
-      <% end %>
+          <i class="fas fa-key text-4xl mb-2"></i>
+          <span class="text-base font-semibold">パスワード変更</span>
+        <% end %>
       </div>
     </div>
 
@@ -222,19 +226,19 @@
     </div>
   <% end %>
 
-  <% flash.each do |key, message| %>
-  <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg z-50">
-    <%= message %>
-  </div>
-<% end %>
+
+  <% unless controller_name == 'training_suggestions' && action_name == 'new' %>
+    <% flash.each do |key, message| %>
+      <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg z-50">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
 
   <!-- メインコンテンツ -->
   <div class="p-4 sm:p-6 max-w-full mx-0 md:max-w-none md:mx-0">
-  <%= yield %>
-</div>
-
-
-  
+    <%= yield %>
+  </div>
 
 </body>
 </html>

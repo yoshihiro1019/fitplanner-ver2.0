@@ -1,11 +1,35 @@
 <div class="flex flex-col items-center space-y-6 mt-12">
-   <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
-  
+  <!-- ▼ ローディングインジケータ（最初は非表示） ▼ -->
+  <div id="loading-indicator"
+       class="fixed inset-0 z-[9999] flex items-center justify-center bg-white bg-opacity-50"
+       style="display: none;">
+    <div class="loader"></div>
+  </div>
+
+  <!-- ▼ スピナーアニメーションCSS（大きめ） -->
+  <style>
+    .loader {
+      /* ボーダーを太め(12px)にし、スピナー全体を拡大(幅・高さ80px) */
+      border: 12px solid #f3f3f3;      
+      border-top: 12px solid #3498db;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1.5s linear infinite;
+    }
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- ▼ フォーム -->
+  <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
     <div class="text-center">
-    <h1 class="text-3xl font-bold ">トレーニング提案</h1>
-    <p class="text-lg ">以下の質問に答えてください：</p>
-     </div>
-  
+      <h1 class="text-3xl font-bold">トレーニング提案</h1>
+      <p class="text-lg">以下の質問に答えてください：</p>
+    </div>
+
     <!-- 年齢 -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">年齢：</label>
@@ -24,7 +48,7 @@
       <%= select_tag :focus_area, options_for_select(['上半身', '下半身', '体幹','腕','肩','胸','背中','腹筋','脚']), class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- 追加: トレーニング場所 -->
+    <!-- トレーニング場所 -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">トレーニング場所：</label>
       <%= select_tag :training_location,
@@ -32,7 +56,7 @@
           class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- 追加: 家にダンベルやチューブはありますか？ -->
+    <!-- 家にダンベルやチューブはありますか？ -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">家にダンベルやトレーニングチューブはありますか？</label>
       <%= select_tag :home_equipment,
@@ -40,13 +64,11 @@
           class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- 提案を受け取るボタン -->
+    <!-- ボタン -->
     <div class="text-center">
       <%= submit_tag '提案を受け取る', class: "w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" %>
     </div>
   <% end %>
-
- 
 
   <!-- フラッシュ表示用 (Turbo Streamなど) -->
   <div id="flash_messages">
@@ -56,7 +78,6 @@
   <!-- ▼ ここから下が「履歴一覧」部分 ▼ -->
   <div class="mt-8 w-full max-w-md bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-xl font-bold text-gray-800 mb-4">これまでの提案一覧</h2>
-    
     <% if @training_suggestions.present? %>
       <ul class="space-y-2">
         <% @training_suggestions.each do |ts| %>
@@ -75,3 +96,18 @@
     <% end %>
   </div>
 </div>
+
+<!-- ▼ フォーム送信時のローディング表示用スクリプト ▼ -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("question-form");
+    const loadingIndicator = document.getElementById("loading-indicator");
+
+    if (form && loadingIndicator) {
+      form.addEventListener("submit", function() {
+        // フォーム送信されたらスピナーを表示
+        loadingIndicator.style.display = 'flex';
+      });
+    }
+  });
+</script>
