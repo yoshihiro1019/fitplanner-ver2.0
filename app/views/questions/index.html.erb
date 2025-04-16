@@ -6,7 +6,7 @@
     <div class="loader"></div>
   </div>
 
-  <!-- ▼ スピナーアニメーションCSS（大きめ） -->
+  <!-- ▼ スピナーアニメーションCSS（大きめ） ▼ -->
   <style>
     .loader {
       /* ボーダーを太め(12px)にし、スピナー全体を拡大(幅・高さ80px) */
@@ -23,7 +23,7 @@
     }
   </style>
 
-  <!-- ▼ フォーム -->
+  <!-- ▼ トレーニング提案フォーム ▼ -->
   <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
     <div class="text-center">
       <h1 class="text-3xl font-bold">トレーニング提案</h1>
@@ -39,13 +39,15 @@
     <!-- トレーニング経験 -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">トレーニング経験：</label>
-      <%= select_tag :experience, options_for_select(['初心者', '中級者', '上級者']), class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <%= select_tag :experience, options_for_select(['初心者', '中級者', '上級者']),
+                        class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
     <!-- 重点を置きたい部位 -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-medium mb-2">重点を置きたい部位：</label>
-      <%= select_tag :focus_area, options_for_select(['上半身', '下半身', '体幹','腕','肩','胸','背中','腹筋','脚']), class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <%= select_tag :focus_area, options_for_select(['上半身', '下半身', '体幹', '腕', '肩', '胸', '背中', '腹筋', '脚']),
+                        class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
     <!-- トレーニング場所 -->
@@ -64,18 +66,22 @@
           class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- ボタン -->
+    <!-- 提案を受け取るボタン -->
     <div class="text-center">
       <%= submit_tag '提案を受け取る', class: "w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" %>
     </div>
   <% end %>
 
-  <!-- フラッシュ表示用 (Turbo Streamなど) -->
-  <div id="flash_messages">
-    <%= render 'shared/flash_messages' %>
+  <!-- ▼ フラッシュメッセージ表示用ブロック ▼ -->
+  <div class="w-full max-w-md mt-4">
+    <% flash.each do |key, message| %>
+      <div class="<%= key == 'notice' ? 'bg-green-100 border-l-4 border-green-400 text-green-700' : 'bg-red-100 border-l-4 border-red-400 text-red-700' %> p-4 rounded mb-4">
+        <%= message %>
+      </div>
+    <% end %>
   </div>
 
-  <!-- ▼ ここから下が「履歴一覧」部分 ▼ -->
+  <!-- ▼ これまでの提案一覧 ▼ -->
   <div class="mt-8 w-full max-w-md bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-xl font-bold text-gray-800 mb-4">これまでの提案一覧</h2>
     <% if @training_suggestions.present? %>
@@ -102,10 +108,9 @@
   document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("question-form");
     const loadingIndicator = document.getElementById("loading-indicator");
-
     if (form && loadingIndicator) {
       form.addEventListener("submit", function() {
-        // フォーム送信されたらスピナーを表示
+        // フォーム送信時にローディングインジケータを表示
         loadingIndicator.style.display = 'flex';
       });
     }

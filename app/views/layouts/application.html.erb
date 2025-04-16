@@ -227,13 +227,14 @@
   <% end %>
 
 
-  <% unless controller_name == 'training_suggestions' && action_name == 'new' %>
-    <% flash.each do |key, message| %>
-      <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg z-50">
-        <%= message %>
-      </div>
-    <% end %>
+  <% unless (controller_name == 'training_suggestions' && action_name == 'new') || (controller_name == 'questions' && action_name == 'index') %>
+  <% flash.each do |key, message| %>
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg z-50">
+      <%= message %>
+    </div>
   <% end %>
+<% end %>
+
 
   <!-- メインコンテンツ -->
   <div class="p-4 sm:p-6 max-w-full mx-0 md:max-w-none md:mx-0">
