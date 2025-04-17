@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
       parameters: {
         model: "gpt-3.5-turbo",
         messages: [
-          { role: "system", content: "あなたはプロの日本語フィットネストレーナーです。常に日本語で提案をしてください。" },
+          { role: "system", content: "あなたはプロの日本語フィットネストレーナーです。常に日本語で提案をしてください。問いかけなどでは終わらないでほしい。" },
           { role: "user", content: prompt }
         ]
       }
