@@ -47,7 +47,10 @@ class QuestionsController < ApplicationController
   private
 
   def fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
+    
     client = OpenAI::Client.new
+
+    system_prompt = I18n.t("prompts.training_suggestion.system")
 
     prompt = I18n.t(
       "prompts.training_suggestion.template",
@@ -58,11 +61,17 @@ class QuestionsController < ApplicationController
       home_equipment: home_equipment
     )
 
+    Rails.logger.info "=== system_prompt ==="
+    Rails.logger.info system_prompt
+  
+    Rails.logger.info "=== user_prompt ==="
+    Rails.logger.info prompt
+
     response = client.chat(
       parameters: {
         model: "gpt-3.5-turbo",
         messages: [
-          { role: "system", content: "あなたはプロの日本語フィットネストレーナーです。常に日本語で提案をしてください。問いかけなどでは終わらないでほしい。" },
+          { role: "system", content: system_prompt},
           { role: "user", content: prompt }
         ]
       }
