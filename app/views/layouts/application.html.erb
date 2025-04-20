@@ -67,15 +67,19 @@
     </style>
   </head>
 
-  <% if request.path == '/terms' || request.path == '/privacy_policy' %>
-    <body>
-  <% else %>
-    <body class="w-full h-screen bg-fixed bg-[url('/dalle_20241230.webp')] bg-no-repeat bg-cover bg-[center_top_10%]">
-  <% end %>
+  <body class="relative">
 
-  
+    <!-- 背景固定用 DIV -->
+    <div
+      class="fixed inset-0
+             bg-[url('/dalle_20241230.webp')]
+             bg-no-repeat bg-cover
+             bg-[center_top_10%]
+             z-0">
+    </div>
 
-  <div class="hidden hover:bg-red-500 hover:text-white bg-gray-800 text-white"></div>
+    <!-- コンテンツラッパー -->
+    <div class="relative z-10 w-full min-h-screen">
 
   <!-- トップナビゲーションバー -->
   <nav class="bg-gray-800 text-white relative z-50">
