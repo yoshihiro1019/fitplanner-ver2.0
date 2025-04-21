@@ -82,7 +82,7 @@
     <div class="relative z-10 w-full min-h-screen">
 
   <!-- トップナビゲーションバー -->
-  <nav class="bg-gray-800 text-white relative z-50">
+  <nav class="bg-gray-800 text-white relative z-50 h-16 overflow-visible">
     <div class="flex items-center justify-between px-4">
       <div class="text-xl font-bold">
         <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
@@ -93,8 +93,11 @@
         </svg>
       </button>
     </div>
+    
     <!-- メニューリスト（ドロップダウン） -->
-    <ul id="menu" class="hidden flex flex-col space-y-4 absolute top-7 right-0 bg-gray-100 bg-opacity-80 text-black w-48 p-3 shadow-md z-40">
+    <ul id="menu"
+       class="hidden absolute top-full right-0 mt-0 flex flex-col space-y-4
+             bg-gray-100 bg-opacity-80 text-black w-48 p-3 shadow-md z-40">
       <li class="border-b border-gray-300 pb-2">
         <%= link_to root_path, class: 'hover:text-gray-800 block py-2 flex items-center space-x-2' do %>
           <i class="fas fa-home"></i>
@@ -168,7 +171,7 @@
         <li class>© 2025 - FitAIplanner</li>
       <% end %>
     </ul>
-  </nav>
+    </nav>
 
   <!-- サイドバー -->
   <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
