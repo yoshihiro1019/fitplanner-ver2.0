@@ -82,12 +82,14 @@
     <div class="relative z-10 w-full min-h-screen">
 
   <!-- トップナビゲーションバー -->
-  <nav class="bg-gray-800 text-white relative z-50 h-16 overflow-visible">
-    <div class="flex items-center justify-between px-4">
-      <div class="text-3xl font-bold">
-        <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
-      </div>
-      <button id="menu-toggle" class="absolute top-1 right-4 text-white focus:outline-none z-50">
+  <nav class="bg-gray-800 text-white relative z-50 h-16">
+  <div class="flex items-center justify-between h-full px-4">
+    <div class="flex items-center h-full">
+      <%= link_to root_path, class: "text-2xl font-bold hover:text-gray-400 py-3" do %>
+        FitAIplanner
+      <% end %>
+    </div>
+    <button id="menu-toggle" class="absolute top-1 right-4 text-white focus:outline-none z-50">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
