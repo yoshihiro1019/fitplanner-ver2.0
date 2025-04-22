@@ -9,7 +9,7 @@
 
     <!-- CSSとJavaScriptの読み込み -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", media: 'all', "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", type: "module", "data-turbo-track": "reload" %>
 
     <!-- Font Awesome のスクリプト -->
     <script src="https://kit.fontawesome.com/318fce991d.js" crossorigin="anonymous"></script>
@@ -84,7 +84,7 @@
   <!-- トップナビゲーションバー -->
   <nav class="bg-gray-800 text-white relative z-50 h-16 overflow-visible">
     <div class="flex items-center justify-between px-4">
-      <div class="text-xl font-bold">
+      <div class="text-3xl font-bold">
         <%= link_to "FitAIplanner", root_path, class: "hover:text-gray-400" %>
       </div>
       <button id="menu-toggle" class="absolute top-1 right-4 text-white focus:outline-none z-50">

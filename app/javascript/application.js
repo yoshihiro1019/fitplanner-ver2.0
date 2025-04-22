@@ -1,30 +1,31 @@
-import "@hotwired/turbo-rails";
-import "./controllers";
+// ✅ これは app/javascript/application.js に配置してください！
 
-// turbo:loadイベントでイベントリスナを再登録
-document.addEventListener("turbo:load", function() {
-  // フォームのスピナー制御
+import "@hotwired/turbo-rails"
+import "./controllers"
+
+console.log("✅ application.js 読み込まれた");
+
+document.addEventListener("turbo:load", function () {
+  console.log("✅ turbo:load イベント発火");
+
   const form = document.getElementById("question-form");
   const loadingIndicator = document.getElementById("loading-indicator");
 
   if (form && loadingIndicator) {
-    // 送信前にスピナー表示
-    form.addEventListener("turbo:submit-start", function() {
+    form.addEventListener("turbo:submit-start", function () {
       loadingIndicator.style.display = "flex";
     });
 
-    // レスポンス取得後（回答表示後）にスピナー非表示
-    form.addEventListener("turbo:submit-end", function() {
+    form.addEventListener("turbo:submit-end", function () {
       loadingIndicator.style.display = "none";
     });
   }
 
-  // ハンバーガーメニューのトグル機能
   const menuToggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("menu");
 
   if (menuToggle && menu) {
-    menuToggle.addEventListener("click", function() {
+    menuToggle.addEventListener("click", function () {
       menu.classList.toggle("hidden");
     });
   }
