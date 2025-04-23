@@ -1,4 +1,37 @@
 ja:
+  questions:
+    form:
+      title: "トレーニング提案"
+      subtitle: "以下の質問に答えてください："
+      age: "年齢："
+      experience: "トレーニング経験："
+      focus_area: "重点を置きたい部位："
+      training_location: "トレーニング場所："
+      home_equipment: "家にダンベルやトレーニングチューブはありますか？"
+      submit: "提案を受け取る"
+    options:
+      beginner: "初心者"
+      intermediate: "中級者"
+      advanced: "上級者"
+      upper_body: "上半身"
+      lower_body: "下半身"
+      core: "体幹"
+      arm: "腕"
+      shoulder: "肩"
+      chest: "胸"
+      back: "背中"
+      abs: "腹筋"
+      leg: "脚"
+      home: "自宅"
+      gym: "ジム"
+      yes: "はい"
+      no: "いいえ"
+    history:
+      title: "これまでの提案一覧"
+      created_at: "作成日時"
+      content: "提案内容"
+      empty: "まだ提案がありません。"
+      
   devise:
     confirmations:
       confirmed: "メールアドレスの確認が完了しました。"

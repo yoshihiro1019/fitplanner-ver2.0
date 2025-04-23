@@ -9,7 +9,6 @@
   <!-- ▼ スピナーアニメーションCSS（大きめ） ▼ -->
   <style>
     .loader {
-      /* ボーダーを太め(12px)にし、スピナー全体を拡大(幅・高さ80px) */
       border: 12px solid #f3f3f3;      
       border-top: 12px solid #3498db;
       border-radius: 50%;
@@ -26,91 +25,96 @@
   <!-- ▼ トレーニング提案フォーム ▼ -->
   <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
     <div class="text-center">
-      <h1 class="text-3xl font-bold">トレーニング提案</h1>
-      <p class="text-lg">以下の質問に答えてください：</p>
+      <h1 class="text-3xl font-bold"><%= t("questions.form.title") %></h1>
+      <p class="text-lg"><%= t("questions.form.subtitle") %></p>
     </div>
 
-    <!-- 年齢 -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2">年齢：</label>
-      <%= text_field_tag :age, nil, class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.age") %></label>
+      <%= text_field_tag :age, nil, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- トレーニング経験 -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2">トレーニング経験：</label>
-      <%= select_tag :experience, options_for_select(['初心者', '中級者', '上級者']),
-                        class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.experience") %></label>
+      <%= select_tag :experience, options_for_select([t("questions.options.beginner"), t("questions.options.intermediate"), t("questions.options.advanced")]), class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- 重点を置きたい部位 -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2">重点を置きたい部位：</label>
-      <%= select_tag :focus_area, options_for_select(['上半身', '下半身', '体幹', '腕', '肩', '胸', '背中', '腹筋', '脚']),
-                        class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.focus_area") %></label>
+      <%= select_tag :focus_area, options_for_select([
+          t("questions.options.upper_body"),
+          t("questions.options.lower_body"),
+          t("questions.options.core"),
+          t("questions.options.arm"),
+          t("questions.options.shoulder"),
+          t("questions.options.chest"),
+          t("questions.options.back"),
+          t("questions.options.abs"),
+          t("questions.options.leg")
+        ]), class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- トレーニング場所 -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2">トレーニング場所：</label>
-      <%= select_tag :training_location,
-          options_for_select(['自宅', 'ジム']),
-          class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.training_location") %></label>
+      <%= select_tag :training_location, options_for_select([
+        t("questions.options.home"),
+        t("questions.options.gym")
+      ]), class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
     </div>
 
-    <!-- 家にダンベルやチューブはありますか？ -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2">家にダンベルやトレーニングチューブはありますか？</label>
-      <%= select_tag :home_equipment,
-          options_for_select(['はい', 'いいえ']),
-          class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-    </div>
-
-    <!-- 提案を受け取るボタン -->
+    <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.home_equipment") %></label>
+    <%= select_tag :home_equipment,
+      options_for_select([
+        [t("questions.options.yes"), "yes"],
+        [t("questions.options.no"), "no"]
+      ], selected: params[:home_equipment]),
+      class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+  
     <div class="text-center">
-      <%= submit_tag '提案を受け取る', class: "w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" %>
+      <%= submit_tag t("questions.form.submit"), class: "w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500" %>
     </div>
   <% end %>
 
-  <!-- ▼ フラッシュメッセージ表示用ブロック ▼ -->
+  <!-- ▼ フラッシュメッセージ表示 -->
   <div class="w-full max-w-md mt-4">
     <% flash.each do |key, message| %>
-      <div class="<%= key == 'notice' ? 'bg-green-100 border-l-4 border-green-400 text-green-700' : 'bg-red-100 border-l-4 border-red-400 text-red-700' %> p-4 rounded mb-4">
+      <div class="<%= key == 'notice' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700' %> p-4 rounded mb-4">
         <%= message %>
       </div>
     <% end %>
   </div>
 
-  <!-- ▼ これまでの提案一覧 ▼ -->
+  <!-- ▼ これまでの提案一覧 -->
   <div class="mt-8 w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">これまでの提案一覧</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4"><%= t("questions.history.title") %></h2>
     <% if @training_suggestions.present? %>
       <ul class="space-y-2">
         <% @training_suggestions.each do |ts| %>
           <li class="border rounded p-2 bg-gray-50">
             <div class="text-sm text-gray-700">
-              <strong>作成日時:</strong> <%= ts.created_at.strftime("%Y-%m-%d %H:%M") %>
+              <strong><%= t("questions.history.created_at") %>:</strong> <%= ts.created_at.strftime("%Y-%m-%d %H:%M") %>
             </div>
             <div class="text-sm text-gray-700 mt-1">
-              <strong>提案内容:</strong> <%= ts.content %>
+              <strong><%= t("questions.history.content") %>:</strong> <%= ts.content %>
             </div>
           </li>
         <% end %>
       </ul>
     <% else %>
-      <p class="text-gray-700">まだ提案がありません。</p>
+      <p class="text-gray-700"><%= t("questions.history.empty") %></p>
     <% end %>
   </div>
 </div>
 
-<!-- ▼ フォーム送信時のローディング表示用スクリプト ▼ -->
+<!-- ▼ ローディング表示用スクリプト -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("question-form");
     const loadingIndicator = document.getElementById("loading-indicator");
     if (form && loadingIndicator) {
       form.addEventListener("submit", function() {
-        // フォーム送信時にローディングインジケータを表示
         loadingIndicator.style.display = 'flex';
       });
     }

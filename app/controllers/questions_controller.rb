@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+      logger.debug "📦 home_equipment パラメータ: #{params[:home_equipment].inspect}"
     age               = params[:age]
     experience        = params[:experience]
     focus_area        = params[:focus_area]
