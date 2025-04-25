@@ -86,27 +86,29 @@
     <% end %>
   </div>
 
-  <!-- ▼ これまでの提案一覧 -->
-  <div class="mt-8 w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-bold text-gray-800 mb-4"><%= t("questions.history.title") %></h2>
-    <% if @training_suggestions.present? %>
-      <ul class="space-y-2">
-        <% @training_suggestions.each do |ts| %>
-          <li class="border rounded p-2 bg-gray-50">
-            <div class="text-sm text-gray-700">
-              <strong><%= t("questions.history.created_at") %>:</strong> <%= ts.created_at.strftime("%Y-%m-%d %H:%M") %>
-            </div>
-            <div class="text-sm text-gray-700 mt-1">
-              <strong><%= t("questions.history.content") %>:</strong> <%= ts.content %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-gray-700"><%= t("questions.history.empty") %></p>
-    <% end %>
-  </div>
+<!-- ▼ これまでの提案一覧 -->
+<div class="mt-8 w-full max-w-3xl bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-gray-800 mb-4"><%= t("questions.history.title") %></h2>
+  <% if @training_suggestions.present? %>
+    <ul class="space-y-2">
+      <% @training_suggestions.each do |ts| %>
+        <li class="border rounded p-3 bg-gray-50">
+          <div class="text-base text-gray-800"> <!-- ← text-sm → text-base -->
+            <strong><%= t("questions.history.created_at") %>:</strong>
+            <%= ts.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </div>
+          <div class="text-base text-gray-800 mt-2"> <!-- ← text-sm → text-base -->
+            <strong><%= t("questions.history.content") %>:</strong> <%= ts.content %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-base text-gray-800"><%= t("questions.history.empty") %></p> <!-- ← text-sm → text-base -->
+  <% end %>
 </div>
+
+
 
 <!-- ▼ ローディング表示用スクリプト -->
 <script>
