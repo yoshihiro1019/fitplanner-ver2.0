@@ -1,4 +1,70 @@
 ja:
+  passwords:
+    title: "パスワードを変更"
+    new: "新しいパスワード"
+    confirm: "新しいパスワード（確認）"
+    update: "パスワードを更新"
+  bgm:
+    title: "筋トレ用BGM"
+    error_message: "おすすめのBGMを取得できませんでした。"
+  training_suggestions:
+    title: "部位別トレーニング検索"
+    label: "部位を選択してください"
+    prompt: "選択してください"
+    submit: "検索"
+    result_title: "%{body_part}のトレーニング"
+    back_to_selection: "部位選択に戻る"
+    no_suggestions: "提案が見つかりません。"
+  gyms:
+    title: "スポーツジム検索"
+    current_location: "現在地"
+    view_in_google_maps: "Googleマップで見る"
+    errors:
+      geolocation_failed: "位置情報の取得に失敗しました。位置情報の許可を確認してください。"
+      geolocation_unsupported: "このブラウザは位置情報をサポートしていません。"
+      search_failed: "ジムの検索に失敗しました。エラー:"
+      no_results: "スポーツジムが見つかりませんでした。検索範囲を広げてみてください。"
+    keywords: "フィットネス, スポーツジム"
+
+  training_logs:
+    new:
+      title: "トレーニング記録を追加"
+      submit: "保存"
+    index:
+      title: "トレーニング記録一覧"
+      new: "新しい記録を追加"
+      type: "種類"
+      weight: "重量"
+      reps: "回数"
+      sets: "セット数"
+      times: "回"
+      set: "セット"
+      edit: "編集"
+      delete: "削除"
+      confirm: "本当に削除しますか？"
+    edit:
+      title: "トレーニング記録を編集"
+      update_button: "更新"
+    fields:
+      training_type: "種類"
+      weight: "重量"
+      reps: "回数"
+      sets: "セット数"
+      day_of_week: "曜日"
+    units:
+      kg: "kg"
+      times: "回"
+      sets: "セット"
+  
+
+  days:
+    monday: "月曜日"
+    tuesday: "火曜日"
+    wednesday: "水曜日"
+    thursday: "木曜日"
+    friday: "金曜日"
+    saturday: "土曜日"
+    sunday: "日曜日"
   questions:
     form:
       title: "トレーニング提案"

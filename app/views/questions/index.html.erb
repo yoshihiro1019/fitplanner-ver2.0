@@ -23,7 +23,7 @@
   </style>
 
   <!-- ▼ トレーニング提案フォーム ▼ -->
-  <%= form_with url: questions_path, method: :post, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
+  <%= form_with url: questions_path, method: :post,  local: true, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
     <div class="text-center">
       <h1 class="text-3xl font-bold"><%= t("questions.form.title") %></h1>
       <p class="text-lg"><%= t("questions.form.subtitle") %></p>
@@ -65,10 +65,10 @@
     <div class="mb-4">
     <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.home_equipment") %></label>
     <%= select_tag :home_equipment,
-      options_for_select([
-        [t("questions.options.yes"), "yes"],
-        [t("questions.options.no"), "no"]
-      ], selected: params[:home_equipment]),
+  options_for_select([
+    ["はい", "はい"],
+    ["いいえ", "いいえ"]
+  ], params[:home_equipment]),
       class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
   </div>
   

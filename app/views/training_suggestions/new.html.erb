@@ -1,21 +1,27 @@
-<div class="min-h-screen flex items-start justify-center  pt-10">
+<div class="min-h-screen flex items-start justify-center pt-10">
   <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-    <h1 class="text-2xl font-bold mb-6 text-center">部位別トレーニング検索</h1>
+    <!-- タイトル -->
+    <h1 class="text-2xl font-bold mb-6 text-center"><%= t("training_suggestions.title") %></h1>
     
+    <!-- フラッシュメッセージ -->
     <% if flash[:alert].present? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
         <span class="block sm:inline"><%= flash[:alert] %></span>
       </div>
     <% end %>
     
+    <!-- フォーム -->
     <%= form_with url: training_suggestions_path, method: :post, data: { turbo: false }, local: true do |form| %>
       <div class="mb-4">
-        <%= form.label :body_part_code, "部位を選択してください", class: "block text-gray-700 font-semibold mb-2" %>
-        <%= form.select :body_part_code, options_for_select(@body_parts.map { |bp| [bp.name, bp.code] }), { prompt: "選択してください" }, class: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        <%= form.label :body_part_code, t("training_suggestions.label"), class: "block text-gray-700 font-semibold mb-2" %>
+        <%= form.select :body_part_code,
+              options_for_select(@body_parts.map { |bp| [bp.name, bp.code] }),
+              { prompt: t("training_suggestions.prompt") },
+              class: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" %>
       </div>
       
       <div class="flex justify-center">
-        <%= form.submit "提案生成", class: "bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition duration-200" %>
+        <%= form.submit t("training_suggestions.submit"), class: "bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition duration-200" %>
       </div>
     <% end %>
   </div>

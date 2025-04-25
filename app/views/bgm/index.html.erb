@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center space-y-8 mt-12 px-4">
   <!-- メインタイトル -->
   <h1 class="text-4xl font-extrabold text-gray-900 tracking-wide">
-    筋トレ用BGM
+    <%= t("bgm.title") %>
   </h1>
 
   <% if @playlists.present? %>
@@ -28,7 +28,7 @@
   <% else %>
     <!-- エラー時の表示 -->
     <p class="text-lg text-red-500 font-medium">
-      おすすめのBGMを取得できませんでした。
+      <%= t("bgm.error_message") %>
     </p>
   <% end %>
 </div>

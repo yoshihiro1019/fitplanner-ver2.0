@@ -28,4 +28,5 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  gyms:
+    keywords: "fitness, gym, health club, training"

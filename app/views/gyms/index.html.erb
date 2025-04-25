@@ -1,120 +1,117 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スポーツジム検索</title>
-    
-    <style>
-        #map {
-            height: 500px; /* マップの高さを調整 */
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= t("gyms.title") %></title>
+
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-3xl mt-10">
+    <!-- タイトル -->
+    <h1 class="text-3xl font-bold text-center text-gray-900 mb-4">🏋️‍♂️ <%= t("gyms.title") %></h1>
 
-    <!-- メインコンテンツを囲む白い枠 -->
-    <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-3xl mt-10">
-        <!-- タイトル -->
-        <h1 class="text-3xl font-bold text-center text-gray-900 mb-4">🏋️‍♂️ スポーツジム検索</h1>
-        
-        <!-- Googleマップを囲む白い枠 -->
-        <div class="border-2 border-gray-300 rounded-lg overflow-hidden shadow-md">
-            <div id="map"></div>
-        </div>
+    <!-- Googleマップ -->
+    <div class="border-2 border-gray-300 rounded-lg overflow-hidden shadow-md">
+      <div id="map"></div>
     </div>
+  </div>
 
-    <script>
-      function initMap() {
-        const defaultLocation = { lat: 35.682839, lng: 139.759455 };
+  <script>
+    function initMap() {
+      const defaultLocation = { lat: 35.682839, lng: 139.759455 };
 
-        const map = new google.maps.Map(document.getElementById("map"), {
-          center: defaultLocation,
-          zoom: 13,
-          mapId: "DEMO_MAP_ID"
-        });
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultLocation,
+        zoom: 13,
+        mapId: "DEMO_MAP_ID"
+      });
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const userLocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
 
-              new google.maps.marker.AdvancedMarkerElement({
-                position: userLocation,
-                map: map,
-                title: "現在地",
-              });
-
-              map.setCenter(userLocation);
-              findGyms(userLocation, map);
-            },
-            (error) => {
-              console.error("位置情報の取得に失敗しました", error);
-              alert("位置情報の取得に失敗しました。位置情報の許可を確認してください。");
-            }
-          );
-        } else {
-          alert("このブラウザは位置情報をサポートしていません。");
-        }
-      }
-
-      function findGyms(location, map) {
-        const service = new google.maps.places.PlacesService(map);
-        const request = {
-          location: location,
-          radius: 5000,
-          type: "gym",
-          keyword: "フィットネス, スポーツジム, ジム, フィットネスクラブ"
-        };
-
-        service.nearbySearch(request, (results, status) => {
-          if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            alert(`ジムの検索に失敗しました。エラー: ${status}`);
-            return;
-          }
-
-          if (!results || results.length === 0) {
-            alert("スポーツジムが見つかりませんでした。検索範囲を広げてみてください。");
-            return;
-          }
-
-          const infoWindow = new google.maps.InfoWindow();
-
-          results.forEach((place) => {
-            const marker = new google.maps.marker.AdvancedMarkerElement({
-              position: place.geometry.location,
+            new google.maps.marker.AdvancedMarkerElement({
+              position: userLocation,
               map: map,
-              title: place.name,
+              title: "<%= t('gyms.current_location') %>",
             });
 
-            marker.addListener("click", () => {
-              infoWindow.setContent(`
-                <div style="font-size: 16px; font-weight: bold;">
-                  🏋️‍♂️ <strong>${place.name}</strong><br>
-                  📍 ${place.vicinity}<br>
-                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}" 
-                    target="_blank" 
-                    style="color: blue; text-decoration: underline;">
-                    🔍 Googleマップで見る
-                  </a>
-                </div>
-              `);
-              infoWindow.open(map, marker);
-            });
+            map.setCenter(userLocation);
+            findGyms(userLocation, map);
+          },
+          (error) => {
+            console.error("位置情報の取得に失敗しました", error);
+            alert("<%= t('gyms.errors.geolocation_failed') %>");
+          }
+        );
+      } else {
+        alert("<%= t('gyms.errors.geolocation_unsupported') %>");
+      }
+    }
+
+    function findGyms(location, map) {
+      const service = new google.maps.places.PlacesService(map);
+      const request = {
+        location: location,
+        radius: 5000,
+        type: "gym",
+        keyword: "<%= t('gyms.keywords') %>"
+      };
+
+      service.nearbySearch(request, (results, status) => {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          alert("<%= t('gyms.errors.search_failed') %>" + ` (${status})`);
+          return;
+        }
+
+        if (!results || results.length === 0) {
+          alert("<%= t('gyms.errors.no_results') %>");
+          return;
+        }
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        results.forEach((place) => {
+          const marker = new google.maps.marker.AdvancedMarkerElement({
+            position: place.geometry.location,
+            map: map,
+            title: place.name,
+          });
+
+          marker.addListener("click", () => {
+            infoWindow.setContent(`
+              <div style="font-size: 16px; font-weight: bold;">
+                🏋️‍♂️ <strong>${place.name}</strong><br>
+                📍 ${place.vicinity}<br>
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}"
+                   target="_blank"
+                   style="color: blue; text-decoration: underline;">
+                  🔍 ${"<%= j t('gyms.view_in_google_maps') %>"}
+                </a>
+              </div>
+            `);
+            infoWindow.open(map, marker);
           });
         });
-      }
-    </script>
+      });
+    }
+  </script>
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&libraries=places,marker&callback=initMap"
-      async
-      defer
-      loading="async"
-    ></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&libraries=places,marker&callback=initMap"
+    async defer loading="async">
+  </script>
 </body>
 </html>
