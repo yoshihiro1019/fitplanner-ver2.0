@@ -1,4 +1,27 @@
 ja:
+  app:
+    name: "FitAIplanner"
+  navbar:
+    home: "ホーム"
+    features: "機能一覧"
+    how_to_use: "使い方説明"
+    terms: "利用規約"
+    privacy: "プライバシーポリシー"
+  share:
+    text: "このアプリを試してみました！"
+  sidebar:
+    ai: "トレーニングプラン作成(AI)"
+    logs: "トレーニング記録"
+    gym: "ジム検索"
+    body_part: "部位別トレーニング検索"
+    bgm: "BGM"
+    password: "パスワード変更"
+    ai_short: "AI"
+    logs_short: "記録"
+    gym_short: "ジム"
+    body_part_short: "部位別"
+    bgm_short: "BGM"
+    password_short: "PW"
   passwords:
     title: "パスワードを変更"
     new: "新しいパスワード"
