@@ -1,68 +1,86 @@
 <% provide :title, "トレーニング記録作成 | FitAIplanner" %>
 
-<div class="flex flex-col items-center space-y-6 mt-4">
+<div class="flex justify-center mt-8">
+  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
 
-  <!-- ▼ フォームコンテナ ▼ -->
-  <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-    <div class="text-center">
-      <h1 class="text-3xl font-bold text-gray-800 mb-6"><%= t("training_logs.new.title") %></h1>
+    <!-- タイトル -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800"><%= t("training_logs.new.title") %></h1>
     </div>
 
-    <!-- ▼ トレーニング記録フォーム ▼ -->
-    <%= form_with(model: @training_log, local: true, class: "space-y-6") do |form| %>
+    <%= form_with(model: @training_log, local: true) do |form| %>
 
-      <div>
+      <!-- 種類 -->
+      <div class="mb-6">
         <label class="block text-gray-700 text-sm font-medium mb-2">
-          <%= form.label :training_type, t("training_logs.fields.training_type"), class: "sr-only" %>
-          <%= t("training_logs.fields.training_type") %>
+          <%= form.label :training_type, t("training_logs.fields.training_type") %>
         </label>
-        <%= form.text_field :training_type, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
+        <%= form.text_field :training_type, class: "w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
       </div>
 
-      <div>
-        <label class="block text-gray-700 text-sm font-medium mb-2">
-          <%= form.label :weight, t("training_logs.fields.weight"), class: "sr-only" %>
-          <%= t("training_logs.fields.weight") %>
-        </label>
-        <%= form.number_field :weight, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
+      <!-- 1段目：重量・回数 -->
+      <div class="flex justify-between mb-6 space-x-4">
+        <div class="w-1/2">
+          <label class="block text-gray-700 text-sm font-medium mb-2">
+            <%= form.label :weight, t("training_logs.fields.weight") %>
+          </label>
+          <div class="flex items-center">
+            <%= form.number_field :weight, class: "w-4/5 px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+            <div class="w-1/5 text-center text-sm text-gray-500 whitespace-nowrap ml-1">
+              <%= t("training_logs.units.kg") %>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-1/2">
+          <label class="block text-gray-700 text-sm font-medium mb-2">
+            <%= form.label :reps, t("training_logs.fields.reps") %>
+          </label>
+          <div class="flex items-center">
+            <%= form.number_field :reps, class: "w-4/5 px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+            <div class="w-1/5 text-center text-sm text-gray-500 whitespace-nowrap ml-1">
+              <%= t("training_logs.units.times") %>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <label class="block text-gray-700 text-sm font-medium mb-2">
-          <%= form.label :reps, t("training_logs.fields.reps"), class: "sr-only" %>
-          <%= t("training_logs.fields.reps") %>
-        </label>
-        <%= form.number_field :reps, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
+      <!-- 2段目：セット数・曜日 -->
+      <div class="flex justify-between mb-6 space-x-4">
+        <div class="w-1/2">
+          <label class="block text-gray-700 text-sm font-medium mb-2">
+            <%= form.label :sets, t("training_logs.fields.sets") %>
+          </label>
+          <div class="flex items-center">
+            <%= form.number_field :sets, class: "w-4/5 px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+            <div class="w-1/5 text-center text-sm text-gray-500 whitespace-nowrap ml-1">
+              <%= t("training_logs.units.sets") %>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-1/2">
+          <label class="block text-gray-700 text-sm font-medium mb-2">
+            <%= form.label :day_of_week, t("training_logs.fields.day_of_week") %>
+          </label>
+          <%= form.select :day_of_week, [
+            [t("days.sunday"), "Sunday"],
+            [t("days.monday"), "Monday"],
+            [t("days.tuesday"), "Tuesday"],
+            [t("days.wednesday"), "Wednesday"],
+            [t("days.thursday"), "Thursday"],
+            [t("days.friday"), "Friday"],
+            [t("days.saturday"), "Saturday"]
+          ], {}, class: "w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
+        </div>
       </div>
 
-      <div>
-        <label class="block text-gray-700 text-sm font-medium mb-2">
-          <%= form.label :sets, t("training_logs.fields.sets"), class: "sr-only" %>
-          <%= t("training_logs.fields.sets") %>
-        </label>
-        <%= form.number_field :sets, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-      </div>
-
-      <div>
-        <label class="block text-gray-700 text-sm font-medium mb-2">
-          <%= form.label :day_of_week, t("training_logs.fields.day_of_week"), class: "sr-only" %>
-          <%= t("training_logs.fields.day_of_week") %>
-        </label>
-        <%= form.select :day_of_week, [
-          [t("days.sunday"), "Sunday"],
-          [t("days.monday"), "Monday"],
-          [t("days.tuesday"), "Tuesday"],
-          [t("days.wednesday"), "Wednesday"],
-          [t("days.thursday"), "Thursday"],
-          [t("days.friday"), "Friday"],
-          [t("days.saturday"), "Saturday"]
-        ], {}, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-      </div>
-
-      <div class="text-center">
-        <%= form.submit t("training_logs.new.submit"), class: "w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500" %>
+      <!-- 送信ボタン -->
+      <div class="text-center mt-8">
+        <%= form.submit t("training_logs.new.submit"), class: "w-1/2 bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500" %>
       </div>
 
     <% end %>
+
   </div>
 </div>

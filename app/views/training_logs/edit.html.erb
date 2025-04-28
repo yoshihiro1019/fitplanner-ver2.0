@@ -1,7 +1,6 @@
 <% provide :title, "トレーニング記録編集 | FitAIplanner" %>
 
 <div class="flex justify-center mt-8">
-
   <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
 
     <!-- タイトル -->
@@ -20,41 +19,47 @@
       </div>
 
       <!-- 1段目：重量・回数 -->
-      <div class="flex justify-between mb-6">
-        <div class="w-[48%]">
+      <div class="flex justify-between mb-6 space-x-4">
+        <div class="w-1/2">
           <label class="block text-gray-700 text-sm font-medium mb-2">
             <%= form.label :weight, t("training_logs.fields.weight") %>
           </label>
           <div class="flex items-center">
-            <%= form.number_field :weight, class: "w-full px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-            <span class="ml-1 text-sm text-gray-500"><%= t("training_logs.units.kg") %></span>
+            <%= form.number_field :weight, class: "w-4/5 px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+            <div class="w-1/5 text-center text-sm text-gray-500 whitespace-nowrap ml-1">
+              <%= t("training_logs.units.kg") %>
+            </div>
           </div>
         </div>
 
-        <div class="w-[48%]">
+        <div class="w-1/2">
           <label class="block text-gray-700 text-sm font-medium mb-2">
             <%= form.label :reps, t("training_logs.fields.reps") %>
           </label>
           <div class="flex items-center">
-            <%= form.number_field :reps, class: "w-full px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-            <span class="ml-1 text-sm text-gray-500"><%= t("training_logs.units.times") %></span>
+            <%= form.number_field :reps, class: "w-4/5 px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+            <div class="w-1/5 text-center text-sm text-gray-500 whitespace-nowrap ml-1">
+              <%= t("training_logs.units.times") %>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- 2段目：セット数・曜日 -->
-      <div class="flex justify-between mb-6">
-        <div class="w-[48%]">
+      <div class="flex justify-between mb-6 space-x-4">
+        <div class="w-1/2">
           <label class="block text-gray-700 text-sm font-medium mb-2">
             <%= form.label :sets, t("training_logs.fields.sets") %>
           </label>
           <div class="flex items-center">
-            <%= form.number_field :sets, class: "w-full px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-            <span class="ml-1 text-sm text-gray-500"><%= t("training_logs.units.sets") %></span>
+            <%= form.number_field :sets, class: "w-4/5 px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+            <div class="w-1/5 text-center text-sm text-gray-500 whitespace-nowrap ml-1">
+              <%= t("training_logs.units.sets") %>
+            </div>
           </div>
         </div>
 
-        <div class="w-[48%]">
+        <div class="w-1/2">
           <label class="block text-gray-700 text-sm font-medium mb-2">
             <%= form.label :day_of_week, t("training_logs.fields.day_of_week") %>
           </label>
@@ -66,7 +71,7 @@
             [t("days.thursday"), "Thursday"],
             [t("days.friday"), "Friday"],
             [t("days.saturday"), "Saturday"]
-          ], {}, class: "w-full px-2 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
+          ], {}, class: "w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
         </div>
       </div>
 
@@ -78,5 +83,4 @@
     <% end %>
 
   </div>
-
 </div>
