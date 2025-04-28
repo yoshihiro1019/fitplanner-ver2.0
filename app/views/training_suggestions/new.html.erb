@@ -16,9 +16,10 @@
       <div class="mb-4">
         <%= form.label :body_part_code, t("training_suggestions.label"), class: "block text-gray-700 font-semibold mb-2" %>
         <%= form.select :body_part_code,
-              options_for_select(@body_parts.map { |bp| [bp.name, bp.code] }),
-              { prompt: t("training_suggestions.prompt") },
-              class: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      options_for_select(@body_parts.map { |bp| [bp.name, bp.code] }),
+      { prompt: t("training_suggestions.prompt") },
+      class: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" %>
+
       </div>
       
       <div class="flex justify-center">
