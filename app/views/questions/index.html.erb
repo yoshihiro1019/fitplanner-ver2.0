@@ -31,47 +31,69 @@
     </div>
 
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.age") %></label>
-      <%= text_field_tag :age, nil, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-    </div>
+  <label class="block text-gray-700 text-sm font-medium mb-2">
+    <%= t("questions.form.age") %>
+  </label>
+  <%= text_field_tag :age, nil, class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+</div>
 
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.experience") %></label>
-      <%= select_tag :experience, options_for_select([t("questions.options.beginner"), t("questions.options.intermediate"), t("questions.options.advanced")]), class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-    </div>
+<div class="mb-4">
+  <label class="block text-gray-700 text-sm font-medium mb-2">
+    <%= t("questions.form.experience") %>
+  </label>
+  <%= select_tag :experience,
+    options_for_select([
+      t("questions.options.beginner"),
+      t("questions.options.intermediate"),
+      t("questions.options.advanced")
+    ]),
+    class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+</div>
 
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.focus_area") %></label>
-      <%= select_tag :focus_area, options_for_select([
-          t("questions.options.upper_body"),
-          t("questions.options.lower_body"),
-          t("questions.options.core"),
-          t("questions.options.arm"),
-          t("questions.options.shoulder"),
-          t("questions.options.chest"),
-          t("questions.options.back"),
-          t("questions.options.abs"),
-          t("questions.options.leg")
-        ]), class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-    </div>
+<div class="mb-4">
+  <label class="block text-gray-700 text-sm font-medium mb-2">
+    <%= t("questions.form.focus_area") %>
+  </label>
+  <%= select_tag :focus_area,
+    options_for_select([
+      t("questions.options.upper_body"),
+      t("questions.options.lower_body"),
+      t("questions.options.core"),
+      t("questions.options.arm"),
+      t("questions.options.shoulder"),
+      t("questions.options.chest"),
+      t("questions.options.back"),
+      t("questions.options.abs"),
+      t("questions.options.leg")
+    ]),
+    class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+</div>
 
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.training_location") %></label>
-      <%= select_tag :training_location, options_for_select([
-        t("questions.options.home"),
-        t("questions.options.gym")
-      ]), class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
-    </div>
+<div class="mb-4">
+  <label class="block text-gray-700 text-sm font-medium mb-2">
+    <%= t("questions.form.training_location") %>
+  </label>
+  <%= select_tag :training_location,
+    options_for_select([
+      t("questions.options.home"),
+      t("questions.options.gym")
+    ]),
+    class: "w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-center" %>
+</div>
 
-    <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-medium mb-2"><%= t("questions.form.home_equipment") %></label>
-    <%= select_tag :home_equipment,
-  options_for_select([
-    ["はい", "はい"],
-    ["いいえ", "いいえ"]
-  ], params[:home_equipment]),
-      class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+<div class="mb-4">
+  <label class="block text-gray-700 text-sm font-medium mb-2">
+    <%= t("questions.form.home_equipment") %>
+  </label>
+  <%= select_tag :home_equipment,
+    options_for_select([
+      ["はい", "はい"],
+      ["いいえ", "いいえ"]
+    ], params[:home_equipment]),
+    class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" %>
+</div>
+
+
   
     <div class="text-center">
       <%= submit_tag t("questions.form.submit"), class: "w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500" %>
