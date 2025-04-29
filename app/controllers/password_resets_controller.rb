@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(reset_password_token: params[:token])
 
     if @user.nil?
-      flash[:alert] = "無効なトークンです。"
+      flash[:alert] = t('password_resets.edit_direct.invalid_token')
       redirect_to root_path
     end
   end
@@ -14,7 +14,7 @@ class PasswordResetsController < ApplicationController
   def update_direct
     @user = current_user
     if @user.update(password_params)
-      flash[:notice] = "パスワードが更新されました"
+      flash[:notice] = t('password_resets.update_direct.success')
       redirect_to root_path
     else
       render :edit_direct
@@ -24,26 +24,24 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     if @user
-      # 新しいパスワードをランダムに生成して設定
-      new_password = SecureRandom.alphanumeric(8)  # 8文字のランダムなパスワード
+      new_password = SecureRandom.alphanumeric(8)
       @user.password = new_password
       @user.password_confirmation = new_password
       if @user.save
-        flash[:notice] = "新しいパスワードは #{new_password} です。次回ログイン時に使用してください。"
+        flash[:notice] = t('password_resets.create.success', new_password: new_password)
         redirect_to root_path
       else
-        flash[:alert] = "パスワードのリセットに失敗しました。"
+        flash[:alert] = t('password_resets.create.failure')
         render :new
       end
     else
-      flash[:alert] = "メールアドレスが見つかりません。"
+      flash[:alert] = t('password_resets.create.email_not_found')
       render :new
     end
   end
 
   private
 
-  # Strong Parametersの設定
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end

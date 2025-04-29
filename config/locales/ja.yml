@@ -1,4 +1,17 @@
 ja:
+  devise:
+    omniauth_callbacks:
+      google_success: "Googleアカウントでログインしました。"
+      google_failure: "Googleログインに失敗しました。"
+      spotify_success: "Spotifyアカウントでログインしました。"
+      spotify_failure: "Spotifyログインに失敗しました。"
+
+  bgm:
+    index:
+      spotify_connection_failed: "Spotify APIへの接続に失敗しました。"
+      
+  training_suggestions:
+    not_found: "選択された部位の提案が見つかりません。"
   prompts:
     training_suggestion:
       system: |
@@ -18,4 +31,29 @@ ja:
 
         上記の情報をもとに、日本語で、親しみやすく、具体的なトレーニングメニューを提案してください。
         回数、セット数、注意点なども含めて説明してください。
+
+  training_logs:
+    destroy:
+      success: "トレーニング記録が削除されました"
+      not_found: "記録が見つかりませんでした"
+    update:
+      success: "トレーニング記録が更新されました"
+    create:
+      success: "トレーニング記録を保存しました！"
+      failure: "入力に誤りがあります。"
+
+  sessions:
+    google_auth:
+      success: "ログインしました"
+    destroy:
+      success: "ログアウトしました"
   
+  password_resets:
+    edit_direct:
+      invalid_token: "無効なトークンです。"
+    update_direct:
+      success: "パスワードが更新されました"
+    create:
+      success: "新しいパスワードは %{new_password} です。次回ログイン時に使用してください。"
+      failure: "パスワードのリセットに失敗しました。"
+      email_not_found: "メールアドレスが見つかりません。"

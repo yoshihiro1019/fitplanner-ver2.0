@@ -17,10 +17,10 @@ class TrainingSuggestionsController < ApplicationController
         format.json { render json: { suggestions: @suggestions, status: :ok } } # JSONリクエストならJSONを返す
       else
         format.html do
-          flash[:alert] = "選択された部位の提案が見つかりません。"
+          flash[:alert] = t('training_suggestions.not_found')
           redirect_to new_training_suggestion_path
         end
-        format.json { render json: { error: "選択された部位の提案が見つかりません。" }, status: :not_found }
+        format.json { render json: { error: t('training_suggestions.not_found') }, status: :not_found }
       end
     end
   end

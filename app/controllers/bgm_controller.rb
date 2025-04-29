@@ -1,16 +1,16 @@
 class BgmController < ApplicationController
   before_action :authenticate_user!
+
   def index
     # アクセストークンを取得
     token = fetch_spotify_token
     Rails.logger.info("Spotify token: #{token.inspect}")  # トークン確認用ログ出力
 
     if token
-      # new-releasesエンドポイントを使用してテスト
       @playlists = fetch_new_releases(token)
       Rails.logger.info("Fetched new releases: #{@playlists.inspect}")
     else
-      flash[:alert] = "Spotify APIへの接続に失敗しました。"
+      flash[:alert] = t('bgm.index.spotify_connection_failed')
       @playlists = []
       Rails.logger.info("No token retrieved. @playlists set to empty.")
     end
@@ -46,7 +46,6 @@ class BgmController < ApplicationController
   end
 
   def fetch_new_releases(token)
-    # new-releasesエンドポイントで最新リリースのアルバム情報を取得
     url = URI("https://api.spotify.com/v1/browse/new-releases?limit=10")
     request = Net::HTTP::Get.new(url)
     request["Authorization"] = "Bearer #{token}"
@@ -59,7 +58,6 @@ class BgmController < ApplicationController
     Rails.logger.info("New Releases response body: #{response.body}")
 
     if response.is_a?(Net::HTTPSuccess)
-      # JSONレスポンスからアルバム情報を抽出
       JSON.parse(response.body)["albums"]["items"]
     else
       []
