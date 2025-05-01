@@ -1,17 +1,162 @@
 ja:
-  devise:
-    omniauth_callbacks:
-      google_success: "Googleアカウントでログインしました。"
-      google_failure: "Googleログインに失敗しました。"
-      spotify_success: "Spotifyアカウントでログインしました。"
-      spotify_failure: "Spotifyログインに失敗しました。"
+  home:
+    title: "ホーム | FitAIplanner"
+    welcome: "ようこそ、%{user}さん！"
+    features: "機能一覧"
+    logout: "ログアウト"
+    login_signup: "ログイン / サインアップ"
+    login: "ログイン"
+    signup: "サインアップ"
+    google_login: "Googleでログイン"
+  app:
+    name: "FitAIplanner"
+  navbar:
+    home: "ホーム"
+    features: "機能一覧"
+    how_to_use: "使い方説明"
+    terms: "利用規約"
+    privacy: "プライバシーポリシー"
+  share:
+    text: "このアプリを試してみました！"
+  sidebar:
+    ai: "トレーニングプラン作成(AI)"
+    logs: "トレーニング記録"
+    gym: "ジム検索"
+    body_part: "部位別トレーニング検索"
+    bgm: "BGM"
+    password: "パスワード変更"
+    ai_short: "AI"
+    logs_short: "記録"
+    gym_short: "ジム"
+    body_part_short: "部位別"
+    bgm_short: "BGM"
+    password_short: "PW"
+  passwords:
+    title: "パスワードを変更"
+    new: "新しいパスワード"
+    confirm: "新しいパスワード（確認）"
+    update: "パスワードを更新"
+  bgm:
+    title: "筋トレ用BGM"
+    error_message: "おすすめのBGMを取得できませんでした。"
+
+  training_suggestions:
+    not_found: "選択された部位の提案が見つかりません。"
+    search_title: "部位別トレーニング検索 | FitAIplanner"
+    title: "部位別トレーニング検索"
+    label: "部位を選択してください"
+    prompt: "選択してください"
+    submit: "検索"
+    result_title: "%{body_part}のトレーニング"
+    back_to_selection: "部位選択に戻る"
+    no_suggestions: "提案が見つかりません。"
+
+  gyms:
+    title: "スポーツジム検索"
+    current_location: "現在地"
+    view_in_google_maps: "Googleマップで見る"
+    errors:
+      geolocation_failed: "位置情報の取得に失敗しました。位置情報の許可を確認してください。"
+      geolocation_unsupported: "このブラウザは位置情報をサポートしていません。"
+      search_failed: "ジムの検索に失敗しました。エラー:"
+      no_results: "スポーツジムが見つかりませんでした。検索範囲を広げてみてください。"
+    keywords: "フィットネス, スポーツジム"
+
+  training_logs:
+    edit_title: "トレーニング記録編集 | FitAIplanner"
+    index_title: "トレーニング記録一覧 | FitAIplanner"
+    new_title: "トレーニング記録作成 | FitAIplanner"  
+    new:
+      title: "トレーニング記録を追加"
+      submit: "保存"
+    index:
+      title: "トレーニング記録一覧"
+      new: "新しい記録を追加"
+      type: "種類"
+      weight: "重量"
+      reps: "回数"
+      sets: "セット数"
+      times: "回"
+      set: "セット"
+      edit: "編集"
+      delete: "削除"
+      confirm: "本当に削除しますか？"
+    edit:
+      title: "トレーニング記録を編集"
+      update_button: "更新"
+    fields:
+      training_type: "種類"
+      weight: "重量"
+      reps: "回数"
+      sets: "セット数"
+      day_of_week: "曜日"
+    units:
+      kg: "kg"
+      times: "回"
+      sets: "セット"
+    destroy:
+      success: "トレーニング記録が削除されました"
+      not_found: "記録が見つかりませんでした"
+    update:
+      success: "トレーニング記録が更新されました"
+    create:
+      success: "トレーニング記録を保存しました！"
+      failure: "入力に誤りがあります。"
+  
+
+  days:
+    monday: "月曜日"
+    tuesday: "火曜日"
+    wednesday: "水曜日"
+    thursday: "木曜日"
+    friday: "金曜日"
+    saturday: "土曜日"
+    sunday: "日曜日"
+
+  
+
+  questions:
+    ai_title: "トレーニングプラン作成(AI) | FitAIplanner"
+    form:
+      title: "トレーニング提案"
+      subtitle: "以下の質問に答えてください："
+      age: "年齢："
+      experience: "トレーニング経験："
+      focus_area: "重点を置きたい部位："
+      training_location: "トレーニング場所："
+      home_equipment: "家にダンベルやトレーニングチューブはありますか？"
+      submit: "提案を受け取る"
+    options:
+      beginner: "初心者"
+      intermediate: "中級者"
+      advanced: "上級者"
+      upper_body: "上半身"
+      lower_body: "下半身"
+      core: "体幹"
+      arm: "腕"
+      shoulder: "肩"
+      chest: "胸"
+      back: "背中"
+      abs: "腹筋"
+      leg: "脚"
+      home: "自宅"
+      gym: "ジム"
+      yes: "はい"
+      no: "いいえ"
+    history:
+      title: "これまでの提案一覧"
+      created_at: "作成日時"
+      content: "提案内容"
+      empty: "まだ提案がありません。"  
+ 
 
   bgm:
+    page_title: "BGM | FitAIplanner"
+    error_message: "Spotify APIへの接続に失敗しました。"  
     index:
       spotify_connection_failed: "Spotify APIへの接続に失敗しました。"
       
-  training_suggestions:
-    not_found: "選択された部位の提案が見つかりません。"
+ 
   prompts:
     training_suggestion:
       system: |
@@ -32,16 +177,8 @@ ja:
         上記の情報をもとに、日本語で、親しみやすく、具体的なトレーニングメニューを提案してください。
         回数、セット数、注意点なども含めて説明してください。
 
-  training_logs:
-    destroy:
-      success: "トレーニング記録が削除されました"
-      not_found: "記録が見つかりませんでした"
-    update:
-      success: "トレーニング記録が更新されました"
-    create:
-      success: "トレーニング記録を保存しました！"
-      failure: "入力に誤りがあります。"
-
+  
+  
   sessions:
     google_auth:
       success: "ログインしました"
@@ -57,3 +194,9 @@ ja:
       success: "新しいパスワードは %{new_password} です。次回ログイン時に使用してください。"
       failure: "パスワードのリセットに失敗しました。"
       email_not_found: "メールアドレスが見つかりません。"
+
+  how_to_use:
+    page_title: "使い方説明 | FitAIplanner"  
+  
+  privacy_policy:
+    page_title: "プライバシーポリシー | FitAIplanner"

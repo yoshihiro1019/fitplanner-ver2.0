@@ -1,46 +1,43 @@
-<% provide :title, "ホーム | FitAIplanner" %>
+<% provide :title, t("home.title") %>
 <div class="flex items-center justify-center min-h-screen pt-20">
   <div class="bg-white bg-opacity-80 p-6 rounded shadow text-center">
     <% if user_signed_in? %>
       <!-- ログイン済みの場合 -->
-      <h2 class="text-2xl font-bold mb-4">ようこそ、<%= current_user.email %>さん！</h2>
+      <h2 class="text-2xl font-bold mb-4"><%= t("home.welcome", user: current_user.email) %></h2>
 
-      <!-- ボタン類を縦に並べる: flex + flex-col + space-y-X -->
       <div class="flex flex-col items-center space-y-4">
-  <!-- 機能一覧 (青ボタン) -->
-  <%= link_to mypage_path, class: "inline-block w-48 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center space-x-2" do %>
-    <i class="fas fa-list"></i>
-    <span>機能一覧</span>
-  <% end %>
+        <!-- 機能一覧 -->
+        <%= link_to mypage_path, class: "inline-block w-48 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center space-x-2" do %>
+          <i class="fas fa-list"></i>
+          <span><%= t("home.features") %></span>
+        <% end %>
 
-  <!-- ログアウト (赤ボタン) -->
-  <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "inline-block w-48 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 flex items-center justify-center space-x-2" do %>
-    <i class="fas fa-sign-out-alt"></i>
-    <span>ログアウト</span>
-  <% end %>
-</div>
+        <!-- ログアウト -->
+        <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "inline-block w-48 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 flex items-center justify-center space-x-2" do %>
+          <i class="fas fa-sign-out-alt"></i>
+          <span><%= t("home.logout") %></span>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- ログインしていない場合 -->
+      <h2 class="text-2xl font-bold mb-4"><%= t("home.login_signup") %></h2>
 
-<% else %>
-<!-- ログインしていない場合 -->
-<h2 class="text-2xl font-bold mb-4">ログイン / サインアップ</h2>
+      <div class="flex flex-col items-center space-y-3">
+        <%= link_to new_user_session_path, class: "inline-block w-48 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center space-x-2" do %>
+          <i class="fas fa-sign-in-alt"></i>
+          <span><%= t("home.login") %></span>
+        <% end %>
 
-<div class="flex flex-col items-center space-y-3">
-  <%= link_to new_user_session_path, class: "inline-block w-48 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center space-x-2" do %>
-    <i class="fas fa-sign-in-alt"></i>
-    <span>ログイン</span>
-  <% end %>
+        <%= link_to new_user_registration_path, class: "inline-block w-48 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 flex items-center justify-center space-x-2" do %>
+          <i class="fas fa-user-plus"></i>
+          <span><%= t("home.signup") %></span>
+        <% end %>
 
-  <%= link_to new_user_registration_path, class: "inline-block w-48 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 flex items-center justify-center space-x-2" do %>
-    <i class="fas fa-user-plus"></i>
-    <span>サインアップ</span>
-  <% end %>
-
-  <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, form: { data: { turbo: false } }, class: "inline-block w-48 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 flex items-center justify-center space-x-2" do %>
-    <i class="fab fa-google"></i>
-    <span>Googleでログイン</span>
-  <% end %>
-</div>
-<% end %>
-
+        <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, form: { data: { turbo: false } }, class: "inline-block w-48 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 flex items-center justify-center space-x-2" do %>
+          <i class="fab fa-google"></i>
+          <span><%= t("home.google_login") %></span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
