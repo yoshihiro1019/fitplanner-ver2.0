@@ -1,6 +1,6 @@
 class TrainingSuggestionsController < ApplicationController
   before_action :authenticate_user! # Deviseを使用している場合
-  before_action :set_suggestions, only: [:create]
+  before_action :set_suggestions, only: [ :create ]
 
   def new
     @body_parts = BodyPart.all
@@ -17,10 +17,10 @@ class TrainingSuggestionsController < ApplicationController
         format.json { render json: { suggestions: @suggestions, status: :ok } } # JSONリクエストならJSONを返す
       else
         format.html do
-          flash[:alert] = t('training_suggestions.not_found')
+          flash[:alert] = t("training_suggestions.not_found")
           redirect_to new_training_suggestion_path
         end
-        format.json { render json: { error: t('training_suggestions.not_found') }, status: :not_found }
+        format.json { render json: { error: t("training_suggestions.not_found") }, status: :not_found }
       end
     end
   end

@@ -48,7 +48,6 @@ class QuestionsController < ApplicationController
   private
 
   def fetch_openai_response(age, experience, focus_area, training_location, home_equipment)
-    
     client = OpenAI::Client.new
 
     system_prompt = I18n.t("prompts.training_suggestion.system")
@@ -64,7 +63,7 @@ class QuestionsController < ApplicationController
 
     Rails.logger.info "=== system_prompt ==="
     Rails.logger.info system_prompt
-  
+
     Rails.logger.info "=== user_prompt ==="
     Rails.logger.info prompt
 
@@ -72,7 +71,7 @@ class QuestionsController < ApplicationController
       parameters: {
         model: "gpt-3.5-turbo",
         messages: [
-          { role: "system", content: system_prompt},
+          { role: "system", content: system_prompt },
           { role: "user", content: prompt }
         ]
       }

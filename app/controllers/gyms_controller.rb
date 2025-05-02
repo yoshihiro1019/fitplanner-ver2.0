@@ -1,6 +1,6 @@
 class GymsController < ApplicationController
-  require 'net/http'
-  require 'json'
+  require "net/http"
+  require "json"
   before_action :authenticate_user!
   def index
     if params[:latitude].present? && params[:longitude].present?
@@ -17,7 +17,7 @@ class GymsController < ApplicationController
   private
 
   def fetch_nearby_gyms(latitude, longitude, radius)
-    api_key = ENV['GOOGLE_MAPS_API_KEY']
+    api_key = ENV["GOOGLE_MAPS_API_KEY"]
     url = URI("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{latitude},#{longitude}&radius=#{radius}&type=gym&key=#{api_key}")
 
     response = Net::HTTP.get(url)

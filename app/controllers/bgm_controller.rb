@@ -10,7 +10,7 @@ class BgmController < ApplicationController
       @playlists = fetch_new_releases(token)
       Rails.logger.info("Fetched new releases: #{@playlists.inspect}")
     else
-      flash[:alert] = t('bgm.index.spotify_connection_failed')
+      flash[:alert] = t("bgm.index.spotify_connection_failed")
       @playlists = []
       Rails.logger.info("No token retrieved. @playlists set to empty.")
     end

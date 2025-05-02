@@ -17,16 +17,16 @@ class TrainingLogsController < ApplicationController
     @training_log = TrainingLog.find_by(id: params[:id])
     if @training_log
       @training_log.destroy
-      redirect_to training_logs_path, notice: t('training_logs.destroy.success')
+      redirect_to training_logs_path, notice: t("training_logs.destroy.success")
     else
-      redirect_to training_logs_path, alert: t('training_logs.destroy.not_found')
+      redirect_to training_logs_path, alert: t("training_logs.destroy.not_found")
     end
   end
 
   def update
     @training_log = TrainingLog.find(params[:id])
     if @training_log.update(training_log_params)
-      redirect_to training_logs_path, notice: t('training_logs.update.success')
+      redirect_to training_logs_path, notice: t("training_logs.update.success")
     else
       render :edit
     end
@@ -39,9 +39,9 @@ class TrainingLogsController < ApplicationController
   def create
     @training_log = current_user.training_logs.build(training_log_params)
     if @training_log.save
-      redirect_to training_logs_path(@training_log), notice: t('training_logs.create.success')
+      redirect_to training_logs_path(@training_log), notice: t("training_logs.create.success")
     else
-      flash.now[:alert] = t('training_logs.create.failure')
+      flash.now[:alert] = t("training_logs.create.failure")
       render :new
     end
   end
