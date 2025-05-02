@@ -1,4 +1,9 @@
 ja:
+  pages:
+    features:
+      title: "機能一覧 | FitAIplanner"
+    terms:
+      title: "利用規約 | FitAIplanner"  
   home:
     title: "ホーム | FitAIplanner"
     welcome: "ようこそ、%{user}さん！"
@@ -52,7 +57,8 @@ ja:
     no_suggestions: "提案が見つかりません。"
 
   gyms:
-    title: "スポーツジム検索"
+    title: "スポーツジム検索 | FitAIplanner"
+    title2: "付近のスポーツジム検索"
     current_location: "現在地"
     view_in_google_maps: "Googleマップで見る"
     errors:
