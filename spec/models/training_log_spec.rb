@@ -12,31 +12,31 @@ RSpec.describe TrainingLog, type: :model do
       it 'training_typeが必須であること' do
         subject.training_type = nil
         expect(subject).not_to be_valid
-        expect(subject.errors[:training_type]).to include("can't be blank")
+        expect(subject.errors[:training_type]).to include("を入力してください")
       end
 
       it 'weightが1以上であること' do
         subject.weight = 0
         expect(subject).not_to be_valid
-        expect(subject.errors[:weight]).to include("must be greater than or equal to 1")
+        expect(subject.errors[:weight]).to include("1以上の値にしてください")
       end
 
       it 'repsが1以上であること' do
         subject.reps = 0
         expect(subject).not_to be_valid
-        expect(subject.errors[:reps]).to include("must be greater than or equal to 1")
+        expect(subject.errors[:reps]).to include("1以上の値にしてください")
       end
 
       it 'setsが1以上であること' do
         subject.sets = 0
         expect(subject).not_to be_valid
-        expect(subject.errors[:sets]).to include("must be greater than or equal to 1")
+        expect(subject.errors[:sets]).to include("1以上の値にしてください")
       end
 
       it 'day_of_weekが曜日いずれかであること' do
         subject.day_of_week = 'Holiday'
         expect(subject).not_to be_valid
-        expect(subject.errors[:day_of_week]).to include("is not included in the list")
+        expect(subject.errors[:day_of_week]).to include("が正しくありません")
       end
     end
   end

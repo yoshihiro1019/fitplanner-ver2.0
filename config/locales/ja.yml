@@ -206,3 +206,33 @@ ja:
   
   privacy_policy:
     page_title: "プライバシーポリシー | FitAIplanner"
+
+  errors:
+    messages:
+      blank: "を入力してください"
+      greater_than_or_equal_to: "%{count}以上の値にしてください"
+      inclusion: "が正しくありません"
+      invalid: "が正しくありません"
+      taken: "はすでに存在します"
+      
+  activerecord:
+    errors:
+      models:
+        training_log:
+          attributes:
+            training_type:
+              blank: "を入力してください"
+            weight:
+              greater_than_or_equal_to: "%{count}以上の値にしてください"
+            reps:
+              greater_than_or_equal_to: "%{count}以上の値にしてください"
+            sets:
+              greater_than_or_equal_to: "%{count}以上の値にしてください"
+            day_of_week:
+              inclusion: "が正しくありません"
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+              taken: "はすでに登録されています"
+              invalid: "の形式が正しくありません"      
