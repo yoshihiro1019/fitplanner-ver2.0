@@ -12,7 +12,10 @@
 
     <!-- CSS / JS -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", type: "module", "data-turbo-track": "reload" %>
+    <% unless Rails.env.test? %>
+  <%= javascript_include_tag "application", type: "module", "data-turbo-track": "reload" %>
+<% end %>
+
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/318fce991d.js" crossorigin="anonymous"></script>
