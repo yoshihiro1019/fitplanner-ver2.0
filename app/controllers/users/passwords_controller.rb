@@ -1,10 +1,8 @@
 class Users::PasswordsController < Devise::PasswordsController
-    # パスワード変更用の新しいアクション
     def edit_direct
       @user = current_user
     end
 
-    # トークンなしでパスワードを直接更新
     def update_direct
       @user = current_user
       if @user.update(password_params)

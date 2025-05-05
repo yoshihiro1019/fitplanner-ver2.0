@@ -28,10 +28,8 @@ class CallbacksController < ApplicationController
 
       user_info = JSON.parse(user_response.body)
 
-      # ユーザー情報を表示
       render json: user_info
     rescue RestClient::ExceptionWithResponse => e
-      # エラーハンドリング
       error_info = JSON.parse(e.response)
       render json: error_info, status: e.response.code
     end

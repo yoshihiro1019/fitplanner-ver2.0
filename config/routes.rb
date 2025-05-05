@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get "training_proposals/index"
-  get "training_proposals/new"
-  get "training_proposals/create"
   # Devise routes with OmniAuth callbacks
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",

@@ -1,5 +1,5 @@
 class TrainingLogsController < ApplicationController
-  before_action :authenticate_user!  # ユーザーがログインしていることを確認
+  before_action :authenticate_user!  
 
   def index
     if user_signed_in?

@@ -2,9 +2,8 @@ class BgmController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # アクセストークンを取得
     token = fetch_spotify_token
-    Rails.logger.info("Spotify token: #{token.inspect}")  # トークン確認用ログ出力
+    Rails.logger.info("Spotify token: #{token.inspect}") 
 
     if token
       @playlists = fetch_new_releases(token)
@@ -19,7 +18,7 @@ class BgmController < ApplicationController
   private
 
   def fetch_spotify_token
-    return "dummy_test_token" if Rails.env.test?  # テスト環境では固定値を返す
+    return "dummy_test_token" if Rails.env.test? 
 
     url = URI("https://accounts.spotify.com/api/token")
     request = Net::HTTP::Post.new(url)

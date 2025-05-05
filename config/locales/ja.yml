@@ -235,4 +235,11 @@ ja:
             email:
               blank: "を入力してください"
               taken: "はすでに登録されています"
-              invalid: "の形式が正しくありません"      
+              invalid: "の形式が正しくありません"  
+
+  flash:
+    training_suggestion:
+      saved: "提案を保存しました: %{content}"
+      save_failed: "提案の保存に失敗しました。"
+      no_content: "提案が生成されませんでした。再度お試しください。"
+      missing_input: "全ての項目を入力してください。"                

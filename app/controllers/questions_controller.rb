@@ -1,8 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!  # ログイン必須の場合
+  before_action :authenticate_user!
 
   def index
-    # 履歴として表示するデータは「自分のレコードだけ」に限定
     @training_suggestions = current_user.training_suggestions.order(created_at: :desc)
   end
 
@@ -29,19 +28,16 @@ class QuestionsController < ApplicationController
         )
 
         if @training_suggestion.save
-          flash[:notice] = "提案を保存しました: #{@training_suggestion.content}"
+          flash[:notice] = t("flash.training_suggestion.saved", content: @training_suggestion.content)
         else
-          flash[:alert] = "提案の保存に失敗しました。"
+          flash[:alert] = t("flash.training_suggestion.save_failed")
         end
       else
-        flash[:alert] = "提案が生成されませんでした。再度お試しください。"
+        flash[:alert] = t("flash.training_suggestion.no_content")
       end
     else
-      flash[:alert] = "全ての項目を入力してください。"
+      flash[:alert] = t("flash.training_suggestion.missing_input")
     end
-
-    # ★ ここで `redirect_to` することで、index アクションが呼ばれ、
-    #    @training_suggestions が再取得され、ビューを再描画する
     redirect_to questions_path
   end
 
