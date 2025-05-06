@@ -3,7 +3,7 @@ class BgmController < ApplicationController
 
   def index
     token = fetch_spotify_token
-    Rails.logger.info("Spotify token: #{token.inspect}") 
+    Rails.logger.info("Spotify token: #{token.inspect}")
 
     if token
       @playlists = fetch_new_releases(token)
@@ -18,7 +18,7 @@ class BgmController < ApplicationController
   private
 
   def fetch_spotify_token
-    return "dummy_test_token" if Rails.env.test? 
+    return "dummy_test_token" if Rails.env.test?
 
     url = URI("https://accounts.spotify.com/api/token")
     request = Net::HTTP::Post.new(url)

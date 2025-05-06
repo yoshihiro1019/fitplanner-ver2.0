@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Questions", type: :request do
   let(:user) { create(:user) }
-  let(:headers) { { "ACCEPT" => "text/html" } } 
+  let(:headers) { { "ACCEPT" => "text/html" } }
 
   before do
     sign_in user
