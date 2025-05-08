@@ -15,17 +15,17 @@ require 'capybara/rspec'
 require 'selenium/webdriver'
 require 'database_cleaner/active_record'
 
-# FactoryBot の設定
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 end
 
-# Devise のテストヘルパーをリクエストスペックで使用可能に
+
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
 end
 
-# Capybara の設定
+
 Capybara.register_driver :selenium_chrome_headless do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument('--no-sandbox')
@@ -43,15 +43,15 @@ end
 
 Capybara.javascript_driver = :selenium_chrome_headless
 
-# Capybara のデフォルト設定
+
 RSpec.configure do |config|
   config.before(:suite) do
     Capybara.server = :puma, { Silent: true }
-    Capybara.default_max_wait_time = 5 # Ajax の待ち時間を確保
+    Capybara.default_max_wait_time = 5 
   end
 end
 
-# DatabaseCleaner の設定
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
@@ -76,17 +76,17 @@ RSpec.configure do |config|
   end
 end
 
-# spec/fixtures を fixture_path に設定
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 end
 
-# `spec/` 内のファイルの位置に応じた spec type を推測
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-# RSpec の出力を見やすくする
+
 RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end

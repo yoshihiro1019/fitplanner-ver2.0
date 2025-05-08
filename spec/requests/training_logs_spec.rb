@@ -50,7 +50,7 @@ RSpec.describe "TrainingLogs", type: :request do
     let!(:training_log) { create(:training_log, user: user) }
 
     before do
-      sign_in user # Deviseのサインインヘルパー
+      sign_in user
     end
 
     it "削除後に正しいレスポンスが返ること" do

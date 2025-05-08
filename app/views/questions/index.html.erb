@@ -1,13 +1,11 @@
 <% provide :title, t("questions.ai_title") %>
 <div class="flex flex-col items-center space-y-6 mt-4">
-  <!-- ▼ ローディングインジケータ（最初は非表示） ▼ -->
   <div id="loading-indicator"
        class="fixed inset-0 z-[9999] flex items-center justify-center bg-white bg-opacity-50"
        style="display: none;">
     <div class="loader"></div>
   </div>
 
-  <!-- ▼ スピナーアニメーションCSS（大きめ） ▼ -->
   <style>
     .loader {
       border: 12px solid #f3f3f3;      
@@ -23,7 +21,6 @@
     }
   </style>
 
-  <!-- ▼ トレーニング提案フォーム ▼ -->
   <%= form_with url: questions_path, method: :post,  local: true, class: "w-full max-w-md bg-white p-6 rounded-lg shadow-md", id: "question-form" do %>
     <div class="text-center">
       <h1 class="text-3xl font-bold"><%= t("questions.form.title") %></h1>

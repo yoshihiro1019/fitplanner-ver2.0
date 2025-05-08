@@ -3,14 +3,13 @@
 <div class="flex justify-center mt-8">
   <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
 
-    <!-- タイトル -->
     <div class="text-center mb-8">
       <h1 class="text-3xl font-bold text-gray-800"><%= t("training_logs.new.title") %></h1>
     </div>
 
     <%= form_with(model: @training_log, local: true) do |form| %>
 
-      <!-- 種類 -->
+
       <div class="mb-6">
         <label class="block text-gray-700 text-sm font-medium mb-2">
           <%= form.label :training_type, t("training_logs.fields.training_type") %>
@@ -18,7 +17,6 @@
         <%= form.text_field :training_type, class: "w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" %>
       </div>
 
-      <!-- 1段目：重量・回数 -->
       <div class="flex justify-between mb-6 space-x-4">
         <div class="w-1/2">
           <label class="block text-gray-700 text-sm font-medium mb-2">
@@ -45,7 +43,6 @@
         </div>
       </div>
 
-      <!-- 2段目：セット数・曜日 -->
       <div class="flex justify-between mb-6 space-x-4">
         <div class="w-1/2">
           <label class="block text-gray-700 text-sm font-medium mb-2">
@@ -75,7 +72,6 @@
         </div>
       </div>
 
-      <!-- 送信ボタン -->
       <div class="text-center mt-8">
         <%= form.submit t("training_logs.new.submit"), class: "w-1/2 bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500" %>
       </div>

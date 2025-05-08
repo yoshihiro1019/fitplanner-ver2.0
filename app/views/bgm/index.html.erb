@@ -2,10 +2,8 @@
 <div class="flex flex-col items-center space-y-8 mt-12 px-4">
 
   <% if @playlists.present? %>
-    <!-- プレイリスト(実際はアルバム)のリストを表示 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
       <% @playlists.each do |album| %>
-        <!-- アルバムカード -->
         <div class="bg-gray-100 p-6 rounded-xl shadow-xl max-w-sm mx-auto w-full">
           <h2 class="text-xl font-semibold text-gray-700 mb-4 text-center">
             <%= album["name"] %>
@@ -23,7 +21,6 @@
       <% end %>
     </div>
   <% else %>
-    <!-- エラー時の表示 -->
     <p class="text-lg text-red-500 font-medium">
       <%= t("bgm.error_message") %>
     </p>
