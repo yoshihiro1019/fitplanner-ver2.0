@@ -149,7 +149,7 @@
 
       <!-- サイドバー -->
       <% if user_signed_in? && !(params[:controller] == 'tasks' && params[:action] == 'index') %>
-        <div class="sidebar-desktop fixed top-20 bottom-1 left-4 w-64 bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
+        <div class="sidebar-desktop fixed top-20 left-4 w-64 h-[480px] bg-gray-900 bg-opacity-80 text-white rounded-xl shadow-xl overflow-y-auto z-40">
           <div class="grid grid-cols-1 gap-2 p-4">
             <%= link_to questions_path, class: "flex flex-col items-center p-4 rounded-md hover:bg-gray-700 transition duration-200" do %>
               <i class="fas fa-robot text-4xl mb-2"></i>
