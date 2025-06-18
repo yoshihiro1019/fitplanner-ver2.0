@@ -31,7 +31,7 @@ class SpotifyTokenService
         access_token = data["access_token"]
         expires_in = data["expires_in"]
 
-      
+
         Rails.cache.write("spotify_access_token", access_token, expires_in: expires_in.seconds)
         Rails.cache.write("spotify_token_expiration_time", Time.now + expires_in.seconds, expires_in: expires_in.seconds)
 

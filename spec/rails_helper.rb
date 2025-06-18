@@ -47,7 +47,7 @@ Capybara.javascript_driver = :selenium_chrome_headless
 RSpec.configure do |config|
   config.before(:suite) do
     Capybara.server = :puma, { Silent: true }
-    Capybara.default_max_wait_time = 5 
+    Capybara.default_max_wait_time = 5
   end
 end
 

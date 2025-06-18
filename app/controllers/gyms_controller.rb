@@ -6,7 +6,7 @@ class GymsController < ApplicationController
     if params[:latitude].present? && params[:longitude].present?
       latitude = params[:latitude].to_f
       longitude = params[:longitude].to_f
-      radius = params[:radius].present? ? params[:radius].to_i : 5000 # 半径5kmデフォルト
+      radius = params[:radius].present? ? params[:radius].to_i : 5000
 
       @gyms = fetch_nearby_gyms(latitude, longitude, radius)
     else

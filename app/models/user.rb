@@ -9,7 +9,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name 
+      user.name = auth.info.name
 
       if auth.provider == "spotify"
         user.spotify_id = auth.uid
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   has_many :training_logs, dependent: :destroy
   has_many :training_suggestions, dependent: :destroy
 
- 
+
   def update_spotify_credentials(token_info)
     self.access_token = token_info["access_token"]
     self.refresh_token = token_info["refresh_token"] if token_info["refresh_token"]
@@ -31,7 +31,7 @@ class User < ApplicationRecord
     save
   end
 
-  
+
   def access_token_valid?
     self.token_expires_at > Time.now
   end
