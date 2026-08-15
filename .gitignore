@@ -22,6 +22,7 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+temp_credentials.yml
 
 # Ignore storage (uploaded files in development and any SQLite databases).
 /storage/*
