@@ -9,7 +9,8 @@
 - **ジム探し機能**を搭載  
 - **トレーニング記録機能**や**AIが鍛えたい部位ごとのおすすめトレーニング**を提供
 
-👉 [ポートフォリオURLはこちら](https://fitplanner-ver2-0.onrender.com)
+👉 [ポートフォリオURLはこちら](https://fitplanner-ver2-0.onrender.com) 
+※ブラウザのバージョンが極端に古い場合、一部の機能が正常に動作しない、または画面表示が崩れる可能性があります。最新版のGoogle Chrome、Microsoft Edge、Firefox、Safariでのご利用を推奨します。
 
 ---
 
