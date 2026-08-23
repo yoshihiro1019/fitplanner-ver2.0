@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.5"
+gem "rails", "~> 8.1.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use postgresql as the database for Active Record
@@ -25,7 +25,7 @@ gem "devise", "~> 5.0"
 # gem "kredis"
 gem "omniauth", "~> 2.0"
 gem "omniauth-google-oauth2", "~> 1.0"
-gem "omniauth-rails_csrf_protection"
+gem "omniauth-rails_csrf_protection", "~> 2.0"
 gem "omniauth-spotify"
 
 # Gemfile
