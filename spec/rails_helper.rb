@@ -78,7 +78,7 @@ end
 
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_paths = [ Rails.root.join("spec/fixtures") ]
 end
 
 
